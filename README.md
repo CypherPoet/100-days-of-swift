@@ -18,3 +18,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 
 - [Day 1: Variables, simple data types, and string interpolation](/day-001)
 - [Day 2: Complex Data Types](/day-002)
+- [Day 3: Operators and Conditions]
