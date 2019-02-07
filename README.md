@@ -20,3 +20,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 2: Complex Data Types](/day-002)
 - [Day 3: Operators and Conditions](/day-003)
 - [Day 4: Loops](/day-004)
+- [Day 5: Functions](/day-005)
