@@ -22,3 +22,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 4: Loops](/day-004)
 - [Day 5: Functions](/day-005)
 - [Day 6: Closures, Part 1](/day-006)
+- [Day 7: Closures, Part 2](/day-007)
