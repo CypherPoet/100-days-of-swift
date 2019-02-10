@@ -1,5 +1,7 @@
 # Day 4: Loops
 
+_Follow along at https://www.hackingwithswift.com/100/4_
+
 ## 📒 Field Notes
 
 ### For Loops

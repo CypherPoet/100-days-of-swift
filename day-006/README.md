@@ -1,5 +1,7 @@
 # Day 6: Closures, Part 1
 
+_Follow along at https://www.hackingwithswift.com/100/6_.
+
 ## 📒 Field Notes
 
 ### Accepting Parameters

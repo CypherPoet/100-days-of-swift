@@ -1,5 +1,7 @@
 # Day 3: Operators and Conditions
 
+_Follow along at https://www.hackingwithswift.com/100/3_
+
 ## 📒 Field Notes
 
 ### Arithmetic Operators

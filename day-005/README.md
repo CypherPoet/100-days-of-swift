@@ -1,5 +1,7 @@
 # Day 5: Functions
 
+_Follow along at https://www.hackingwithswift.com/100/5_
+
 ## 📒 Field Notes
 
 Syntactically, Swift's functions are a thing of beauty:

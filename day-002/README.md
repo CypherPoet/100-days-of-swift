@@ -1,5 +1,7 @@
 # Day 2: Complex Data Types
 
+_Follow along at https://www.hackingwithswift.com/100/2_
+
 ## 📒 Field Notes
 
 ### Arrays

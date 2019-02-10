@@ -1,5 +1,7 @@
 # Day 7: Closures, Part 2
 
+_Follow along at https://www.hackingwithswift.com/100/7_.
+
 ## 📒 Field Notes
 
 ### Defining closures as parameters when they accept parameters

@@ -1,5 +1,7 @@
 # Day 1: Variables, Simple Data Types, and String Interpolation
 
+_Follow along at https://www.hackingwithswift.com/100/1_
+
 ## 📒 Field Notes
 
 ### Variables
