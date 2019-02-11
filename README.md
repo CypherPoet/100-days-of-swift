@@ -24,3 +24,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 6: Closures, Part 1](/day-006)
 - [Day 7: Closures, Part 2](/day-007)
 - [Day 8: Structs, Part One](/day-008)
+- [Day 9: Structs, Part Two](/day-009)
