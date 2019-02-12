@@ -9,7 +9,7 @@ _Follow along at https://www.hackingwithswift.com/100/9._
 
 Initially, initializers for structs are handled by default: As long as parameters for every property are passed in to the constructor, Swift will run a _memberwise initializer_ that assigns those parameters to the instance's matching properties.
 
-This is separate from classes, which don't have a default _memberwise initializer_. But we can still define our own if we want. This can be useful when we want to setup our own default for a property &mdash; while also alleviating caller from being concerned with setting it.
+This is separate from classes, which don't have a default memberwise initializer. But we can still define our own if we want. This can be useful when we want to setup our own default for a property &mdash; while also alleviating caller from being concerned with setting it.
 
 
 ### Referring to the current instance
