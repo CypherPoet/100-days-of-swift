@@ -1,6 +1,6 @@
-# Day 13: Swift Review, Day One
+# Day 14: Swift Review, Day Two
 
-_Follow along at https://www.hackingwithswift.com/100/13_.
+_Follow along at https://www.hackingwithswift.com/100/14_.
 
 
 ## 📒 Field Notes
