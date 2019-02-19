@@ -1,6 +1,6 @@
 # Day 15: Swift Review, Day Three
 
-_Follow along at https://www.hackingwithswift.com/100/14_.
+_Follow along at https://www.hackingwithswift.com/100/15_.
 
 
 ## 📒 Field Notes
