@@ -32,3 +32,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 14: Swift Review, Day Two](/day-014)
 - [Day 15: Swift Review, Day Three](/day-015)
 - [Day 16: Project 1, Part One](/day-016)
+- [Day 17: Project 1, Part Two](/day-017)
