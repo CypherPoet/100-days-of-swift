@@ -7,7 +7,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     var imagePaths = [String]()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -38,13 +38,11 @@ class ViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // try loading the "Detail" view controller and typecasting it to be DetailViewController
-        
         if let detailViewController = storyboard?.instantiateViewController(withIdentifier: "Image Detail") as? DetailViewController {
-            // set the vc's `imagePath` property to match the image selected
             detailViewController.imagePath = imagePaths[indexPath.row]
+            detailViewController.imageNumber = indexPath.row + 1
+            detailViewController.totalImageCount = imagePaths.count
             
-            // push the detail VC onto the navigation controller
             navigationController?.pushViewController(detailViewController, animated: true)
         }
     }

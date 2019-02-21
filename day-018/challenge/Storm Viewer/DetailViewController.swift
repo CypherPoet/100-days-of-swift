@@ -12,6 +12,8 @@ class DetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
     var imagePath: String?
+    var imageNumber: Int!
+    var totalImageCount: Int!
     
     override var prefersHomeIndicatorAutoHidden: Bool {
         get {
@@ -23,12 +25,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = imagePath
+        guard let imagePath = imagePath else { return }
+        
+        title = "Picture \(imageNumber!) of \(totalImageCount!)"
         navigationItem.largeTitleDisplayMode = .never
         
-        if let _imagePath = imagePath {
-            imageView.image = UIImage(named: _imagePath)
-        }
+        imageView.image = UIImage(named: imagePath)
     }
     
     
