@@ -19,9 +19,7 @@ class ViewController: UITableViewController {
         
         let images = try! fm.contentsOfDirectory(atPath: path)
         
-        imagePaths = images.filter({ $0.hasPrefix("nssl") })
-        
-        print(imagePaths)
+        imagePaths = images.filter({ $0.hasPrefix("nssl") }).sorted()
     }
     
     
