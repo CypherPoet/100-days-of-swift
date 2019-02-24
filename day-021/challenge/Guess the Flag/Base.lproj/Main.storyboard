@@ -49,13 +49,6 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U4R-CP-ARt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XS-g3-zAP">
-                                <rect key="frame" x="72" y="503" width="230" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
-                                <color key="textColor" red="0.36238711552087849" green="0.35869689454197995" blue="0.36653315355329952" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -68,12 +61,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UDi-mp-oYB"/>
+                    <navigationItem key="navigationItem" id="UDi-mp-oYB">
+                        <barButtonItem key="rightBarButtonItem" title="0" id="Sk7-j8-1co">
+                            <color key="tintColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="button1" destination="vFN-ge-cVu" id="tFe-hn-j0d"/>
                         <outlet property="button2" destination="ZzW-Kt-38n" id="gbi-UL-J0u"/>
                         <outlet property="button3" destination="NEb-PX-xnZ" id="FBe-Yt-iKY"/>
-                        <outlet property="scoreLabel" destination="4XS-g3-zAP" id="vVY-uo-ddQ"/>
+                        <outlet property="scoreButton" destination="Sk7-j8-1co" id="2IO-nq-DpK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

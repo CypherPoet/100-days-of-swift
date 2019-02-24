@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet var button1: UIButton!
     @IBOutlet var button2: UIButton!
     @IBOutlet var button3: UIButton!
-    @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet weak var scoreButton: UIBarButtonItem!
     
     var flags: [Flag] = []
     var flagChoices: [Flag] = []
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     var currentScore = 0 {
         didSet {
-            scoreLabel.text = "Current Score: \(self.currentScore)"
+            scoreButton.title = String(currentScore)
         }
     }
     
