@@ -1,0 +1,50 @@
+[
+    {
+        "country": "Estonia",
+        "asset_name": "estonia"
+    },
+    {
+        "country": "France",
+        "asset_name": "france",
+    },
+    {
+        "country": "Germany",
+        "asset_name": "germany",
+    },
+    {
+        "country": "Ireland",
+        "asset_name": "ireland",
+    },
+    {
+        "country": "Italy",
+        "asset_name": "italy",
+    },
+    {
+        "country": "Monaco",
+        "asset_name": "monaco",
+    },
+    {
+        "country": "Nigeria",
+        "asset_name": "nigeria",
+    },
+    {
+        "country": "Poland",
+        "asset_name": "poland",
+    },
+    {
+        "country": "Russia",
+        "asset_name": "russia",
+    },
+    {
+        "country": "Spain",
+        "asset_name": "spain",
+    },
+    {
+        "country": "United Kingdom",
+        "asset_name": "uk"
+    },
+    {
+        "country": "United States",
+        "asset_name": "us"
+    },
+]
