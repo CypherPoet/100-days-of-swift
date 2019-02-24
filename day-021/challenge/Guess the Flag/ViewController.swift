@@ -35,13 +35,15 @@ class ViewController: UIViewController {
     var correctFlag: Flag!
     var correctFlagTag: Int!
     
+    var questionsAsked = 0
+    
     var currentScore = 0 {
         didSet {
             scoreButton.title = String(currentScore)
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,7 +93,8 @@ class ViewController: UIViewController {
         
         alertController.addAction(
             UIAlertAction(title: "Continue", style: .default) { [unowned self] _ in
-                self.askQuestion()
+                self.questionsAsked += 1
+                self.questionsAsked == 10 ? self.endGame() : self.askQuestion()
             }
         )
         
@@ -138,6 +141,19 @@ class ViewController: UIViewController {
         }
         
         return nil
+    }
+    
+    
+    func endGame() {
+        let alertController = UIAlertController(title: "Game Over", message: "Your final score is \(currentScore)", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Play Again", style: .default) { [unowned self] _ in
+            self.currentScore = 0
+            self.questionsAsked = 0
+            self.askQuestion()
+        })
+        
+        present(alertController, animated: true)
     }
 }
 
