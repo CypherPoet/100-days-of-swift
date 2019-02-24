@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     }
     
     
-    func handleChoice(wasCorrect: Bool) {
+    func handleChoice(_ chosenFlag: Flag, wasCorrect: Bool) {
         var responseMessage: String
         
         if wasCorrect {
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
             currentScore += 1
         } else {
             title = "Incorrect!"
-            responseMessage = "You just lost 3 points."
+            responseMessage = "That's the flag of \(chosenFlag.displayName), not \(correctFlag.displayName). You just lost 3 points."
             currentScore = max(0, currentScore - 3)
         }
         
@@ -105,10 +105,10 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         let chosenFlag = flagChoices[sender.tag]
         
-        if chosenFlag.country == correctFlag.country {
-            handleChoice(wasCorrect: true)
+        if chosenFlag.displayName == correctFlag.displayName {
+            handleChoice(chosenFlag, wasCorrect: true)
         } else {
-            handleChoice(wasCorrect: false)
+            handleChoice(chosenFlag, wasCorrect: false)
         }
     }
     
