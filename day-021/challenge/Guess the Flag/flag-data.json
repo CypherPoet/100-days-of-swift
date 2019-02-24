@@ -1,50 +1,50 @@
 [
     {
-        "country": "Estonia",
+        "display_name": "Estonia",
         "asset_name": "estonia"
     },
     {
-        "country": "France",
+        "display_name": "France",
         "asset_name": "france",
     },
     {
-        "country": "Germany",
+        "display_name": "Germany",
         "asset_name": "germany",
     },
     {
-        "country": "Ireland",
+        "display_name": "Ireland",
         "asset_name": "ireland",
     },
     {
-        "country": "Italy",
+        "display_name": "Italy",
         "asset_name": "italy",
     },
     {
-        "country": "Monaco",
+        "display_name": "Monaco",
         "asset_name": "monaco",
     },
     {
-        "country": "Nigeria",
+        "display_name": "Nigeria",
         "asset_name": "nigeria",
     },
     {
-        "country": "Poland",
+        "display_name": "Poland",
         "asset_name": "poland",
     },
     {
-        "country": "Russia",
+        "display_name": "Russia",
         "asset_name": "russia",
     },
     {
-        "country": "Spain",
+        "display_name": "Spain",
         "asset_name": "spain",
     },
     {
-        "country": "United Kingdom",
+        "display_name": "the United Kingdom",
         "asset_name": "uk"
     },
     {
-        "country": "United States",
+        "display_name": "the United States",
         "asset_name": "us"
     },
 ]

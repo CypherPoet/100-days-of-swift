@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         correctFlagTag = Int.random(in: 0..<3)
         correctFlag = flagChoices[correctFlagTag]
 
-        title = "Which flag belongs to \(correctFlag.country)?"
+        title = "Which flag belongs to \(correctFlag.displayName)?"
         
         for (index, button) in [button1, button2, button3].enumerated() {
             button?.setImage(UIImage(named: flagChoices[index].assetName), for: .normal)

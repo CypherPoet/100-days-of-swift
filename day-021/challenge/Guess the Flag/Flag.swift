@@ -9,6 +9,6 @@
 import Foundation
 
 struct Flag: Codable {
-    var country: String
+    var displayName: String
     var assetName: String
 }
