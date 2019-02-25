@@ -2,26 +2,8 @@
 //  ViewController.swift
 //  Guess the Flag
 //
-//  Created by Brian Sipple on 1/13/19.
-//  Copyright © 2019 Brian Sipple. All rights reserved.
-//
 
 import UIKit
-
-let flagFilePathsAndNames = [
-    "estonia": "Estonia",
-    "france": "France",
-    "germany": "Germany",
-    "ireland": "Ireland",
-    "italy": "Italy",
-    "monaco": "Monaco",
-    "nigeria": "Nigeria",
-    "poland": "Poland",
-    "russia": "Russia",
-    "spain": "Spain",
-    "uk": "United Kingdom",
-    "us": "United States",
-]
 
 
 class ViewController: UIViewController {
