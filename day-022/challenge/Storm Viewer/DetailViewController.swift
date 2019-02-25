@@ -11,9 +11,19 @@ import UIKit
 class DetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
-    var imagePath: String?
+    var imagePath: String!
     var imageNumber: Int!
     var totalImageCount: Int!
+    
+    
+    var imageName: String {
+        if let index = imagePath.firstIndex(of: ".") {
+            return String(imagePath.prefix(upTo: index))
+        } else {
+            return imagePath
+        }
+    }
+    
     
     override var prefersHomeIndicatorAutoHidden: Bool {
         get {
@@ -21,11 +31,8 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let imagePath = imagePath else { return }
         
         setupNavbar()
         imageView.image = UIImage(named: imagePath)
@@ -62,7 +69,7 @@ class DetailViewController: UIViewController {
             return
         }
         
-        let viewController = UIActivityViewController(activityItems: [imageData], applicationActivities: nil)
+        let viewController = UIActivityViewController(activityItems: [imageData, imageName], applicationActivities: nil)
         
         viewController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
