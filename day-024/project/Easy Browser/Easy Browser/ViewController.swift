@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class ViewController: UIViewController {
     var webView: WKWebView!
     var progressView: UIProgressView!
     var urlsToChoose = [URL]()
@@ -53,28 +53,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        let url = navigationAction.request.url
-        
-        if let host = url?.host {
-            for siteName in siteNames {
-                if host.contains(siteName) {
-                    decisionHandler(.allow)
-                    return
-                }
-            }
-        }
-        
-        decisionHandler(.cancel)
-    }
-    
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        title = webView.title
-    }
-    
-    
     func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "🌐",
@@ -108,8 +86,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         for siteName in siteNames {
             alertController.addAction(UIAlertAction(title: siteName, style: .default, handler: openPage))
         }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alertController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         
         present(alertController, animated: true)
@@ -117,9 +95,36 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     
     func openPage(action: UIAlertAction) {
-        let pageURL = URL(string: "https://\(action.title!)")!
+        guard let domainName = action.title else { return }
+        guard let pageURL = URL(string: "https://\(domainName)") else { return }
         
         webView.load(URLRequest(url: pageURL))
     }
 }
 
+
+extension ViewController: WKNavigationDelegate {
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
+        let url = navigationAction.request.url
+        
+        if let host = url?.host {
+            for siteName in siteNames {
+                if host.contains(siteName) {
+                    decisionHandler(.allow)
+                    return
+                }
+            }
+        }
+        
+        decisionHandler(.cancel)
+    }
+    
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        title = webView.title
+    }
+}
