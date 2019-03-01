@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController {
-    var webView: WKWebView!
+    @objc dynamic var webView: WKWebView!
     var progressView: UIProgressView!
     var urlsToChoose = [URL]()
     
@@ -20,15 +20,14 @@ class ViewController: UIViewController {
         "yalls.org",
         "developer.apple.com/develop"
     ]
-    
+
+    var progressObserver: NSKeyValueObservation! = nil
     
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self
         
         view = webView
-        
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
     
     
@@ -39,17 +38,12 @@ class ViewController: UIViewController {
         
         setupNavigationBar()
         setupToolbar()
+        observeProgress()
     }
     
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "estimatedProgress" {
-            progressView.progress = Float(webView.estimatedProgress)
+    func observeProgress() {
+        progressObserver = self.observe(\.webView.estimatedProgress) { [unowned self] (_, _) in
+            self.progressView.progress = Float(self.webView.estimatedProgress)
         }
     }
     
