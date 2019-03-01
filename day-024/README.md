@@ -5,7 +5,7 @@ _Follow along at https://www.hackingwithswift.com/100/24_.
 
 ## 📒 Field Notes
 
-This day covers the first part of `Day 24: Project 4, Part One` in _[Hacking with Swift](https://www.hackingwithswift.com/read/4/overview)_.
+This day covers the first part of `Project 4, Easy Browser` in _[Hacking with Swift](https://www.hackingwithswift.com/read/4/overview)_.
 
 I have a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift) where I've been creating projects alongside the material in the book. And you can find Project 4 [here](https://github.com/CypherPoet/book--hacking-with-swift/tree/master/04-easy-browser). However, this day focused specifically on a number of topics:
 
