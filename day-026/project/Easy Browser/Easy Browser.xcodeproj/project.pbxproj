@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F346947C2229CB4B00B8D635 /* Website.swift in Sources */ = {isa = PBXBuildFile; fileRef = F346947B2229CB4B00B8D635 /* Website.swift */; };
+		F346947E2229DE6100B8D635 /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F346947D2229DE6100B8D635 /* WebsiteViewController.swift */; };
 		F3FD7E9721F02680009FDABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD7E9621F02680009FDABA /* AppDelegate.swift */; };
-		F3FD7E9921F02680009FDABA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD7E9821F02680009FDABA /* ViewController.swift */; };
+		F3FD7E9921F02680009FDABA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD7E9821F02680009FDABA /* HomeViewController.swift */; };
 		F3FD7E9C21F02680009FDABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3FD7E9A21F02680009FDABA /* Main.storyboard */; };
 		F3FD7E9E21F02681009FDABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FD7E9D21F02681009FDABA /* Assets.xcassets */; };
 		F3FD7EA121F02681009FDABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3FD7E9F21F02681009FDABA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F346947B2229CB4B00B8D635 /* Website.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Website.swift; sourceTree = "<group>"; };
+		F346947D2229DE6100B8D635 /* WebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteViewController.swift; sourceTree = "<group>"; };
 		F3FD7E9321F02680009FDABA /* Easy Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3FD7E9621F02680009FDABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3FD7E9821F02680009FDABA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3FD7E9821F02680009FDABA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F3FD7E9B21F02680009FDABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3FD7E9D21F02681009FDABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3FD7EA021F02681009FDABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,11 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				F3FD7E9621F02680009FDABA /* AppDelegate.swift */,
-				F3FD7E9821F02680009FDABA /* ViewController.swift */,
+				F3FD7E9821F02680009FDABA /* HomeViewController.swift */,
 				F3FD7E9A21F02680009FDABA /* Main.storyboard */,
 				F3FD7E9D21F02681009FDABA /* Assets.xcassets */,
 				F3FD7E9F21F02681009FDABA /* LaunchScreen.storyboard */,
 				F3FD7EA221F02681009FDABA /* Info.plist */,
+				F346947B2229CB4B00B8D635 /* Website.swift */,
+				F346947D2229DE6100B8D635 /* WebsiteViewController.swift */,
 			);
 			path = "Easy Browser";
 			sourceTree = "<group>";
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3FD7E9921F02680009FDABA /* ViewController.swift in Sources */,
+				F346947E2229DE6100B8D635 /* WebsiteViewController.swift in Sources */,
+				F3FD7E9921F02680009FDABA /* HomeViewController.swift in Sources */,
 				F3FD7E9721F02680009FDABA /* AppDelegate.swift in Sources */,
+				F346947C2229CB4B00B8D635 /* Website.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
