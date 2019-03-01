@@ -61,11 +61,15 @@ class ViewController: UIViewController {
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         
-        let progressButton = UIBarButtonItem(customView: progressView)
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         
-        toolbarItems = [progressButton, spacer, refresh]
+        let progressButton = UIBarButtonItem(customView: progressView)
+        let backButton = UIBarButtonItem(title: "◀️", style: .plain, target: webView, action: #selector(webView.goBack))
+        let forwardButton = UIBarButtonItem(title: "▶️", style: .plain, target: webView, action: #selector(webView.goForward))
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+
+        
+        toolbarItems = [progressButton, spacer, backButton, forwardButton, spacer, refresh]
         navigationController?.isToolbarHidden = false
     }
     
