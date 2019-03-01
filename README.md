@@ -41,3 +41,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 23: Milestone for Projects 1-3](/day-023)
 - [Day 24: Project 4, Part One](/day-024)
 - [Day 25: Project 4, Part Two](/day-025)
+- [Day 26: Project 4, Part Three](/day-026)

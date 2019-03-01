@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     
     let siteNames = [
         "hackingwithswift.com",
-        "google.com",
+        "spacex.com",
         "yalls.org",
-        "developer.apple.com/develop"
+        "developer.apple.com"
     ]
 
     var progressObserver: NSKeyValueObservation! = nil
@@ -94,6 +94,18 @@ class ViewController: UIViewController {
         
         webView.load(URLRequest(url: pageURL))
     }
+    
+    func displayUnauthorizedSiteAlert() {
+        let alertController = UIAlertController(
+            title: "Unauthorized Host 🛑",
+            message: "The Internet is a scary place. Please do not try accessing sites with host names that aren't on our list.",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(title: "Sorry", style: .default))
+        
+        present(alertController, animated: true)
+    }
 }
 
 
@@ -115,6 +127,7 @@ extension ViewController: WKNavigationDelegate {
         }
         
         decisionHandler(.cancel)
+        displayUnauthorizedSiteAlert()
     }
     
     
