@@ -9,16 +9,21 @@
 import UIKit
 
 class HomeViewController: UITableViewController {
-    var allWords = [String]()
-    var usedWords = [String]()
-    var currentSubject: String!
+    var allWords: [String] = []
+    var usedWords: [String] = []
+    
+    var currentSubject = "" {
+        didSet {
+            title = "Make an anagram from \"\(currentSubject)\"."
+        }
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         loadWords()
-        setupNavbar()
         startGame()
     }
     
@@ -50,20 +55,13 @@ class HomeViewController: UITableViewController {
     }
     
     
-    func setupNavbar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(promptForAnswer)
-        )
-    }
-
-    
     func startGame() {
-        currentSubject = allWords.randomElement()
+        guard let subject = allWords.randomElement() else {
+            fatalError("Failed to load words for game")
+        }
+        
+        currentSubject = subject
         usedWords.removeAll(keepingCapacity: true)
-
-        title = "Make an anagram from \"\(currentSubject!)\"."
         tableView.reloadData()
     }
     
@@ -74,17 +72,19 @@ class HomeViewController: UITableViewController {
         When the user clicks Submit to that alert controller,
         the answer is checked to make sure it's valid.
      */
-    @objc func promptForAnswer() {
+    @IBAction func promptForAnswer() {
         let alertController = UIAlertController(
-            title: "Enter an anagram for \(currentSubject!)",
+            title: "Enter an anagram for \(currentSubject)",
             message: nil,
             preferredStyle: .alert
         )
         
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned self, alertController] (action: UIAlertAction) in
-            let answer = alertController.textFields![0]
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak alertController] _ in
+            guard let answer = alertController?.textFields?[0].text else {
+                return
+            }
          
-            self.handleSubmitAnswer(answer: answer.text!)
+            self?.handleSubmit(answer)
         }
         
         alertController.addTextField()
@@ -100,21 +100,21 @@ class HomeViewController: UITableViewController {
      - Can be made from the letters of the subject
      - Is a valid English word (i.e., not gibberish)
      */
-    func handleSubmitAnswer(answer: String) -> Void {
+    func handleSubmit(_ answer: String) -> Void {
         print("Handling answer of \"\(answer)\"")
         
         if answer.isEmpty {
             return showSubmissionError(title: "Try again!", message: "Your answer can't be empty.")
         }
 
-        if answer == currentSubject! {
+        if answer == currentSubject {
             return showSubmissionError(title: "Mix it up!", message: "Your answer shouldn't match the original word")
         }
 
         if !isOriginalAnswer(word: answer) {
             return showSubmissionError(
                 title: "Be original!",
-                message: "You've already used \"\(answer)\" as an anagram for \"\(currentSubject!)\""
+                message: "You've already used \"\(answer)\" as an anagram for \"\(currentSubject)\""
             )
         }
 
@@ -123,7 +123,7 @@ class HomeViewController: UITableViewController {
         }
         
         if !isValidAnagram(subject: currentSubject, answer: answer) {
-            return showSubmissionError(title: "Try again!", message: "\"\(answer)\" is not a valid anagram for \"\(currentSubject!)\"")
+            return showSubmissionError(title: "Try again!", message: "\"\(answer)\" is not a valid anagram for \"\(currentSubject)\"")
         }
         
         let indexPath = IndexPath(row: 0, section: 0)

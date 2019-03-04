@@ -87,7 +87,7 @@ Here, in a function that's already taking 4 other parameters, I don't really min
 
 ### Capturing Values
 
-If I had to use one word to describe closures, it's "capture". (Fortunately, thuogh, I don't have to use one word, because closures are tricky enough to grasp with an entire vocabulary.)
+If I had to use one word to describe closures, it's "capture". (Fortunately, though, I don't have to use one word, because closures are tricky enough to grasp with an entire vocabulary.)
 
 Closures allow us to capture state from an outer context, bundle it up inside of a function, and then pass that function off to some other context that will handle calling it later. This as an incredibly powerful concept, and it's no surprise to see closures appears all over the place in Swift given its many patterns concerning delegation, multithreading, event handling, functional programming, and more.
 
