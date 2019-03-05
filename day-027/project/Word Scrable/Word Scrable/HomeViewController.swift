@@ -14,7 +14,7 @@ class HomeViewController: UITableViewController {
     
     var currentSubject = "" {
         didSet {
-            title = "Make an anagram from \"\(currentSubject)\"."
+            title = "Anagrams of \"\(currentSubject)\""
         }
     }
     
@@ -66,7 +66,7 @@ class HomeViewController: UITableViewController {
     }
     
     
-    /*
+    /**
         Shows a UIAlertController with space for the user to enter an answer.
      
         When the user clicks Submit to that alert controller,
@@ -96,11 +96,12 @@ class HomeViewController: UITableViewController {
     
     /*
      Given a subject word, we check that an answer:
-     - Hasn't already been used by the player
-     - Can be made from the letters of the subject
-     - Is a valid English word (i.e., not gibberish)
+         - Hasn't already been used by the player
+         - Can be made from the letters of the subject
+         - Is a valid English word (i.e., not gibberish)
      */
-    func handleSubmit(_ answer: String) -> Void {
+    func handleSubmit(_ input: String) -> Void {
+        let answer = input.lowercased()
         print("Handling answer of \"\(answer)\"")
         
         if answer.isEmpty {
@@ -111,7 +112,7 @@ class HomeViewController: UITableViewController {
             return showSubmissionError(title: "Mix it up!", message: "Your answer shouldn't match the original word")
         }
 
-        if !isOriginalAnswer(word: answer) {
+        if !isOriginal(word: answer) {
             return showSubmissionError(
                 title: "Be original!",
                 message: "You've already used \"\(answer)\" as an anagram for \"\(currentSubject)\""
@@ -133,18 +134,18 @@ class HomeViewController: UITableViewController {
     }
     
     
-    func isOriginalAnswer(word: String) -> Bool {
-        return !usedWords.contains(word.lowercased())
+    func isOriginal(word: String) -> Bool {
+        return !usedWords.contains(word)
     }
     
     
     func isValidAnagram(subject: String, answer: String) -> Bool {
-        if answer.count > subject.count { return false }
+        guard answer.count <= subject.count else { return false }
         
         let sortedSubjectLetters = String(subject.sorted())
         var sortedAnswerLetters = String(answer.sorted())
         
-        while sortedAnswerLetters.count > 0 {
+        while !sortedAnswerLetters.isEmpty {
             let charToMatch = sortedAnswerLetters.first!
             
             if !sortedSubjectLetters.contains(charToMatch) {
