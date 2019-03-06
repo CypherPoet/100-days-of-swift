@@ -94,6 +94,22 @@ class HomeViewController: UITableViewController {
     }
     
     
+    @IBAction func restartTapped(_ sender: Any) {
+        let alertController = UIAlertController(
+            title: "Are you sure?",
+            message: "Restarting the game will remove your answers and generate a new subject.",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        alertController.addAction(UIAlertAction(title: "Restart", style: .default) { [weak self] _ in
+            self?.startGame()
+        })
+        
+        present(alertController, animated: true)
+    }
+    
     /*
      Given a subject word, we check that an answer:
          - Hasn't already been used by the player
