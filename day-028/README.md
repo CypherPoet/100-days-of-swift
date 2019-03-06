@@ -1,5 +1,10 @@
 # Day 28: Project 5, Part Two
 
+_Follow along at https://www.hackingwithswift.com/100/28_.
+
+
+## 📒 Field Notes
+
 This day covers the second part of `Project 5: Word Scramble` in _[Hacking with Swift](https://www.hackingwithswift.com/read/5)_.
 
 I have a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift) where I've been creating projects alongside the material in the book. And you can find Project 5 [here](https://github.com/CypherPoet/book--hacking-with-swift/tree/master/05-word-scramble/Word%20Scrable). However, I also copied it over to this repo in [Day 27](./../day-027/README.md) so I could extend from where I left off.
