@@ -105,7 +105,11 @@ class HomeViewController: UITableViewController {
         print("Handling answer of \"\(answer)\"")
         
         if answer.isEmpty {
-            return showSubmissionError(title: "Try again!", message: "Your answer can't be empty.")
+            return showSubmissionError(title: "Oops", message: "Your answer can't be empty.")
+        }
+        
+        if answer.count == 1 {
+            return showSubmissionError(title: "We'll need a bit more than that.", message: "Your answer must be at least 2 letters.")
         }
 
         if answer == currentSubject {
