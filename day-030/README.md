@@ -33,7 +33,38 @@ Presto 💥
 ![Auto Layout Landscape](./auto-layout-landscape.png)
 
 
-
-
 ### Auto Layout in code: addConstraints() with Visual Format Language
 
+
+Apple's documentation provides a handy [description of the full specification](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html), but the core idea is that VFL allows us to programmatically (thus, dynamically) define horizontal and vertical layout, alignment, and sizing constraints for views that might otherwise not be possible &mdash; or straightforward &mdash; in Interface Builder.
+
+Using a string like this...
+
+```swift
+V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]->=10-|
+```
+
+... we can encode an immense amount of information: direction, alignment, element sizing, element spacing, edge offsets, and event constraint priority levels (designated above by the `@999`).
+
+Actually _activating_ these constraints for a view can get a bit verbose, since we need to make use of `NSLayoutConstraint`, but it's not too bad if we organize values in variables:
+
+```swift
+view.addConstraints(
+    NSLayoutConstraint.constraints(
+        withVisualFormat: layoutString,
+        options: [],
+        metrics: metrics,
+        views: labelViews
+    )
+)
+```
+
+Some important pointers and code architecture:
+- Views need to be structured as a dictionary. VFL processes this dictionary and makes use of the key names to interpret its string.
+- For views that we're using VFL with, `translatesAutoresizingMaskIntoConstraints` needs to be set to `false`. It's [`true` by default for any view created programmatically](https://developer.apple.com/documentation/uikit/uiview/1622572-translatesautoresizingmaskintoco) &mdash; but we'll be writing the constraints, thank you very much 😀.
+- Vertical pipes `|` refer to edges, and omitting them or adding them can makes the difference between items being stretched end-to-end or not.
+
+
+## 🔗 Additional/Related Links
+
+- [Exploring Visual Format Language with Swift](https://medium.com/@Cordavi/exploring-visual-format-language-with-swift-7ba2c1f4c924)
