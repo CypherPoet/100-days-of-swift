@@ -14,6 +14,7 @@ With that in mind, Day 31 focuses on several specific topics, followed by some c
 - Auto Layout metrics and priorities: constraints(withVisualFormat:)
 - Auto Layout anchors
 
+
 ### Auto Layout metrics and priorities: constraints(withVisualFormat:)
 
 I hinted at it in [Day 30](../day-030/README.md), but metrics and priorities allow us to give our VFL strings more information density, making them more maintainable and, often, more readable at the same time:
@@ -48,6 +49,14 @@ for label in labels {
     label.heightAnchor.constraint(equalToConstant: 88).isActive = true
 }
 ```
+
+## 🥅 Challenges
+
+
+### Challenge 1
+
+>
+
 
 ## 🔗 Additional/Related Links
 
