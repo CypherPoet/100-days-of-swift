@@ -114,10 +114,11 @@ class HomeViewController: UIViewController {
         for labelNumber in 1...labels.count {
             let label = labels["label\(labelNumber)"]!
             
-            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 6).isActive = true
+            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -6).isActive = true
             
             label.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2, constant: -10).isActive = true
+            label.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
 
             if labelNumber > 1 {
                 let labelAbove = labels["label\(labelNumber - 1)"]!
@@ -130,6 +131,7 @@ class HomeViewController: UIViewController {
                     label.bottomAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
                 }
             } else {
+                /// anchor the first label against the top `safeAreaLayoutGuide`
                 label.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
             }
         }
