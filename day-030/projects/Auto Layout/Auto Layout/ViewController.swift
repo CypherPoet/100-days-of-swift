@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    lazy var labelViews = [
+    lazy var labels = [
         "label1": UILabel(),
         "label2": UILabel(),
         "label3": UILabel(),
@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     ]
     
     /// Toggle this to experiment with anchor constraints instead of vertical/horizontal VFL
-    var useAnchorContraints = false
+    var useAnchorContraints = true
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -41,23 +41,23 @@ class HomeViewController: UIViewController {
     
     
     func createViews() {
-        labelViews["label1"]?.backgroundColor = UIColor.red
-        labelViews["label1"]?.text = "THESE"
+        labels["label1"]?.backgroundColor = UIColor.red
+        labels["label1"]?.text = "THESE"
         
-        labelViews["label2"]?.backgroundColor = UIColor.cyan
-        labelViews["label2"]?.text = "ARE"
+        labels["label2"]?.backgroundColor = UIColor.cyan
+        labels["label2"]?.text = "ARE"
         
-        labelViews["label3"]?.backgroundColor = UIColor.yellow
-        labelViews["label3"]?.text = "SOME"
+        labels["label3"]?.backgroundColor = UIColor.yellow
+        labels["label3"]?.text = "SOME"
         
-        labelViews["label4"]?.backgroundColor = UIColor.orange
-        labelViews["label4"]?.text = "AWESOME"
+        labels["label4"]?.backgroundColor = UIColor.orange
+        labels["label4"]?.text = "AWESOME"
         
-        labelViews["label5"]?.backgroundColor = UIColor.purple
-        labelViews["label5"]?.text = "LABELS"
+        labels["label5"]?.backgroundColor = UIColor.purple
+        labels["label5"]?.text = "LABELS"
 
         
-        for label in labelViews.values {
+        for label in labels.values {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.sizeToFit()
             view.addSubview(label)
@@ -66,13 +66,13 @@ class HomeViewController: UIViewController {
     
     
     func addHorizontalViewConstraints() {
-        for labelKey in labelViews.keys {
+        for labelKey in labels.keys {
             view.addConstraints(
                 NSLayoutConstraint.constraints(
                     withVisualFormat: "H:|[\(labelKey)]|",
                     options: [],
                     metrics: nil,
-                    views: labelViews
+                    views: labels
                 )
             )
         }
@@ -104,24 +104,26 @@ class HomeViewController: UIViewController {
                 withVisualFormat: layoutString,
                 options: [],
                 metrics: metrics,
-                views: labelViews
+                views: labels
             )
         )
     }
     
     
     func addAnchorConstraints() {
-        for labelNumber in 1...labelViews.count {
-            let label = labelViews["label\(labelNumber)"]!
+        for labelNumber in 1...labels.count {
+            let label = labels["label\(labelNumber)"]!
             
             label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
             label.heightAnchor.constraint(equalToConstant: 88).isActive = true
             
             if labelNumber > 1 {
-                let labelAbove = labelViews["label\(labelNumber - 1)"]!
+                let labelAbove = labels["label\(labelNumber - 1)"]!
                 
                 // create a topAnchor constraint if we have a previous label (and thus, a bottomAnchor to offset from)
                 label.topAnchor.constraint(equalTo: labelAbove.bottomAnchor, constant: 10).isActive = true
+            } else {
+                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
             }
         }
     }
