@@ -117,15 +117,20 @@ class HomeViewController: UIViewController {
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
             
-            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
-            
+            label.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2, constant: -10).isActive = true
+
             if labelNumber > 1 {
                 let labelAbove = labels["label\(labelNumber - 1)"]!
                 
-                // create a topAnchor constraint if we have a previous label (and thus, a bottomAnchor to offset from)
+                /// create a topAnchor constraint if we have a label above us (and thus, a bottomAnchor to offset from)
                 label.topAnchor.constraint(equalTo: labelAbove.bottomAnchor, constant: 10).isActive = true
+                
+                if labelNumber == labels.count {
+                    /// anchor the last label against the bottom `safeAreaLayoutGuide`
+                    label.bottomAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
+                }
             } else {
-                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+                label.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
             }
         }
     }
