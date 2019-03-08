@@ -55,7 +55,24 @@ for label in labels {
 
 ### Challenge 1
 
->
+> Try replacing the widthAnchor of our labels with leadingAnchor and trailingAnchor constraints, which more explicitly pin the label to the edges of its parent.
+
+- 🔗 [Commit](https://github.com/CypherPoet/100-days-of-swift/commit/dcaed9188d78989939baee4dfecb48998cec8347)
+
+
+### Challenge 2
+
+> Once you’ve completed the first challenge, try using the safeAreaLayoutGuide for those constraints.
+
+- 🔗 [Commit](https://github.com/CypherPoet/100-days-of-swift/commit/937ee135037500cbbfb4ae004c7ae8c28a996dce)
+
+
+### Challenge 3
+
+> Try making the height of your labels equal to 1/5th of the main view, minus 10 for the spacing.
+
+- 🔗 [Commit](https://github.com/CypherPoet/100-days-of-swift/commit/1d30fef0bdf83a3697094a119fa2df43ff92b956)
+
 
 
 ## 🔗 Additional/Related Links
