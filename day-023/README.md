@@ -27,7 +27,7 @@ A good way to end a recap is to extend on things. Day 23 ends with a challenge p
 
 > Create an app that lists various world flags in a table view. When one of them is tapped, slide in a detail view controller that contains an image view, showing the same flag full size. On the detail view controller, add an action button that lets the user share the flag picture and country name using UIActivityViewController.
 
-Feel free to peruse the finished project [here]. In the meantime... a few screenshots:
+Feel free to peruse the finished project [here](./challenge). In the meantime... a few screenshots:
 
 ![Table View](./screenshots/table-view.png)
 
