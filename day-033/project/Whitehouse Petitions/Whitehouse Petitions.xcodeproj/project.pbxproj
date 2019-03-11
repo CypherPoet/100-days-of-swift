@@ -11,11 +11,11 @@
 		F35ABFBF2234DDBF00206C90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35ABFB72234DDBF00206C90 /* LaunchScreen.storyboard */; };
 		F35ABFC02234DDBF00206C90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFB82234DDBF00206C90 /* AppDelegate.swift */; };
 		F35ABFC72234E06C00206C90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35ABFC42234E06C00206C90 /* Main.storyboard */; };
-		F35ABFC82234E06C00206C90 /* RecentPetitionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFC62234E06C00206C90 /* RecentPetitionsViewController.swift */; };
 		F35ABFCA2234E60F00206C90 /* PetitionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFC92234E60F00206C90 /* PetitionsListViewController.swift */; };
 		F35ABFCC2234E66200206C90 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFCB2234E66200206C90 /* Petition.swift */; };
 		F35ABFCE2234E9C600206C90 /* PetitionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFCD2234E9C500206C90 /* PetitionsAPI.swift */; };
 		F35ABFD02235162000206C90 /* PetitionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFCF2235162000206C90 /* PetitionsLoader.swift */; };
+		F35ABFD522363EB400206C90 /* PetitionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35ABFD422363EB400206C90 /* PetitionDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,11 +25,11 @@
 		F35ABFB72234DDBF00206C90 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F35ABFB82234DDBF00206C90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F35ABFC42234E06C00206C90 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F35ABFC62234E06C00206C90 /* RecentPetitionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPetitionsViewController.swift; sourceTree = "<group>"; };
 		F35ABFC92234E60F00206C90 /* PetitionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetitionsListViewController.swift; sourceTree = "<group>"; };
 		F35ABFCB2234E66200206C90 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 		F35ABFCD2234E9C500206C90 /* PetitionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetitionsAPI.swift; sourceTree = "<group>"; };
 		F35ABFCF2235162000206C90 /* PetitionsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetitionsLoader.swift; sourceTree = "<group>"; };
+		F35ABFD422363EB400206C90 /* PetitionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetitionDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +118,8 @@
 		F35ABFC52234E06C00206C90 /* Petitions */ = {
 			isa = PBXGroup;
 			children = (
-				F35ABFC62234E06C00206C90 /* RecentPetitionsViewController.swift */,
 				F35ABFC92234E60F00206C90 /* PetitionsListViewController.swift */,
+				F35ABFD422363EB400206C90 /* PetitionDetailViewController.swift */,
 			);
 			path = Petitions;
 			sourceTree = "<group>";
@@ -195,12 +195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35ABFD522363EB400206C90 /* PetitionDetailViewController.swift in Sources */,
 				F35ABFCE2234E9C600206C90 /* PetitionsAPI.swift in Sources */,
 				F35ABFCA2234E60F00206C90 /* PetitionsListViewController.swift in Sources */,
 				F35ABFCC2234E66200206C90 /* Petition.swift in Sources */,
 				F35ABFC02234DDBF00206C90 /* AppDelegate.swift in Sources */,
 				F35ABFD02235162000206C90 /* PetitionsLoader.swift in Sources */,
-				F35ABFC82234E06C00206C90 /* RecentPetitionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

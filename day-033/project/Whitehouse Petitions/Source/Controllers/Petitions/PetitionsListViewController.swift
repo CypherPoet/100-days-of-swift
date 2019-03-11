@@ -12,15 +12,18 @@ class PetitionsListViewController: UITableViewController {
     // MARK: - Instance Properties
     
     let cellReuseIdentifier = "Petition Cell"
-    let apiURLString = "\(PetitionsAPI.baseURL)?limit=100"
+    let detailViewControllerIdentifier = "Petition Detail"
+    var apiURLString = PetitionsAPI.recentPetitions
 
     var petitions: [Petition] = []
     lazy var petitionsLoader = PetitionsLoader()
     
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadPetitions()
     }
 
@@ -43,6 +46,18 @@ class PetitionsListViewController: UITableViewController {
         cell.detailTextLabel?.text = "\(petition.signatureCount) signatures"
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let detailViewController = storyboard?
+            .instantiateViewController(withIdentifier: detailViewControllerIdentifier)
+            as? PetitionDetailViewController
+        {
+            let petition = petitions[indexPath.row]
+            
+            detailViewController.petition = petition
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
     
     

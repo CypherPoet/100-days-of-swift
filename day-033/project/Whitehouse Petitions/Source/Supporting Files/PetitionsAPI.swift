@@ -10,4 +10,6 @@ import Foundation
 
 enum PetitionsAPI {
     static let baseURL = "https://api.whitehouse.gov/v1/petitions.json"
+    static let recentPetitions = "\(PetitionsAPI.baseURL)?limit=100"
+    static let popularPetitions = "\(PetitionsAPI.baseURL)?signatureCountFloor=10000&limit=100"
 }
