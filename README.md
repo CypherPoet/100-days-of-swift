@@ -49,3 +49,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 31: Project 6, Part Two](/day-031)
 - [Day 32: Milestone for Projects 4-6](/day-032)
 - [Day 33: _Project 7: Whitehouse Petitions_, Part One](/day-033)
+- [Day 34: _Project 7: Whitehouse Petitions_, Part Two](/day-034)
