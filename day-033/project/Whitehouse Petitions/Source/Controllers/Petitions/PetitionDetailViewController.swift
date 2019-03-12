@@ -34,14 +34,25 @@ class PetitionDetailViewController: UIViewController {
                         padding: 1.25rem 1rem;
                     }
                     .title {
+                        margin-top: 0;
+                        margin-bottom: 0;
                     }
                     .petition-body {
                         margin-top: 1.2rem;
+                        margin-bottom: 1.2rem;
+                    }
+                    .signature-container {
+                        text-align: right;
+                    }
+                    .signature-number {
+                        font-size: 1.5em;
+                        font-weight: bold;
+                        color: #776CE0;
                     }
                 </style>
             </head>
             <body>
-                <header>
+                <header class="title-header">
                     <h1 class="title">\(petition.title)</h1>
                 </header>
                 <section class="petition-body">
@@ -49,6 +60,11 @@ class PetitionDetailViewController: UIViewController {
                         \(petition.body)
                     </p>
                 </section>
+                <footer>
+                    <div class="signature-container">
+                        <span class="signature-number">\(petition.signatureCount)</span><span> signatures</span>
+                    </div>
+                </footer>
             </body>
             </html>
             """
