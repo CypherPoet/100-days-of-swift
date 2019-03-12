@@ -9,16 +9,24 @@
 import UIKit
 
 class PetitionsListViewController: UITableViewController {
+   
     // MARK: - Instance Properties
     
     let cellReuseIdentifier = "Petition Cell"
     let detailViewControllerIdentifier = "Petition Detail"
     var apiURLString = PetitionsAPI.recentPetitions
 
-    var petitions: [Petition] = []
+    var allPetitions: [Petition] = []
+    lazy var visiblePetitions = allPetitions
     lazy var petitionsLoader = PetitionsLoader()
     
+    lazy var filterAlertController = makeFilterAlertController()
+    
+    var filterText = "" {
+        didSet { filterTextChanged() }
+    }
 
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -35,12 +43,12 @@ class PetitionsListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return petitions.count
+        return visiblePetitions.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
-        let petition = petitions[indexPath.row]
+        let petition = visiblePetitions[indexPath.row]
         
         cell.textLabel?.text = petition.title
         cell.detailTextLabel?.text = "\(petition.signatureCount) signatures"
@@ -53,7 +61,7 @@ class PetitionsListViewController: UITableViewController {
             .instantiateViewController(withIdentifier: detailViewControllerIdentifier)
             as? PetitionDetailViewController
         {
-            let petition = petitions[indexPath.row]
+            let petition = visiblePetitions[indexPath.row]
             
             detailViewController.petition = petition
             navigationController?.pushViewController(detailViewController, animated: true)
@@ -82,15 +90,51 @@ class PetitionsListViewController: UITableViewController {
     
     func parsePetitions(fromJSON json: Data) {
         do {
-            petitions = try petitionsLoader.decodeResults(from: json)
+            allPetitions = try petitionsLoader.decodeResults(from: json)
             tableView.reloadData()
         } catch {
             print("Error while parsing petitions data:\n\n\(error.localizedDescription)")
         }
     }
+}
+
+
+// MARK: - Event handling
+
+extension PetitionsListViewController {
+    func makeFilterAlertController() -> UIAlertController {
+        let alertController = UIAlertController(title: "Search by title", message: nil, preferredStyle: .alert)
+        
+        let submitAction =  UIAlertAction(
+            title: "Search",
+            style: .default,
+            handler: { [weak self, weak alertController] (_ action: UIAlertAction) in
+                self?.filterText = alertController?.textFields?.first?.text ?? ""
+            }
+        )
+
+        alertController.addTextField()
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alertController.addAction(submitAction)
+        
+        return alertController
+    }
     
+    func filterTextChanged() {
+        if filterText.isEmpty {
+            visiblePetitions = allPetitions
+        } else {
+            visiblePetitions = allPetitions.filter { $0.title.contains(filterText) }
+        }
+        
+        tableView.reloadData()
+    }
+
     
-    // MARK: - Event handling
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        present(filterAlertController, animated: true)
+    }
+    
     
     @IBAction func showCredits(_ sender: Any) {
         let alertController = UIAlertController(
