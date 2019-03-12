@@ -88,4 +88,23 @@ class PetitionsListViewController: UITableViewController {
             print("Error while parsing petitions data:\n\n\(error.localizedDescription)")
         }
     }
+    
+    
+    // MARK: - Event handling
+    
+    @IBAction func showCredits(_ sender: Any) {
+        let alertController = UIAlertController(
+            title: "Credits",
+            message: """
+                This data is sourced from the White House's "We the People" API.
+                
+                You can read, sign, or create your own petitions at https://petitions.whitehouse.gov.
+                """,
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alertController, animated: true)
+    }
 }

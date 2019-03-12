@@ -49,7 +49,14 @@
                             <outlet property="delegate" destination="8TS-IT-AT2" id="ECx-Up-lW6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="h0r-nW-jKl"/>
+                    <navigationItem key="navigationItem" id="h0r-nW-jKl">
+                        <barButtonItem key="rightBarButtonItem" title="ⓘ" id="9Il-ab-AT2">
+                            <color key="tintColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="showCredits:" destination="8TS-IT-AT2" id="NDK-8d-u8d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8vs-Te-5OF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
