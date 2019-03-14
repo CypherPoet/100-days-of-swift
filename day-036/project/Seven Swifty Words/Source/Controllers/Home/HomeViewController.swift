@@ -13,13 +13,20 @@ class HomeViewController: UIViewController {
     @IBOutlet var answersLabel: UILabel!
     @IBOutlet var currentAnswerField: UITextField!
     @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var submitButton: UIButton!
+    @IBOutlet var clearButton: UIButton!
+    @IBOutlet var letterGroupButtonContainer: UIView!
     
+    enum LetterGroupButton {
+        static let width = 150
+        static let height = 80
+    }
     
     // MARK: - Instance Properties
     
-    var activatedButtons = [UIButton]()
-    var letterGroupButtons = [UIButton]()
-    var solutionWords = [String]()
+    var activatedButtons: [UIButton] = []
+    var letterGroupButtons: [UIButton] = []
+    var solutionWords: [String] = []
     var currentLevel = 1
     
     var currentScore = 0 {
@@ -33,13 +40,17 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        setupButtons()
+        createLetterGroupButtons()
+        positionLabels()
+        positionAnswerText()
+        positionButtons()
+        
         setupLevel(number: currentLevel)
     }
 }
 
 
-// MARK: - UI Setup Helpers
+// MARK: - Level Data Loading
 
 private extension HomeViewController {
     func setupLevel(number: Int) {
@@ -48,7 +59,7 @@ private extension HomeViewController {
             cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
             answersLabel.text = answerString.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            makeLetterGroupButtons(from: solutionLetterGroups)
+            setLetterGroupButtonTitles(from: solutionLetterGroups)
         }
     }
 
@@ -86,22 +97,95 @@ private extension HomeViewController {
     }
     
     
-    func makeLetterGroupButtons(from solutionLetterGroups: [String]) {
+    func setLetterGroupButtonTitles(from solutionLetterGroups: [String]) {
         if solutionLetterGroups.count == letterGroupButtons.count {
-            for index in 0..<solutionLetterGroups.count {
+            for index in 0 ..< solutionLetterGroups.count {
                 letterGroupButtons[index].setTitle(solutionLetterGroups[index], for: .normal)
             }
         }
     }
-    
-    
-    func setupButtons() {
-        for subview in view.subviews where subview.tag == 1001 {
-            let letterGroupButton = subview as! UIButton
-            
-            letterGroupButton.addTarget(self, action: #selector(letterGroupTapped), for: .touchUpInside)
-            letterGroupButtons.append(letterGroupButton)
+}
+
+
+// MARK: - UI Setup
+
+extension HomeViewController {
+    func createLetterGroupButtons() {
+        let xSpacing = 10
+        let ySpacing = 10
+        
+        for row in 0...3 {
+            for column in 0...4 {
+                let button = UIButton(type: .system)
+                let xPos = (column * LetterGroupButton.width) + (column * xSpacing)
+                let yPos = (row * LetterGroupButton.height) + (row * ySpacing)
+                
+                button.frame = CGRect(x: xPos, y: yPos, width: LetterGroupButton.width, height: LetterGroupButton.height)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
+                button.addTarget(self, action: #selector(letterGroupTapped), for: .touchUpInside)
+                
+                letterGroupButtons.append(button)
+                letterGroupButtonContainer.addSubview(button)
+            }
         }
+    }
+    
+    func positionLabels() {
+        [scoreLabel, cluesLabel, answersLabel].forEach { $0?.translatesAutoresizingMaskIntoConstraints = false }
+        
+        NSLayoutConstraint.activate([
+            scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 12),
+            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 12),
+            
+            cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 12),
+            cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
+
+            // make the clues label 60% of the width of our layout margins, minus 100
+            cluesLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.6, constant: -100),
+            
+            answersLabel.topAnchor.constraint(equalTo: cluesLabel.topAnchor),
+            answersLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -100),
+            
+            // make the answers label take up 40% of the available space, minus 100
+            answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.4, constant: -100),
+            
+            answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor)
+        ])
+     
+        // Make these the first views to be stretched if needed
+        cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+        answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+    }
+    
+    func positionAnswerText() {
+        currentAnswerField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            currentAnswerField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            currentAnswerField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            currentAnswerField.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: 20),
+        ])
+    }
+    
+    func positionButtons() {
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        clearButton.translatesAutoresizingMaskIntoConstraints = false
+        letterGroupButtonContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            submitButton.topAnchor.constraint(equalTo: currentAnswerField.bottomAnchor),
+            submitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
+            submitButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            clearButton.topAnchor.constraint(equalTo: submitButton.topAnchor),
+            clearButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
+            clearButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            letterGroupButtonContainer.widthAnchor.constraint(equalToConstant: 750),
+            letterGroupButtonContainer.heightAnchor.constraint(equalToConstant: 320),
+            letterGroupButtonContainer.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 20),
+            letterGroupButtonContainer.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
+        ])
     }
 }
 
