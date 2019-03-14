@@ -51,3 +51,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 33: _Project 7: Whitehouse Petitions_, Part One](/day-033)
 - [Day 34: _Project 7: Whitehouse Petitions_, Part Two](/day-034)
 - [Day 35: _Project 7: Whitehouse Petitions_, Part Three](/day-035)
+- [Day 36: _Project 8: 7 Swifty Words_, Part One](/day-036)
