@@ -134,8 +134,8 @@ extension HomeViewController {
         [scoreLabel, cluesLabel, answersLabel].forEach { $0?.translatesAutoresizingMaskIntoConstraints = false }
         
         NSLayoutConstraint.activate([
-            scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 12),
-            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 12),
+            scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16),
+            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -16),
             
             cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 12),
             cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
@@ -163,7 +163,7 @@ extension HomeViewController {
         NSLayoutConstraint.activate([
             currentAnswerField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             currentAnswerField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-            currentAnswerField.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: 20),
+            currentAnswerField.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: 14),
         ])
     }
     
@@ -173,7 +173,7 @@ extension HomeViewController {
         letterGroupButtonContainer.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            submitButton.topAnchor.constraint(equalTo: currentAnswerField.bottomAnchor),
+            submitButton.topAnchor.constraint(equalTo: currentAnswerField.bottomAnchor, constant: 12),
             submitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
             submitButton.heightAnchor.constraint(equalToConstant: 44),
             
@@ -183,7 +183,7 @@ extension HomeViewController {
             
             letterGroupButtonContainer.widthAnchor.constraint(equalToConstant: 750),
             letterGroupButtonContainer.heightAnchor.constraint(equalToConstant: 320),
-            letterGroupButtonContainer.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 20),
+            letterGroupButtonContainer.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 12),
             letterGroupButtonContainer.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
         ])
     }
