@@ -54,54 +54,62 @@ class HomeViewController: UIViewController {
 
 private extension HomeViewController {
     func setupLevel(number: Int) {
-        if let (clueString, answerString, solutionLetterGroups, solutionWords) = loadLevel(number: number) {
-            self.solutionWords = solutionWords
-            cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-            answersLabel.text = answerString.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            setLetterGroupButtonTitles(from: solutionLetterGroups)
-        }
+        let (cluesText, solutionLengthsText, solutionLetterGroups, solutionWords) = loadLevel(number: number)
+
+        self.solutionWords = solutionWords
+        cluesLabel.text = cluesText.trimmingCharacters(in: .whitespacesAndNewlines)
+        answersLabel.text = solutionLengthsText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        setLetterGroupButtonTitles(from: solutionLetterGroups)
     }
 
     
     func loadLevel(number levelNumber: Int) ->
-        (clueString: String, answerString: String, solutionLetterGroups: [String], solutionWords: [String])?
+        (cluesText: String, solutionLengthsText: String, solutionLetterGroups: [String], solutionWords: [String])
     {
-        if let filePath = Bundle.main.path(forResource: "level\(levelNumber)", ofType: "txt") {
-            if let contents = try? String(contentsOfFile: filePath) {
-                var clueString = ""
-                var answerString = ""
-                var solutionLetterGroups = [String]()
-                var solutionWords = [String]()
-                
-                var lines = contents.components(separatedBy: "\n")
-                lines.shuffle()
-                
-                for (index, line) in lines.enumerated() {
-                    let lineParts = line.components(separatedBy: ": ")
-                    let solutionPart = lineParts[0]
-                    let solutionWord = solutionPart.replacingOccurrences(of: "|", with: "")
-                    
-                    answerString += "\(solutionWord.count) letters\n"
-                    clueString += "\(index + 1). \(lineParts[1])\n"
-                    
-                    solutionWords.append(solutionWord)
-                    solutionLetterGroups += solutionPart.components(separatedBy: "|")
-                }
-                
-                solutionLetterGroups.shuffle()
-                return (clueString, answerString, solutionLetterGroups, solutionWords)
-            }
+        guard let filePath = Bundle.main.path(forResource: "level\(levelNumber)", ofType: "txt") else {
+            fatalError("Could not find file \"level\(levelNumber).txt\"")
         }
-        return nil
+        
+        do {
+            let contents = try String(contentsOfFile: filePath)
+            var cluesText = ""
+            var solutionLengthsText = ""
+            var solutionLetterGroups: [String] = []
+            var solutionWords: [String] = []
+            
+            var lines = contents.components(separatedBy: "\n")
+            lines.shuffle()
+            
+            for (index, line) in lines.enumerated() {
+                let lineParts = line.components(separatedBy: ": ")
+                let solutionPart = lineParts[0]
+                let solutionWord = solutionPart.replacingOccurrences(of: "|", with: "")
+                
+                solutionLengthsText += "\(solutionWord.count) letters\n"
+                cluesText += "\(index + 1). \(lineParts[1])\n"
+                
+                solutionWords.append(solutionWord)
+                solutionLetterGroups += solutionPart.components(separatedBy: "|")
+            }
+            
+            solutionLetterGroups.shuffle()
+            
+            return (cluesText, solutionLengthsText, solutionLetterGroups, solutionWords)
+            
+        } catch {
+            fatalError("Error while parsing \"level\(levelNumber).txt\":\n\n\(error.localizedDescription)")
+        }
     }
     
     
     func setLetterGroupButtonTitles(from solutionLetterGroups: [String]) {
-        if solutionLetterGroups.count == letterGroupButtons.count {
-            for index in 0 ..< solutionLetterGroups.count {
-                letterGroupButtons[index].setTitle(solutionLetterGroups[index], for: .normal)
-            }
+        guard solutionLetterGroups.count == letterGroupButtons.count else {
+            fatalError("Count of solution letter groups should match the number of letter group buttons")
+        }
+        
+        for index in 0 ..< solutionLetterGroups.count {
+            letterGroupButtons[index].setTitle(solutionLetterGroups[index], for: .normal)
         }
     }
 }
@@ -122,6 +130,7 @@ extension HomeViewController {
                 
                 button.frame = CGRect(x: xPos, y: yPos, width: LetterGroupButton.width, height: LetterGroupButton.height)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
+                button.titleLabel?.textColor = UIColor(hue: 0.68, saturation: 0.52, brightness: 0.88, alpha: 1.00)
                 button.addTarget(self, action: #selector(letterGroupTapped), for: .touchUpInside)
                 
                 letterGroupButtons.append(button)
@@ -257,10 +266,7 @@ private extension HomeViewController {
     func clearAnswer() {
         currentAnswerField.text = ""
         
-        for button in activatedButtons {
-            button.isHidden = false
-        }
-        
+        activatedButtons.forEach { $0.isHidden = false }
         activatedButtons.removeAll()
     }
 }
@@ -280,7 +286,9 @@ extension HomeViewController {
      to display the answer itself, rather than its letter count
      */
     @IBAction func submitTapped(_ sender: Any) {
-        if let indexOfMatch = solutionWords.index(of: currentAnswerField.text!) {
+        guard let currentAnswer = currentAnswerField.text else { return }
+        
+        if let indexOfMatch = solutionWords.firstIndex(of: currentAnswer) {
             activatedButtons.removeAll()  // remove all from our array -- but keep them "hidden" on the UI
             addCorrectAnswer(indexOfMatch: indexOfMatch)
             bumpScore()
@@ -290,9 +298,11 @@ extension HomeViewController {
     }
     
     
-    @objc func letterGroupTapped(btn: UIButton) {
-        currentAnswerField.text! += btn.titleLabel!.text!
-        activatedButtons.append(btn)
-        btn.isHidden = true
+    @objc func letterGroupTapped(_ sender: UIButton) {
+        guard let buttontext = sender.titleLabel?.text else { return }
+
+        currentAnswerField.text = currentAnswerField.text?.appending(buttontext)
+        activatedButtons.append(sender)
+        sender.isHidden = true
     }
 }
