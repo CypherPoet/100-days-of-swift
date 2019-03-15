@@ -35,11 +35,26 @@ class HomeViewController: UIViewController {
         }
     }
     
+    var currentAnswer = "" {
+        didSet {
+            if currentAnswer.isEmpty {
+                currentAnswerField.text = "Tap Lettters To Guess"
+                currentAnswerField.textColor = Style.Color.answerTextPlaceholder
+            } else {
+                currentAnswerField.text = currentAnswer
+                currentAnswerField.textColor = Style.Color.answerText
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        currentAnswer = ""
+        
+        setStyles()
         createLetterGroupButtons()
         positionLabels()
         positionAnswerText()
@@ -118,9 +133,21 @@ private extension HomeViewController {
 // MARK: - UI Setup
 
 extension HomeViewController {
+    func setStyles() {
+        view.backgroundColor = Style.Color.background
+        answersLabel.textColor = Style.Color.labelText
+        cluesLabel.textColor = Style.Color.labelText
+        scoreLabel.textColor = Style.Color.labelText
+        
+        letterGroupButtonContainer.layer.cornerRadius = 3
+        letterGroupButtonContainer.layer.shadowColor = Style.Color.letterGroupButtonShadow.cgColor
+        letterGroupButtonContainer.layer.shadowOpacity = 0.7
+        letterGroupButtonContainer.layer.shadowRadius = 2
+    }
+    
     func createLetterGroupButtons() {
-        let xSpacing = 10
-        let ySpacing = 10
+        let xSpacing = 0
+        let ySpacing = 0
         
         for row in 0...3 {
             for column in 0...4 {
@@ -130,7 +157,7 @@ extension HomeViewController {
                 
                 button.frame = CGRect(x: xPos, y: yPos, width: LetterGroupButton.width, height: LetterGroupButton.height)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
-                button.titleLabel?.textColor = UIColor(hue: 0.68, saturation: 0.52, brightness: 0.88, alpha: 1.00)
+                button.tintColor = Style.Color.letterGroupButton
                 button.addTarget(self, action: #selector(letterGroupTapped), for: .touchUpInside)
                 
                 letterGroupButtons.append(button)
@@ -146,7 +173,7 @@ extension HomeViewController {
             scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16),
             scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -16),
             
-            cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 12),
+            cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 0),
             cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
 
             // make the clues label 60% of the width of our layout margins, minus 100
@@ -161,7 +188,7 @@ extension HomeViewController {
             answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor)
         ])
      
-        // Make these the first views to be stretched if needed
+        // Lower the content hugging priority -- making these the first views to be stretched if needed
         cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
         answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
     }
@@ -190,8 +217,8 @@ extension HomeViewController {
             clearButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
             clearButton.heightAnchor.constraint(equalToConstant: 44),
             
-            letterGroupButtonContainer.widthAnchor.constraint(equalToConstant: 750),
-            letterGroupButtonContainer.heightAnchor.constraint(equalToConstant: 320),
+            letterGroupButtonContainer.widthAnchor.constraint(equalToConstant: CGFloat(LetterGroupButton.width * 5)),
+            letterGroupButtonContainer.heightAnchor.constraint(equalToConstant: CGFloat(LetterGroupButton.height * 4)),
             letterGroupButtonContainer.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 12),
             letterGroupButtonContainer.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
         ])
@@ -205,10 +232,10 @@ private extension HomeViewController {
     func addCorrectAnswer(indexOfMatch: Int) {
         var answerStrings = answersLabel.text!.components(separatedBy: "\n")
         
-        answerStrings[indexOfMatch] = currentAnswerField.text!
+        answerStrings[indexOfMatch] = currentAnswer
         answersLabel.text = answerStrings.joined(separator: "\n")
         
-        currentAnswerField.text = ""
+        currentAnswer = ""
     }
     
     
@@ -264,7 +291,7 @@ private extension HomeViewController {
 
 
     func clearAnswer() {
-        currentAnswerField.text = ""
+        currentAnswer = ""
         
         activatedButtons.forEach { $0.isHidden = false }
         activatedButtons.removeAll()
@@ -286,7 +313,7 @@ extension HomeViewController {
      to display the answer itself, rather than its letter count
      */
     @IBAction func submitTapped(_ sender: Any) {
-        guard let currentAnswer = currentAnswerField.text else { return }
+        guard !currentAnswer.isEmpty else { return }
         
         if let indexOfMatch = solutionWords.firstIndex(of: currentAnswer) {
             activatedButtons.removeAll()  // remove all from our array -- but keep them "hidden" on the UI
@@ -301,7 +328,7 @@ extension HomeViewController {
     @objc func letterGroupTapped(_ sender: UIButton) {
         guard let buttontext = sender.titleLabel?.text else { return }
 
-        currentAnswerField.text = currentAnswerField.text?.appending(buttontext)
+        currentAnswer += buttontext
         activatedButtons.append(sender)
         sender.isHidden = true
     }

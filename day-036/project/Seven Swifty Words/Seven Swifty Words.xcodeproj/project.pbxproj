@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3258955223C3FEE00015642 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3258954223C3FEE00015642 /* Style.swift */; };
 		F3E26D6D223929A600AE182D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3E26D64223929A600AE182D /* Assets.xcassets */; };
 		F3E26D6F223929A600AE182D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E26D68223929A600AE182D /* AppDelegate.swift */; };
 		F3E26D70223929A600AE182D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3E26D6B223929A600AE182D /* Home.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3258954223C3FEE00015642 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		F3C4952521F69881002853B6 /* Seven Swifty Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Seven Swifty Words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E26D64223929A600AE182D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3E26D66223929A600AE182D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				F3E26D66223929A600AE182D /* Info.plist */,
+				F3258954223C3FEE00015642 /* Style.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3E26D6F223929A600AE182D /* AppDelegate.swift in Sources */,
+				F3258955223C3FEE00015642 /* Style.swift in Sources */,
 				F3E26D71223929A600AE182D /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
