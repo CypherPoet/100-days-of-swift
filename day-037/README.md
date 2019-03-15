@@ -7,7 +7,7 @@ _Follow along at https://www.hackingwithswift.com/100/37_.
 
 This day covers the second part of `Project 8: 7 Swifty Words` in _[Hacking with Swift](https://www.hackingwithswift.com/read/8)_.
 
-I have a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift) where I've been creating projects alongside the material in the book. And you can find Project 8 [here](https://github.com/CypherPoet/book--hacking-with-swift/tree/master/08-seven-swifty-words/Seven%20Swifty%20Words). However, I also copied it over to Day 36's folder so I can extend from where I left off.
+I have a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift) where I've been creating projects alongside the material in the book. And you can find Project 8 [here](https://github.com/CypherPoet/book--hacking-with-swift/tree/master/08-seven-swifty-words/Seven%20Swifty%20Words). However, I also copied it over to Day 36's folder so I could extend from where I left off.
 
 With that in mind, Day 37 focuses on several specific topics:
 
