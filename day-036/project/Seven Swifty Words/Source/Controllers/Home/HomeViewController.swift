@@ -22,8 +22,6 @@ class HomeViewController: UIViewController {
         static let height = 80
     }
     
-    // MARK: - Instance Properties
-    
     var activatedButtons: [UIButton] = []
     var letterGroupButtons: [UIButton] = []
     var solutionWords: [String] = []
@@ -47,10 +45,21 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
+    var answersRemaining = 0 {
+        didSet {
+            if answersRemaining == 0 {
+                promptForNextLevel()
+            }
+        }
+    }
+}
+
+
+// MARK: - Lifecycle
+
+extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         currentAnswer = ""
         
@@ -72,6 +81,7 @@ private extension HomeViewController {
         let (cluesText, solutionLengthsText, solutionLetterGroups, solutionWords) = loadLevel(number: number)
 
         self.solutionWords = solutionWords
+        answersRemaining = solutionWords.count
         cluesLabel.text = cluesText.trimmingCharacters(in: .whitespacesAndNewlines)
         answersLabel.text = solutionLengthsText.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -235,17 +245,9 @@ private extension HomeViewController {
         answerStrings[indexOfMatch] = currentAnswer
         answersLabel.text = answerStrings.joined(separator: "\n")
         
-        currentAnswer = ""
-    }
-    
-    
-    func bumpScore() {
         currentScore += 1
-        
-        if currentScore % 7 == 0 {
-            // advance level
-            promptForNextLevel()
-        }
+        answersRemaining -= 1
+        currentAnswer = ""
     }
     
     
@@ -269,7 +271,10 @@ private extension HomeViewController {
         )
         
         alertController.addAction(
-            UIAlertAction(title: "Try again", style: .default) { [unowned self] (action: UIAlertAction) in
+            UIAlertAction(title: "Try again", style: .default) { [weak self] (action: UIAlertAction) in
+                guard let self = self else { return }
+                
+                self.currentScore = max(0, self.currentScore - 1)
                 self.clearAnswer()
             }
         )
@@ -281,10 +286,7 @@ private extension HomeViewController {
     func levelUp(action: UIAlertAction) {
         currentLevel += 1
         solutionWords.removeAll(keepingCapacity: true)
-        
-        for button in letterGroupButtons {
-            button.isHidden = false
-        }
+        letterGroupButtons.forEach { $0.isHidden = false }
         
         setupLevel(number: currentLevel)
     }
@@ -318,12 +320,10 @@ extension HomeViewController {
         if let indexOfMatch = solutionWords.firstIndex(of: currentAnswer) {
             activatedButtons.removeAll()  // remove all from our array -- but keep them "hidden" on the UI
             addCorrectAnswer(indexOfMatch: indexOfMatch)
-            bumpScore()
         } else {
             promptAfterIncorrect()
         }
     }
-    
     
     @objc func letterGroupTapped(_ sender: UIButton) {
         guard let buttontext = sender.titleLabel?.text else { return }
