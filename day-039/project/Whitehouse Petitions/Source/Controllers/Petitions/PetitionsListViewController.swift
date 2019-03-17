@@ -124,14 +124,21 @@ extension PetitionsListViewController {
         return alertController
     }
     
+    
     func filterTextChanged() {
-        if filterText.isEmpty {
-            visiblePetitions = allPetitions
-        } else {
-            visiblePetitions = allPetitions.filter { $0.title.contains(filterText) }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            if self.filterText.isEmpty {
+                self.visiblePetitions = self.allPetitions
+            } else {
+                self.visiblePetitions = self.allPetitions.filter { $0.title.contains(self.filterText) }
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        
-        tableView.reloadData()
     }
 
     
