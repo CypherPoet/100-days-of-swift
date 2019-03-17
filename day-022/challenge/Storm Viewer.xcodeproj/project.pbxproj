@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F3B5E2DD21E8402000D48258 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E2DC21E8402000D48258 /* AppDelegate.swift */; };
-		F3B5E2DF21E8402000D48258 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E2DE21E8402000D48258 /* ViewController.swift */; };
+		F3B5E2DF21E8402000D48258 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E2DE21E8402000D48258 /* HomeViewController.swift */; };
 		F3B5E2E221E8402000D48258 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E2E021E8402000D48258 /* Main.storyboard */; };
 		F3B5E2E421E8402200D48258 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E2E321E8402200D48258 /* Assets.xcassets */; };
 		F3B5E2E721E8402200D48258 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E2E521E8402200D48258 /* LaunchScreen.storyboard */; };
@@ -23,12 +23,13 @@
 		F3B5E31621E923F700D48258 /* nssl0033.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30C21E923F700D48258 /* nssl0033.jpg */; };
 		F3B5E31721E923F700D48258 /* nssl0034.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30D21E923F700D48258 /* nssl0034.jpg */; };
 		F3B5E31921EA80F500D48258 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E31821EA80F400D48258 /* DetailViewController.swift */; };
+		F3E87DBC223EC9C000B6BD9F /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E87DBB223EC9C000B6BD9F /* UIViewController+ShowError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F3B5E2D921E8402000D48258 /* Storm Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storm Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B5E2DC21E8402000D48258 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3B5E2DE21E8402000D48258 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3B5E2DE21E8402000D48258 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F3B5E2E121E8402000D48258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3B5E2E321E8402200D48258 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3B5E2E621E8402200D48258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		F3B5E30C21E923F700D48258 /* nssl0033.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0033.jpg; sourceTree = "<group>"; };
 		F3B5E30D21E923F700D48258 /* nssl0034.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0034.jpg; sourceTree = "<group>"; };
 		F3B5E31821EA80F400D48258 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F3E87DBB223EC9C000B6BD9F /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,13 +79,14 @@
 			isa = PBXGroup;
 			children = (
 				F3B5E2DC21E8402000D48258 /* AppDelegate.swift */,
-				F3B5E2DE21E8402000D48258 /* ViewController.swift */,
+				F3B5E2DE21E8402000D48258 /* HomeViewController.swift */,
 				F3B5E31821EA80F400D48258 /* DetailViewController.swift */,
 				F3B5E2E021E8402000D48258 /* Main.storyboard */,
 				F3B5E2E321E8402200D48258 /* Assets.xcassets */,
 				F3B5E2E521E8402200D48258 /* LaunchScreen.storyboard */,
 				F3B5E2E821E8402200D48258 /* Info.plist */,
 				F3B5E30321E923F700D48258 /* Content */,
+				F3E87DBB223EC9C000B6BD9F /* UIViewController+ShowError.swift */,
 			);
 			path = "Storm Viewer";
 			sourceTree = "<group>";
@@ -186,8 +189,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E87DBC223EC9C000B6BD9F /* UIViewController+ShowError.swift in Sources */,
 				F3B5E31921EA80F500D48258 /* DetailViewController.swift in Sources */,
-				F3B5E2DF21E8402000D48258 /* ViewController.swift in Sources */,
+				F3B5E2DF21E8402000D48258 /* HomeViewController.swift in Sources */,
 				F3B5E2DD21E8402000D48258 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

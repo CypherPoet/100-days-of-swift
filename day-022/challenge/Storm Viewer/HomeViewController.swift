@@ -5,24 +5,24 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class HomeViewController: UITableViewController {
     var imagePaths = [String]()
+    lazy var fileManager = FileManager.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         title = "Storm Viewer ⚡️"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        
-        let images = try! fm.contentsOfDirectory(atPath: path)
-        
-        imagePaths = images.filter({ $0.hasPrefix("nssl") }).sorted()
+        loadImages()
     }
     
-    
+}
+
+
+// MARK: - Data Source
+
+extension HomeViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return imagePaths.count
     }
@@ -48,3 +48,32 @@ class ViewController: UITableViewController {
     }
 }
 
+
+// MARK: - Private Helper Methods
+
+extension HomeViewController {
+    private func loadImages() {
+        DispatchQueue.global().async { [weak self] in
+            guard
+                let self = self,
+                let resourcePath = Bundle.main.resourcePath
+            else { return }
+            
+            do {
+                let resourceFilePaths = try self.fileManager.contentsOfDirectory(atPath: resourcePath)
+                
+                self.imagePaths = resourceFilePaths
+                    .filter({ $0.hasPrefix("nssl") })
+                    .sorted()
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.showError(error, title: "Error while loading images")
+                }
+            }
+        }
+    }
+}
