@@ -15,6 +15,7 @@
 		F3E26D73223929B200AE182D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F3E26D72223929B100AE182D /* README.md */; };
 		F3E26D762239311600AE182D /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3E26D742239311600AE182D /* level1.txt */; };
 		F3E26D772239311600AE182D /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3E26D752239311600AE182D /* level2.txt */; };
+		F3E87DBF223ED1E400B6BD9F /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E87DBE223ED1E400B6BD9F /* UIViewController+ShowError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F3E26D72223929B100AE182D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F3E26D742239311600AE182D /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 		F3E26D752239311600AE182D /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
+		F3E87DBE223ED1E400B6BD9F /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		F3E26D62223929A600AE182D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F3E87DBD223ED1C600B6BD9F /* Extensions */,
 				F3E26D63223929A600AE182D /* Resources */,
 				F3E26D65223929A600AE182D /* Supporting Files */,
 				F3E26D67223929A600AE182D /* App Start */,
@@ -111,6 +114,14 @@
 				F3E26D6C223929A600AE182D /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		F3E87DBD223ED1C600B6BD9F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3E87DBE223ED1E400B6BD9F /* UIViewController+ShowError.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E87DBF223ED1E400B6BD9F /* UIViewController+ShowError.swift in Sources */,
 				F3E26D6F223929A600AE182D /* AppDelegate.swift in Sources */,
 				F3258955223C3FEE00015642 /* Style.swift in Sources */,
 				F3E26D71223929A600AE182D /* HomeViewController.swift in Sources */,

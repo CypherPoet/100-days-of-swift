@@ -77,19 +77,31 @@ extension HomeViewController {
 // MARK: - Level Data Loading
 
 private extension HomeViewController {
-    func setupLevel(number: Int) {
-        let (cluesText, solutionLengthsText, solutionLetterGroups, solutionWords) = loadLevel(number: number)
-
-        self.solutionWords = solutionWords
-        answersRemaining = solutionWords.count
-        cluesLabel.text = cluesText.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersLabel.text = solutionLengthsText.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        setLetterGroupButtonTitles(from: solutionLetterGroups)
+    func setupLevel(number levelNumber: Int) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            do {
+                let (cluesText, solutionLengthsText, solutionLetterGroups, solutionWords) = try self.loadLevel(number: levelNumber)
+            
+                DispatchQueue.main.async {
+                    self.solutionWords = solutionWords
+                    self.answersRemaining = solutionWords.count
+                    self.cluesLabel.text = cluesText.trimmingCharacters(in: .whitespacesAndNewlines)
+                    self.answersLabel.text = solutionLengthsText.trimmingCharacters(in: .whitespacesAndNewlines)
+                    
+                    self.setLetterGroupButtonTitles(from: solutionLetterGroups)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.showError(error, title: "Error while parsing \"level\(levelNumber).txt\"")
+                }
+            }
+        }
     }
 
     
-    func loadLevel(number levelNumber: Int) ->
+    func loadLevel(number levelNumber: Int) throws ->
         (cluesText: String, solutionLengthsText: String, solutionLetterGroups: [String], solutionWords: [String])
     {
         guard let filePath = Bundle.main.path(forResource: "level\(levelNumber)", ofType: "txt") else {
@@ -121,9 +133,6 @@ private extension HomeViewController {
             solutionLetterGroups.shuffle()
             
             return (cluesText, solutionLengthsText, solutionLetterGroups, solutionWords)
-            
-        } catch {
-            fatalError("Error while parsing \"level\(levelNumber).txt\":\n\n\(error.localizedDescription)")
         }
     }
     
