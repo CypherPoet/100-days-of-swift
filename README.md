@@ -56,3 +56,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 38: _Project 8: 7 Swifty Words_, Part Three](/day-038)
 - [Day 39: _Project 9: Grand Central Dispatch_, Part One](/day-039)
 - [Day 40: _Project 9: Grand Central Dispatch_, Part Two](/day-040)
+- [Day 41: Milestone for Projects 7-9](/day-041)
