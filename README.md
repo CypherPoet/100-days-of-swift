@@ -57,3 +57,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 39: _Project 9: Grand Central Dispatch_, Part One](/day-039)
 - [Day 40: _Project 9: Grand Central Dispatch_, Part Two](/day-040)
 - [Day 41: Milestone for Projects 7-9](/day-041)
+- [Day 42: _Project 10: Names and Faces_, Part One](/day-042)
