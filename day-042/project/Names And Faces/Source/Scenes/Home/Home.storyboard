@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--🎭 Names And Faces-->
         <scene sceneID="TI5-gV-TdH">
             <objects>
                 <collectionViewController id="dI0-Zl-xMm" customClass="HomeViewController" customModule="Names_And_Faces" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,7 +56,13 @@
                             <outlet property="delegate" destination="dI0-Zl-xMm" id="eXY-VG-QDg"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="def-LD-LBO"/>
+                    <navigationItem key="navigationItem" title="🎭 Names And Faces" id="def-LD-LBO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="jxL-HC-B6J">
+                            <connections>
+                                <action selector="addNewPerson:" destination="dI0-Zl-xMm" id="P1P-7v-Pg1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZA-b7-h9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

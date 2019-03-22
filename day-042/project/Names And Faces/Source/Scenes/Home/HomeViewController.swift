@@ -11,15 +11,11 @@ import UIKit
 class HomeViewController: UICollectionViewController {
     var people: [Person] = []
     
+    lazy var imagePicker: UIImagePickerController = makeImagePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(addNewPerson)
-        )
     }
 }
 
@@ -62,25 +58,18 @@ extension HomeViewController {
     }
 }
 
+// MARK: - Event handling
+
+extension HomeViewController {
+    @IBAction func addNewPerson(_ sender: UIBarButtonItem) {
+        present(imagePicker, animated: true)
+    }
+}
+
 
 // MARK: - Private Helper Methods
 
 private extension HomeViewController {
-    
-    @objc func addNewPerson() {
-        let imagePicker = UIImagePickerController()
-        
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-        }
-        
-        present(imagePicker, animated: true)
-    }
-    
-    
     func getDocumentsDirectoryURL() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
@@ -116,6 +105,20 @@ private extension HomeViewController {
         
         present(alertController, animated: true)
     }
+    
+    
+    private func makeImagePicker() -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        }
+        
+        return imagePicker
+    }
 }
 
 
@@ -130,7 +133,10 @@ extension HomeViewController: UIImagePickerControllerDelegate {
      - Write that JPEG to disk.
      - Dismiss the view controller.
      */
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
         guard let imagePicked = info[.editedImage] as? UIImage else { return }
         
         let fileName = UUID().uuidString
@@ -144,7 +150,6 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         collectionView?.reloadData()
         
         picker.dismiss(animated: true)
-        
     }
 }
 
