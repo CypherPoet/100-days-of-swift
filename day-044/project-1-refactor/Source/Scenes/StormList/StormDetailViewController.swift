@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  StormDetailViewController.swift
 //  Storm Viewer
 //
 //  Created by Brian Sipple on 1/12/19.
@@ -16,6 +16,19 @@ class StormDetailViewController: UIViewController {
     var totalImageCount: Int!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNavbar()
+        imageView.image = UIImage(named: imagePath)
+    }
+}
+
+
+// MARK: - Computed Properties
+
+extension StormDetailViewController {
+    
     var imageName: String {
         if let index = imagePath.firstIndex(of: ".") {
             return String(imagePath.prefix(upTo: index))
@@ -24,20 +37,11 @@ class StormDetailViewController: UIViewController {
         }
     }
     
-    
     override var prefersHomeIndicatorAutoHidden: Bool {
         get {
             return navigationController?.hidesBarsOnTap ?? false
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavbar()
-        imageView.image = UIImage(named: imagePath)
-    }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,20 +53,12 @@ class StormDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
     }
-    
-    
-    // MARK: - Helper functions
-    
-    func setupNavbar() {
-        title = "Picture \(imageNumber!) of \(totalImageCount!)"
-        navigationItem.largeTitleDisplayMode = .never
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-    }
-    
-    
-    // MARK: - Event handlers
-    
+}
+
+
+// MARK: - Event handling
+
+extension StormDetailViewController {
     @objc func shareButtonTapped() {
         guard let imageData = imageView.image?.jpegData(compressionQuality: 0.8) else {
             print("No image data found")
@@ -75,5 +71,16 @@ class StormDetailViewController: UIViewController {
         
         present(viewController, animated: true)
     }
-    
+}
+
+
+// MARK: - Private Helper Methods
+
+extension StormDetailViewController {
+    func setupNavbar() {
+        title = "Picture \(imageNumber!) of \(totalImageCount!)"
+        navigationItem.largeTitleDisplayMode = .never
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+    }
 }
