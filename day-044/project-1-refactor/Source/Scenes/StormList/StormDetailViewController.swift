@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class StormDetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
     var imagePath: String!

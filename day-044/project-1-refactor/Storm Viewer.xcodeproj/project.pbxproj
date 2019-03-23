@@ -7,45 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3B5E2DD21E8402000D48258 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E2DC21E8402000D48258 /* AppDelegate.swift */; };
-		F3B5E2DF21E8402000D48258 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E2DE21E8402000D48258 /* HomeViewController.swift */; };
-		F3B5E2E221E8402000D48258 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E2E021E8402000D48258 /* Main.storyboard */; };
-		F3B5E2E421E8402200D48258 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E2E321E8402200D48258 /* Assets.xcassets */; };
-		F3B5E2E721E8402200D48258 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E2E521E8402200D48258 /* LaunchScreen.storyboard */; };
-		F3B5E30E21E923F700D48258 /* nssl0049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30421E923F700D48258 /* nssl0049.jpg */; };
-		F3B5E30F21E923F700D48258 /* nssl0046.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30521E923F700D48258 /* nssl0046.jpg */; };
-		F3B5E31021E923F700D48258 /* nssl0091.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30621E923F700D48258 /* nssl0091.jpg */; };
-		F3B5E31121E923F700D48258 /* nssl0045.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30721E923F700D48258 /* nssl0045.jpg */; };
-		F3B5E31221E923F700D48258 /* nssl0051.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30821E923F700D48258 /* nssl0051.jpg */; };
-		F3B5E31321E923F700D48258 /* nssl0041.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30921E923F700D48258 /* nssl0041.jpg */; };
-		F3B5E31421E923F700D48258 /* nssl0042.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30A21E923F700D48258 /* nssl0042.jpg */; };
-		F3B5E31521E923F700D48258 /* nssl0043.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30B21E923F700D48258 /* nssl0043.jpg */; };
-		F3B5E31621E923F700D48258 /* nssl0033.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30C21E923F700D48258 /* nssl0033.jpg */; };
-		F3B5E31721E923F700D48258 /* nssl0034.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3B5E30D21E923F700D48258 /* nssl0034.jpg */; };
-		F3B5E31921EA80F500D48258 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B5E31821EA80F400D48258 /* DetailViewController.swift */; };
-		F3E87DBC223EC9C000B6BD9F /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E87DBB223EC9C000B6BD9F /* UIViewController+ShowError.swift */; };
+		F396432F22461DEA0088568E /* StormListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396431822461DEA0088568E /* StormListViewController.swift */; };
+		F396433022461DEA0088568E /* StormList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396431922461DEA0088568E /* StormList.storyboard */; };
+		F396433122461DEA0088568E /* StormDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396431A22461DEA0088568E /* StormDetailViewController.swift */; };
+		F396433222461DEA0088568E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F396431C22461DEA0088568E /* Assets.xcassets */; };
+		F396433322461DEA0088568E /* nssl0049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396431E22461DEA0088568E /* nssl0049.jpg */; };
+		F396433422461DEA0088568E /* nssl0046.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396431F22461DEA0088568E /* nssl0046.jpg */; };
+		F396433522461DEA0088568E /* nssl0091.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432022461DEA0088568E /* nssl0091.jpg */; };
+		F396433622461DEA0088568E /* nssl0045.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432122461DEA0088568E /* nssl0045.jpg */; };
+		F396433722461DEA0088568E /* nssl0051.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432222461DEA0088568E /* nssl0051.jpg */; };
+		F396433822461DEA0088568E /* nssl0041.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432322461DEA0088568E /* nssl0041.jpg */; };
+		F396433922461DEA0088568E /* nssl0042.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432422461DEA0088568E /* nssl0042.jpg */; };
+		F396433A22461DEA0088568E /* nssl0043.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432522461DEA0088568E /* nssl0043.jpg */; };
+		F396433B22461DEA0088568E /* nssl0033.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432622461DEA0088568E /* nssl0033.jpg */; };
+		F396433C22461DEA0088568E /* nssl0034.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F396432722461DEA0088568E /* nssl0034.jpg */; };
+		F396433D22461DEA0088568E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396432822461DEA0088568E /* LaunchScreen.storyboard */; };
+		F396433E22461DEA0088568E /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396432B22461DEA0088568E /* UIViewController+ShowError.swift */; };
+		F396433F22461DEA0088568E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396432D22461DEA0088568E /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F396431822461DEA0088568E /* StormListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StormListViewController.swift; sourceTree = "<group>"; };
+		F396431922461DEA0088568E /* StormList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StormList.storyboard; sourceTree = "<group>"; };
+		F396431A22461DEA0088568E /* StormDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StormDetailViewController.swift; sourceTree = "<group>"; };
+		F396431C22461DEA0088568E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F396431E22461DEA0088568E /* nssl0049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0049.jpg; sourceTree = "<group>"; };
+		F396431F22461DEA0088568E /* nssl0046.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0046.jpg; sourceTree = "<group>"; };
+		F396432022461DEA0088568E /* nssl0091.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0091.jpg; sourceTree = "<group>"; };
+		F396432122461DEA0088568E /* nssl0045.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0045.jpg; sourceTree = "<group>"; };
+		F396432222461DEA0088568E /* nssl0051.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0051.jpg; sourceTree = "<group>"; };
+		F396432322461DEA0088568E /* nssl0041.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0041.jpg; sourceTree = "<group>"; };
+		F396432422461DEA0088568E /* nssl0042.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0042.jpg; sourceTree = "<group>"; };
+		F396432522461DEA0088568E /* nssl0043.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0043.jpg; sourceTree = "<group>"; };
+		F396432622461DEA0088568E /* nssl0033.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0033.jpg; sourceTree = "<group>"; };
+		F396432722461DEA0088568E /* nssl0034.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0034.jpg; sourceTree = "<group>"; };
+		F396432922461DEA0088568E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F396432B22461DEA0088568E /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
+		F396432D22461DEA0088568E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F396432E22461DEA0088568E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3B5E2D921E8402000D48258 /* Storm Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storm Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3B5E2DC21E8402000D48258 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3B5E2DE21E8402000D48258 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		F3B5E2E121E8402000D48258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F3B5E2E321E8402200D48258 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F3B5E2E621E8402200D48258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F3B5E2E821E8402200D48258 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3B5E30421E923F700D48258 /* nssl0049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0049.jpg; sourceTree = "<group>"; };
-		F3B5E30521E923F700D48258 /* nssl0046.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0046.jpg; sourceTree = "<group>"; };
-		F3B5E30621E923F700D48258 /* nssl0091.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0091.jpg; sourceTree = "<group>"; };
-		F3B5E30721E923F700D48258 /* nssl0045.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0045.jpg; sourceTree = "<group>"; };
-		F3B5E30821E923F700D48258 /* nssl0051.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0051.jpg; sourceTree = "<group>"; };
-		F3B5E30921E923F700D48258 /* nssl0041.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0041.jpg; sourceTree = "<group>"; };
-		F3B5E30A21E923F700D48258 /* nssl0042.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0042.jpg; sourceTree = "<group>"; };
-		F3B5E30B21E923F700D48258 /* nssl0043.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0043.jpg; sourceTree = "<group>"; };
-		F3B5E30C21E923F700D48258 /* nssl0033.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0033.jpg; sourceTree = "<group>"; };
-		F3B5E30D21E923F700D48258 /* nssl0034.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0034.jpg; sourceTree = "<group>"; };
-		F3B5E31821EA80F400D48258 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		F3E87DBB223EC9C000B6BD9F /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +59,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F396431522461DEA0088568E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F396431622461DEA0088568E /* Scenes */,
+				F396431B22461DEA0088568E /* Resources */,
+				F396432822461DEA0088568E /* LaunchScreen.storyboard */,
+				F396432A22461DEA0088568E /* Extensions */,
+				F396432C22461DEA0088568E /* App Start */,
+				F396432E22461DEA0088568E /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		F396431622461DEA0088568E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F396431722461DEA0088568E /* StormList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F396431722461DEA0088568E /* StormList */ = {
+			isa = PBXGroup;
+			children = (
+				F396431822461DEA0088568E /* StormListViewController.swift */,
+				F396431922461DEA0088568E /* StormList.storyboard */,
+				F396431A22461DEA0088568E /* StormDetailViewController.swift */,
+			);
+			path = StormList;
+			sourceTree = "<group>";
+		};
+		F396431B22461DEA0088568E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F396431C22461DEA0088568E /* Assets.xcassets */,
+				F396431D22461DEA0088568E /* Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F396431D22461DEA0088568E /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				F396431E22461DEA0088568E /* nssl0049.jpg */,
+				F396431F22461DEA0088568E /* nssl0046.jpg */,
+				F396432022461DEA0088568E /* nssl0091.jpg */,
+				F396432122461DEA0088568E /* nssl0045.jpg */,
+				F396432222461DEA0088568E /* nssl0051.jpg */,
+				F396432322461DEA0088568E /* nssl0041.jpg */,
+				F396432422461DEA0088568E /* nssl0042.jpg */,
+				F396432522461DEA0088568E /* nssl0043.jpg */,
+				F396432622461DEA0088568E /* nssl0033.jpg */,
+				F396432722461DEA0088568E /* nssl0034.jpg */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		F396432A22461DEA0088568E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F396432B22461DEA0088568E /* UIViewController+ShowError.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F396432C22461DEA0088568E /* App Start */ = {
+			isa = PBXGroup;
+			children = (
+				F396432D22461DEA0088568E /* AppDelegate.swift */,
+			);
+			path = "App Start";
+			sourceTree = "<group>";
+		};
 		F3B5E2D021E8402000D48258 = {
 			isa = PBXGroup;
 			children = (
-				F3B5E2DB21E8402000D48258 /* Storm Viewer */,
+				F396431522461DEA0088568E /* Source */,
 				F3B5E2DA21E8402000D48258 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,39 +146,6 @@
 				F3B5E2D921E8402000D48258 /* Storm Viewer.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F3B5E2DB21E8402000D48258 /* Storm Viewer */ = {
-			isa = PBXGroup;
-			children = (
-				F3B5E2DC21E8402000D48258 /* AppDelegate.swift */,
-				F3B5E2DE21E8402000D48258 /* HomeViewController.swift */,
-				F3B5E31821EA80F400D48258 /* DetailViewController.swift */,
-				F3B5E2E021E8402000D48258 /* Main.storyboard */,
-				F3B5E2E321E8402200D48258 /* Assets.xcassets */,
-				F3B5E2E521E8402200D48258 /* LaunchScreen.storyboard */,
-				F3B5E2E821E8402200D48258 /* Info.plist */,
-				F3B5E30321E923F700D48258 /* Content */,
-				F3E87DBB223EC9C000B6BD9F /* UIViewController+ShowError.swift */,
-			);
-			path = "Storm Viewer";
-			sourceTree = "<group>";
-		};
-		F3B5E30321E923F700D48258 /* Content */ = {
-			isa = PBXGroup;
-			children = (
-				F3B5E30421E923F700D48258 /* nssl0049.jpg */,
-				F3B5E30521E923F700D48258 /* nssl0046.jpg */,
-				F3B5E30621E923F700D48258 /* nssl0091.jpg */,
-				F3B5E30721E923F700D48258 /* nssl0045.jpg */,
-				F3B5E30821E923F700D48258 /* nssl0051.jpg */,
-				F3B5E30921E923F700D48258 /* nssl0041.jpg */,
-				F3B5E30A21E923F700D48258 /* nssl0042.jpg */,
-				F3B5E30B21E923F700D48258 /* nssl0043.jpg */,
-				F3B5E30C21E923F700D48258 /* nssl0033.jpg */,
-				F3B5E30D21E923F700D48258 /* nssl0034.jpg */,
-			);
-			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,19 +206,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3B5E30F21E923F700D48258 /* nssl0046.jpg in Resources */,
-				F3B5E31621E923F700D48258 /* nssl0033.jpg in Resources */,
-				F3B5E31221E923F700D48258 /* nssl0051.jpg in Resources */,
-				F3B5E31021E923F700D48258 /* nssl0091.jpg in Resources */,
-				F3B5E31521E923F700D48258 /* nssl0043.jpg in Resources */,
-				F3B5E31721E923F700D48258 /* nssl0034.jpg in Resources */,
-				F3B5E30E21E923F700D48258 /* nssl0049.jpg in Resources */,
-				F3B5E31321E923F700D48258 /* nssl0041.jpg in Resources */,
-				F3B5E31421E923F700D48258 /* nssl0042.jpg in Resources */,
-				F3B5E2E721E8402200D48258 /* LaunchScreen.storyboard in Resources */,
-				F3B5E2E421E8402200D48258 /* Assets.xcassets in Resources */,
-				F3B5E31121E923F700D48258 /* nssl0045.jpg in Resources */,
-				F3B5E2E221E8402000D48258 /* Main.storyboard in Resources */,
+				F396433A22461DEA0088568E /* nssl0043.jpg in Resources */,
+				F396433B22461DEA0088568E /* nssl0033.jpg in Resources */,
+				F396433822461DEA0088568E /* nssl0041.jpg in Resources */,
+				F396433522461DEA0088568E /* nssl0091.jpg in Resources */,
+				F396433722461DEA0088568E /* nssl0051.jpg in Resources */,
+				F396433222461DEA0088568E /* Assets.xcassets in Resources */,
+				F396433922461DEA0088568E /* nssl0042.jpg in Resources */,
+				F396433D22461DEA0088568E /* LaunchScreen.storyboard in Resources */,
+				F396433422461DEA0088568E /* nssl0046.jpg in Resources */,
+				F396433322461DEA0088568E /* nssl0049.jpg in Resources */,
+				F396433622461DEA0088568E /* nssl0045.jpg in Resources */,
+				F396433C22461DEA0088568E /* nssl0034.jpg in Resources */,
+				F396433022461DEA0088568E /* StormList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,28 +229,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3E87DBC223EC9C000B6BD9F /* UIViewController+ShowError.swift in Sources */,
-				F3B5E31921EA80F500D48258 /* DetailViewController.swift in Sources */,
-				F3B5E2DF21E8402000D48258 /* HomeViewController.swift in Sources */,
-				F3B5E2DD21E8402000D48258 /* AppDelegate.swift in Sources */,
+				F396433F22461DEA0088568E /* AppDelegate.swift in Sources */,
+				F396433E22461DEA0088568E /* UIViewController+ShowError.swift in Sources */,
+				F396432F22461DEA0088568E /* StormListViewController.swift in Sources */,
+				F396433122461DEA0088568E /* StormDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F3B5E2E021E8402000D48258 /* Main.storyboard */ = {
+		F396432822461DEA0088568E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F3B5E2E121E8402000D48258 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F3B5E2E521E8402200D48258 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3B5E2E621E8402200D48258 /* Base */,
+				F396432922461DEA0088568E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -339,7 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Storm Viewer/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,7 +388,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Storm Viewer/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class HomeViewController: UITableViewController {
+class StormListViewController: UICollectionViewController {
     var imagePaths = [String]()
     lazy var fileManager = FileManager.default
     
