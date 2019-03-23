@@ -33,9 +33,17 @@ extension StormListViewController {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Picture", for: indexPath)
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryboardID.stormCell, for: indexPath)
+                as? StormCollectionViewCell
+        else {
+            fatalError("Failed to dequeue StormCollectionViewCell")
+        }
         
-        cell.textLabel?.text = imagePaths[indexPath.row]
+        let imagePath = imagePaths[indexPath.row]
+        
+        cell.stormImageView.image = UIImage(named: imagePath)
+        cell.stormLabel?.text = imagePath
         
         return cell
     }
@@ -50,7 +58,9 @@ extension StormListViewController {
         didSelectItemAt indexPath: IndexPath
     ) {
         guard
-            let detailViewController = storyboard?.instantiateViewController(withIdentifier: "Image Detail") as? StormDetailViewController
+            let detailViewController = storyboard?
+                .instantiateViewController(withIdentifier: StoryboardID.stormDetailViewController)
+                as? StormDetailViewController
         else {
             fatalError("Failed to dequeue StormDetailViewController")
         }

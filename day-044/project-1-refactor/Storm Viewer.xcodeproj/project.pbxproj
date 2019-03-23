@@ -24,6 +24,8 @@
 		F396433D22461DEA0088568E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396432822461DEA0088568E /* LaunchScreen.storyboard */; };
 		F396433E22461DEA0088568E /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396432B22461DEA0088568E /* UIViewController+ShowError.swift */; };
 		F396433F22461DEA0088568E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396432D22461DEA0088568E /* AppDelegate.swift */; };
+		F3964342224623950088568E /* StormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3964341224623950088568E /* StormCollectionViewCell.swift */; };
+		F3964345224624600088568E /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3964344224624600088568E /* StoryboardID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		F396432B22461DEA0088568E /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
 		F396432D22461DEA0088568E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F396432E22461DEA0088568E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3964341224623950088568E /* StormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3964344224624600088568E /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
 		F3B5E2D921E8402000D48258 /* Storm Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storm Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +66,7 @@
 		F396431522461DEA0088568E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F3964343224624130088568E /* Helpers */,
 				F396431622461DEA0088568E /* Scenes */,
 				F396431B22461DEA0088568E /* Resources */,
 				F396432822461DEA0088568E /* LaunchScreen.storyboard */,
@@ -86,6 +91,7 @@
 				F396431822461DEA0088568E /* StormListViewController.swift */,
 				F396431922461DEA0088568E /* StormList.storyboard */,
 				F396431A22461DEA0088568E /* StormDetailViewController.swift */,
+				F3964341224623950088568E /* StormCollectionViewCell.swift */,
 			);
 			path = StormList;
 			sourceTree = "<group>";
@@ -130,6 +136,14 @@
 				F396432D22461DEA0088568E /* AppDelegate.swift */,
 			);
 			path = "App Start";
+			sourceTree = "<group>";
+		};
+		F3964343224624130088568E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F3964344224624600088568E /* StoryboardID.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F3B5E2D021E8402000D48258 = {
@@ -229,6 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3964342224623950088568E /* StormCollectionViewCell.swift in Sources */,
+				F3964345224624600088568E /* StoryboardID.swift in Sources */,
 				F396433F22461DEA0088568E /* AppDelegate.swift in Sources */,
 				F396433E22461DEA0088568E /* UIViewController+ShowError.swift in Sources */,
 				F396432F22461DEA0088568E /* StormListViewController.swift in Sources */,
