@@ -26,6 +26,7 @@
 		F396433F22461DEA0088568E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396432D22461DEA0088568E /* AppDelegate.swift */; };
 		F3964342224623950088568E /* StormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3964341224623950088568E /* StormCollectionViewCell.swift */; };
 		F3964345224624600088568E /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3964344224624600088568E /* StoryboardID.swift */; };
+		F3964348224630890088568E /* DisplayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3964347224630890088568E /* DisplayImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		F396432E22461DEA0088568E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3964341224623950088568E /* StormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3964344224624600088568E /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
+		F3964347224630890088568E /* DisplayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayImage.swift; sourceTree = "<group>"; };
 		F3B5E2D921E8402000D48258 /* Storm Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storm Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 				F396432A22461DEA0088568E /* Extensions */,
 				F396432C22461DEA0088568E /* App Start */,
 				F396432E22461DEA0088568E /* Info.plist */,
+				F3964346224630800088568E /* Models */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -144,6 +147,14 @@
 				F3964344224624600088568E /* StoryboardID.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F3964346224630800088568E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F3964347224630890088568E /* DisplayImage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F3B5E2D021E8402000D48258 = {
@@ -246,6 +257,7 @@
 				F3964342224623950088568E /* StormCollectionViewCell.swift in Sources */,
 				F3964345224624600088568E /* StoryboardID.swift in Sources */,
 				F396433F22461DEA0088568E /* AppDelegate.swift in Sources */,
+				F3964348224630890088568E /* DisplayImage.swift in Sources */,
 				F396433E22461DEA0088568E /* UIViewController+ShowError.swift in Sources */,
 				F396432F22461DEA0088568E /* StormListViewController.swift in Sources */,
 				F396433122461DEA0088568E /* StormDetailViewController.swift in Sources */,

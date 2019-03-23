@@ -11,7 +11,7 @@ import UIKit
 class StormDetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
-    var imagePath: String!
+    var displayImage: DisplayImage!
     var imageNumber: Int!
     var totalImageCount: Int!
     
@@ -20,7 +20,7 @@ class StormDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavbar()
-        imageView.image = UIImage(named: imagePath)
+        imageView.image = UIImage(named: displayImage.imagePath)
     }
 }
 
@@ -28,14 +28,6 @@ class StormDetailViewController: UIViewController {
 // MARK: - Computed Properties
 
 extension StormDetailViewController {
-    
-    var imageName: String {
-        if let index = imagePath.firstIndex(of: ".") {
-            return String(imagePath.prefix(upTo: index))
-        } else {
-            return imagePath
-        }
-    }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
         get {
@@ -51,6 +43,7 @@ extension StormDetailViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         navigationController?.hidesBarsOnTap = false
     }
 }
@@ -65,7 +58,7 @@ extension StormDetailViewController {
             return
         }
         
-        let viewController = UIActivityViewController(activityItems: [imageData, imageName], applicationActivities: nil)
+        let viewController = UIActivityViewController(activityItems: [imageData, displayImage.imageName], applicationActivities: nil)
         
         viewController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         

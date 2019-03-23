@@ -6,7 +6,7 @@
 import UIKit
 
 class StormListViewController: UICollectionViewController {
-    var imagePaths = [String]()
+    var displayImages: [DisplayImage] = []
     lazy var fileManager = FileManager.default
     
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ class StormListViewController: UICollectionViewController {
 
 extension StormListViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagePaths.count
+        return displayImages.count
     }
     
     
@@ -40,10 +40,10 @@ extension StormListViewController {
             fatalError("Failed to dequeue StormCollectionViewCell")
         }
         
-        let imagePath = imagePaths[indexPath.row]
+        let displayImage = displayImages[indexPath.row]
         
-        cell.stormImageView.image = UIImage(named: imagePath)
-        cell.stormLabel?.text = imagePath
+        cell.stormImageView.image = UIImage(named: displayImage.imagePath)
+        cell.stormLabel?.text = displayImage.imageName
         
         return cell
     }
@@ -65,9 +65,9 @@ extension StormListViewController {
             fatalError("Failed to dequeue StormDetailViewController")
         }
         
-        detailViewController.imagePath = imagePaths[indexPath.row]
+        detailViewController.displayImage = displayImages[indexPath.row]
         detailViewController.imageNumber = indexPath.row + 1
-        detailViewController.totalImageCount = imagePaths.count
+        detailViewController.totalImageCount = displayImages.count
         
         navigationController?.pushViewController(detailViewController, animated: true)
     }
@@ -87,9 +87,10 @@ private extension StormListViewController {
             do {
                 let resourceFilePaths = try self.fileManager.contentsOfDirectory(atPath: resourcePath)
                 
-                self.imagePaths = resourceFilePaths
+                self.displayImages = resourceFilePaths
                     .filter({ $0.hasPrefix("nssl") })
                     .sorted()
+                    .map({ DisplayImage(imagePath: $0) })
                 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
