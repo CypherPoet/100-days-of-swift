@@ -49,14 +49,19 @@ extension HomeViewController {
         
         return cell
     }
-    
-    
+}
+
+
+// MARK: - Collection View Delegate
+
+extension HomeViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let person = people[indexPath.item]
         
-        promptForName(of: person)
+        promptForEditing(of: person)
     }
 }
+
 
 // MARK: - Event handling
 
@@ -88,6 +93,21 @@ private extension HomeViewController {
     }
     
     
+    func promptForEditing(of person: Person) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Edit", style: .default) {  (_) in
+            self.promptForName(of: person)
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Delete", style: .default) { (_) in
+            self.delete(person)
+        })
+        
+        present(alertController, animated: true)
+    }
+    
+    
     func promptForName(of person: Person) {
         let alertController = UIAlertController(title: "Who is this?", message: nil, preferredStyle: .alert)
         
@@ -107,7 +127,7 @@ private extension HomeViewController {
     }
     
     
-    private func makeImagePicker() -> UIImagePickerController {
+    func makeImagePicker() -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         
         imagePicker.allowsEditing = true
@@ -118,6 +138,13 @@ private extension HomeViewController {
         }
         
         return imagePicker
+    }
+    
+    func delete(_ person: Person) {
+        guard let personIndex = self.people.firstIndex(of: person) else { return }
+        
+        people.remove(at: personIndex)
+        collectionView.reloadData()
     }
 }
 
