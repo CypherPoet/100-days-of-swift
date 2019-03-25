@@ -5,15 +5,15 @@ _Follow along at https://www.hackingwithswift.com/100/45_.
 
 ## 📒 Field Notes
 
-This day covers the first part of `Project 11: Pachinko` in _[Hacking with Swift](https://www.hackingwithswift.com/read/11)_.
-
-I have a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift) where I've been creating projects alongside the material in the book. And you can find Project 11 [here](https://github.com/CypherPoet/book--hacking-with-swift/tree/master/11-pachinko/Pachinko). However, I also copied it over to this day's folder so I could extend from where I left off.
-
-With that in mind, Day 45 focuses on several specific topics:
-
-- Coordinate Systems and Positioning
-- Falling boxes: SKSpriteNode, UITouch, SKPhysicsBody
-- Bouncing balls: circleOfRadius
+> This day covers the first part of `Project 11: Pachinko` in _[Hacking with Swift](https://www.hackingwithswift.com/read/11)_.
+>
+> I have a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift) where I've been creating projects alongside the material in the book. And you can find Project 11 [here](https://github.com/CypherPoet/book--hacking-with-swift/tree/master/11-pachinko/Pachinko). However, I also copied it over to this day's folder so I could extend from where I left off.
+>
+> With that in mind, Day 45 focuses on several specific topics:
+>
+> - Coordinate Systems and Positioning
+> - Falling boxes: SKSpriteNode, UITouch, SKPhysicsBody
+> - Bouncing balls: circleOfRadius
 
 
 ### Coordinate Systems and Positioning
