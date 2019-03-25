@@ -60,3 +60,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 42: _Project 10: Names and Faces_, Part One](/day-042)
 - [Day 43: _Project 10: Names and Faces_, Part Two](/day-043)
 - [Day 44: _Project 10: Names and Faces_, Part Three](/day-044)
+- [Day 45: _Project 11: Pachinko_, Part One](/day-045)
