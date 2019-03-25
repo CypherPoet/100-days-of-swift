@@ -18,11 +18,11 @@ _Follow along at https://www.hackingwithswift.com/100/45_.
 
 ### Coordinate Systems and Positioning
 
-SpriteKit doesn't mess around. It respects the Grammar of Graphics and zeroes its Y-coordinate at the bottom, increasing upwards. This is notable, because UIKit's Y-coordinate goes the other way (top to bottom) &mdash; more like a Grammar of Page Layout... or something.
+SpriteKit doesn't mess around. It respects the Grammar of Graphics and zeroes its Y-coordinate at the bottom, increasing upwards. This is notable, because UIKit's Y-coordinate goes the other way: top to bottom &mdash; more like a Grammar of Page Layout... or something.
 
-Furthermore, `nodes` &mdash; the objects placed in a scene &mdash; are positioned from their center: The point (0,0) refers to the horizontal and vertical center of a node.
+Furthermore, `nodes` &mdash; the objects placed in a scene &mdash; are positioned from their center: The point (0, 0) refers to the horizontal and vertical center of a node.
 
-These differences can be confusing at first, but they exist for a reason. When we start to introduce physics and other effects, it's handy to have a coordinate and positioning system that lets us think in terms of _worlds_, _universes_, and _bodies_ within them 💫.
+These differences can be confusing at first, but they exist for a reason. When we start to introduce physics and other effects, it's handy to have a coordinate and positioning system that lets us think in terms of _worlds_, _universes_, and the _bodies_ within them 💫.
 
 
 ### Falling boxes: SKSpriteNode, UITouch, SKPhysicsBody
