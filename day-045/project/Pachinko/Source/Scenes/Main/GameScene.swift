@@ -16,6 +16,8 @@ class GameScene: SKScene {
     var scoreLabel: SKLabelNode!
     var editModeLabel: SKLabelNode!
     
+    lazy var sceneCenterPoint = CGPoint(x: frame.midX, y: frame.midY)
+    
     var currentScore = 0 {
         didSet {
             scoreLabel.text = "Score: \(self.currentScore)"
@@ -42,7 +44,12 @@ extension GameScene {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
     }
-    
+}
+
+
+// MARK: - Event handling
+
+extension GameScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -60,7 +67,7 @@ extension GameScene {
             }
         } else {
             // drop a ball from the top of the screen at the corresponding x position
-            addChild(makeBall(at: CGPoint(x: location.x, y: CGFloat(sceneHeight))))
+            addChild(makeBall(at: CGPoint(x: location.x, y: frame.maxY)))
         }
     }
 }
@@ -73,7 +80,7 @@ private extension GameScene {
     func createBackground() {
         let backgroundNode = SKSpriteNode(imageNamed: "background.jpg")
         
-        backgroundNode.position = CGPoint(x: sceneWidth / 2.0, y: sceneHeight / 2.0)
+        backgroundNode.position = sceneCenterPoint
         backgroundNode.zPosition = -1
         backgroundNode.blendMode = .replace
         
@@ -205,6 +212,8 @@ private extension GameScene {
     }
 }
 
+
+// MARK: - SKPhysicsContactDelegate
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
