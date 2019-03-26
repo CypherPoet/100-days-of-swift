@@ -8,25 +8,22 @@
 
 import SpriteKit
 
-let sceneWidth = 1024.0
-let sceneHeight = 768.0
-
 
 class GameScene: SKScene {
-    var scoreLabel: SKLabelNode!
-    var editModeLabel: SKLabelNode!
+    lazy var scoreLabel: SKLabelNode = makeScoreLabel()
+    lazy var editModeLabel: SKLabelNode = makeEditLabel()
     
     lazy var sceneCenterPoint = CGPoint(x: frame.midX, y: frame.midY)
     
     var currentScore = 0 {
         didSet {
-            scoreLabel.text = "Score: \(self.currentScore)"
+            scoreLabel.text = "Score: \(currentScore)"
         }
     }
     
     var isInEditMode = false {
         didSet {
-            editModeLabel.text = self.isInEditMode ? "Done" : "Edit"
+            editModeLabel.text = isInEditMode ? "Done" : "Edit"
         }
     }
 }
@@ -89,35 +86,26 @@ private extension GameScene {
     
     
     func setupUI() {
-        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        editModeLabel = SKLabelNode(fontNamed: "Chalkduster")
-        
-        scoreLabel.text = "Score: \(currentScore)"
-        scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.position = CGPoint(x: sceneWidth * 0.95, y: sceneHeight * 0.91)
-        
-        editModeLabel.text = "Edit"
-        editModeLabel.position = CGPoint(x: sceneWidth * 0.078, y: sceneHeight * 0.91)
-        
-        
         addChild(scoreLabel)
         addChild(editModeLabel)
+        
+        currentScore = 0
     }
     
     
     func setupObjects() {
-        let objectSpacing = sceneWidth / 4.0
+        let objectSpacing = CGFloat(frame.maxX / 4.0)
         
         for i in 0..<5 {
-            let bouncerPoint = CGPoint(x: objectSpacing * Double(i), y: 0.0)
-            addChild(makeBouncer(at: bouncerPoint))
+            let bouncerPosition = CGPoint(x: objectSpacing * CGFloat(i), y: 0.0)
+            addChild(makeBouncer(at: bouncerPosition))
         }
         
         for i in 0..<4 {
-            let slotBasePoint = CGPoint(x: 128 + (objectSpacing * Double(i)), y: 0.0)
+            let slotBasePosition = CGPoint(x: 128 + (objectSpacing * CGFloat(i)), y: 0.0)
             let isSlotGood = i % 2 == 0
             
-            addChild(makeSlot(at: slotBasePoint, isGood: isSlotGood))
+            addChild(makeSlot(at: slotBasePosition, isGood: isSlotGood))
         }
     }
     
@@ -178,16 +166,44 @@ private extension GameScene {
     
     func makeObstacle(at position: CGPoint) -> SKNode {
         let boxSize = CGSize(width: Int.random(in: 16...256), height: 16)
-        let boxColor = UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
+        let boxColor = UIColor(
+            red: CGFloat.random(in: 0...1),
+            green: CGFloat.random(in: 0...1),
+            blue: CGFloat.random(in: 0...1),
+            alpha: 1
+        )
+        
         let obstacle = SKSpriteNode(color: boxColor, size: boxSize)
         
         obstacle.zRotation = CGFloat.random(in: 0...3)
         obstacle.position = position
+        
         obstacle.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
         obstacle.physicsBody!.isDynamic = false
+        
         obstacle.name = NodeName.obstacle
         
         return obstacle
+    }
+    
+    
+    func makeEditLabel() -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        
+        label.text = "Edit"
+        label.position = CGPoint(x: frame.maxX * 0.078, y: frame.maxY * 0.91)
+        
+        return label
+    }
+    
+    
+    func makeScoreLabel() -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        
+        label.horizontalAlignmentMode = .right
+        label.position = CGPoint(x: frame.maxX * 0.95, y: frame.maxY * 0.91)
+        
+        return label
     }
     
     
@@ -216,11 +232,12 @@ private extension GameScene {
 // MARK: - SKPhysicsContactDelegate
 
 extension GameScene: SKPhysicsContactDelegate {
+    
     func didBegin(_ contact: SKPhysicsContact) {
         guard
             let nodeA = contact.bodyA.node,
             let nodeB = contact.bodyB.node
-            else { return }
+        else { return }
         
         if nodeA.name == NodeName.ball {
             handleCollisionBetween(ball: nodeA, object: nodeB)
@@ -228,5 +245,4 @@ extension GameScene: SKPhysicsContactDelegate {
             handleCollisionBetween(ball: nodeB, object: nodeA)
         }
     }
-    
 }
