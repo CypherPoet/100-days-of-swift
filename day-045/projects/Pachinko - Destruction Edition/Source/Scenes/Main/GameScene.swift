@@ -14,8 +14,11 @@ class GameScene: SKScene {
         case start
         case editing
         case dropping
+        case ending  // out of new balls, but could still be dropping
         case over
     }
+    
+    weak var gameViewController: GameViewController!
     
     lazy var scoreLabel: SKLabelNode = makeScoreLabel()
     lazy var editModeLabel: SKLabelNode = makeEditLabel()
@@ -23,6 +26,8 @@ class GameScene: SKScene {
     lazy var startGameLabel: SKLabelNode = makeStartGameLabel()
     
     lazy var sceneCenterPoint = CGPoint(x: frame.midX, y: frame.midY)
+    
+    var remainingObstacles = 0
     
     var currentScore = 0 {
         didSet {
@@ -35,7 +40,6 @@ class GameScene: SKScene {
             remainingBallsLabel.text = "Balls: \(remainingBalls)"
         }
     }
-    
     
     var currentGameplayState: GameplayState = .start {
         didSet {
@@ -54,6 +58,20 @@ extension GameScene {
     
     var baseLabelNode: SKLabelNode {
          return SKLabelNode(fontNamed: "Chalkduster")
+    }
+    
+    var restartMessage: String {
+        if remainingObstacles == 0 {
+            return """
+                👏 Congratulations! You cleared all the obstacles and finished with \
+                \(currentScore) points!
+                """
+        }
+        
+        return """
+            Unfortunately, you didn't clear all of the obstacles. Your final score is \
+            \(currentScore) points.
+            """
     }
 }
 
@@ -96,14 +114,21 @@ extension GameScene {
             } else {
                 if let obstacle = touchedNodes.first(where: { $0.name == NodeName.obstacle }) {
                     obstacle.removeFromParent()
+                    remainingObstacles -= 1
                 } else {
+                    remainingObstacles += 1
                     addChild(makeObstacle(at: location))
                 }
             }
         case .dropping:
             // drop a ball from the top of the screen at the corresponding x position
             addChild(makeBall(at: CGPoint(x: location.x, y: frame.maxY)))
-        case .over:
+            remainingBalls -= 1
+            
+            if remainingBalls == 0 {
+                currentGameplayState = .ending
+            }
+        case .ending, .over:
             break
         }
     }
@@ -169,6 +194,7 @@ private extension GameScene {
         slotGlow.run(glowSpin)
         
         slotContainer.position = position
+        slotContainer.zPosition = 0
         slotContainer.addChild(slotBase)
         slotContainer.addChild(slotGlow)
         
@@ -180,6 +206,7 @@ private extension GameScene {
         let bouncer = SKSpriteNode(imageNamed: "bouncer")
         
         bouncer.position = position
+        bouncer.zPosition = 1
         bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
         bouncer.physicsBody?.isDynamic = false
         
@@ -191,7 +218,7 @@ private extension GameScene {
         let ball = newBallNode
         let ballPhysicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
         
-        ballPhysicsBody.restitution = 0.4
+        ballPhysicsBody.restitution = CGFloat.random(in: 0.64...0.95)
         
         // shortcut to sign up for all ball contact notifications
         ballPhysicsBody.contactTestBitMask = ballPhysicsBody.collisionBitMask
@@ -220,6 +247,7 @@ private extension GameScene {
         
         obstacle.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
         obstacle.physicsBody!.isDynamic = false
+        obstacle.physicsBody!.restitution = CGFloat.random(in: 0.86...1.0)
         
         obstacle.name = NodeName.obstacle
         
@@ -269,13 +297,25 @@ private extension GameScene {
     
     
     func handleCollisionBetween(ball: SKNode, object: SKNode) {
-        if object.name == NodeName.goodSlot {
-            currentScore += 1
+        switch object.name {
+        case NodeName.goodSlot:
+            currentScore += 3
             destroy(ball: ball)
-        } else if (object.name == NodeName.badSlot) {
-            currentScore -= 1
+        case NodeName.badSlot:
+            currentScore -= 3
             destroy(ball: ball)
+        case NodeName.obstacle:
+            destroy(obstacle: object)
+        default:
+            break
         }
+    }
+    
+    
+    func destroy(obstacle: SKNode) {
+        currentScore += 10
+        remainingObstacles -= 1
+        obstacle.removeFromParent()
     }
     
     
@@ -286,6 +326,10 @@ private extension GameScene {
         
         addChild(fireParticles)
         ball.removeFromParent()
+
+        if currentGameplayState == .ending {
+            currentGameplayState = .over
+        }
     }
     
     
@@ -294,6 +338,7 @@ private extension GameScene {
         case .start:
             isUserInteractionEnabled = true
             currentScore = 0
+            remainingObstacles = 0
             remainingBalls = 5
             startGameLabel.isHidden = true
             editModeLabel.isHidden = false
@@ -302,18 +347,34 @@ private extension GameScene {
             startGameLabel.isHidden = false
         case .dropping:
             startGameLabel.isHidden = true
-        case .over:
+        case .ending:
             isUserInteractionEnabled = false
+        case .over:
             promptForRestart()
         }
     }
     
     func promptForRestart() {
+        let alertController = UIAlertController(
+            title: "Game Over",
+            message: restartMessage,
+            preferredStyle: .alert
+        )
         
+        alertController.addAction(UIAlertAction(title: "Restart", style: .default) { [weak self] _ in
+            self?.restartGame()
+        })
+        
+        gameViewController.present(alertController, animated: true)
     }
     
+    
     func restartGame() {
+        scene?.enumerateChildNodes(withName: NodeName.obstacle) { (obstacle, _) in
+            obstacle.removeFromParent()
+        }
         
+        currentGameplayState = .start
     }
 }
 
