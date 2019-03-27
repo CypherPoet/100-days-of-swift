@@ -10,9 +10,17 @@ import SpriteKit
 
 
 class GameScene: SKScene {
+    enum GameplayState {
+        case start
+        case editing
+        case dropping
+        case over
+    }
+    
     lazy var scoreLabel: SKLabelNode = makeScoreLabel()
     lazy var editModeLabel: SKLabelNode = makeEditLabel()
     lazy var remainingBallsLabel: SKLabelNode = makeRemainingBallsLabel()
+    lazy var startGameLabel: SKLabelNode = makeStartGameLabel()
     
     lazy var sceneCenterPoint = CGPoint(x: frame.midX, y: frame.midY)
     
@@ -28,9 +36,10 @@ class GameScene: SKScene {
         }
     }
     
-    var isInEditMode = false {
+    
+    var currentGameplayState: GameplayState = .start {
         didSet {
-            editModeLabel.text = isInEditMode ? "Done" : "Edit"
+            gameplayStateChanged()
         }
     }
 }
@@ -41,6 +50,10 @@ class GameScene: SKScene {
 extension GameScene {
     var newBallNode: SKSpriteNode {
         return SKSpriteNode(imageNamed: AssetName.Ball.all.randomElement()!)
+    }
+    
+    var baseLabelNode: SKLabelNode {
+         return SKLabelNode(fontNamed: "Chalkduster")
     }
 }
 
@@ -56,6 +69,8 @@ extension GameScene {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
+        
+        currentGameplayState = .start
     }
 }
 
@@ -68,19 +83,28 @@ extension GameScene {
         guard let touch = touches.first else { return }
         
         let location = touch.location(in: self)
+        let touchedNodes = nodes(at: location)
         
-        if nodes(at: location).contains(editModeLabel) {
-            isInEditMode.toggle()
-        } else if isInEditMode {
-            // create an obstacle -- or remove an obstacle that's being touched
-            if let obstacle = nodes(at: location).first(where: { $0.name == NodeName.obstacle }) {
-                obstacle.removeFromParent()
-            } else {
-                addChild(makeObstacle(at: location))
+        switch currentGameplayState {
+        case .start:
+            if touchedNodes.contains(editModeLabel) {
+                currentGameplayState = .editing
             }
-        } else {
+        case .editing:
+            if touchedNodes.contains(startGameLabel) {
+                currentGameplayState = .dropping
+            } else {
+                if let obstacle = touchedNodes.first(where: { $0.name == NodeName.obstacle }) {
+                    obstacle.removeFromParent()
+                } else {
+                    addChild(makeObstacle(at: location))
+                }
+            }
+        case .dropping:
             // drop a ball from the top of the screen at the corresponding x position
             addChild(makeBall(at: CGPoint(x: location.x, y: frame.maxY)))
+        case .over:
+            break
         }
     }
 }
@@ -104,8 +128,8 @@ private extension GameScene {
     func setupUI() {
         addChild(scoreLabel)
         addChild(editModeLabel)
-        
-        currentScore = 0
+        addChild(remainingBallsLabel)
+        addChild(startGameLabel)
     }
     
     
@@ -204,17 +228,28 @@ private extension GameScene {
     
     
     func makeEditLabel() -> SKLabelNode {
-        let label = SKLabelNode(fontNamed: "Chalkduster")
+        let label = baseLabelNode
         
         label.text = "Edit"
-        label.position = CGPoint(x: frame.maxX * 0.078, y: frame.maxY * 0.91)
+        label.horizontalAlignmentMode = .center
+        label.position = sceneCenterPoint
         
         return label
     }
     
     
+    func makeStartGameLabel() -> SKLabelNode {
+        let label = baseLabelNode
+        
+        label.text = "Start"
+        label.position = CGPoint(x: frame.maxX * 0.078, y: frame.maxY * 0.91)
+
+        return label
+    }
+    
+    
     func makeScoreLabel() -> SKLabelNode {
-        let label = SKLabelNode(fontNamed: "Chalkduster")
+        let label = baseLabelNode
         
         label.horizontalAlignmentMode = .right
         label.position = CGPoint(x: frame.maxX * 0.95, y: frame.maxY * 0.91)
@@ -224,7 +259,12 @@ private extension GameScene {
     
     
     func makeRemainingBallsLabel() -> SKLabelNode {
-        let label = SKLabelNode(fontNamed: "Chalkduster")
+        let label = baseLabelNode
+        
+        label.horizontalAlignmentMode = .right
+        label.position = CGPoint(x: frame.maxX * 0.95, y: frame.maxY * 0.82)
+        
+        return label
     }
     
     
@@ -246,6 +286,34 @@ private extension GameScene {
         
         addChild(fireParticles)
         ball.removeFromParent()
+    }
+    
+    
+    func gameplayStateChanged() {
+        switch currentGameplayState {
+        case .start:
+            isUserInteractionEnabled = true
+            currentScore = 0
+            remainingBalls = 5
+            startGameLabel.isHidden = true
+            editModeLabel.isHidden = false
+        case .editing:
+            editModeLabel.isHidden = true
+            startGameLabel.isHidden = false
+        case .dropping:
+            startGameLabel.isHidden = true
+        case .over:
+            isUserInteractionEnabled = false
+            promptForRestart()
+        }
+    }
+    
+    func promptForRestart() {
+        
+    }
+    
+    func restartGame() {
+        
     }
 }
 
