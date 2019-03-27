@@ -18,6 +18,7 @@
 		F39643622247892D0088568E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = F39643602247892C0088568E /* spark.png */; };
 		F39643632247892D0088568E /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = F39643612247892D0088568E /* FireParticles.sks */; };
 		F396436622478EBE0088568E /* NodeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396436522478EBE0088568E /* NodeName.swift */; };
+		F3EC0E40224BC92C00D4BF29 /* BallImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC0E3F224BC92C00D4BF29 /* BallImageName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F39643602247892C0088568E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		F39643612247892D0088568E /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 		F396436522478EBE0088568E /* NodeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeName.swift; sourceTree = "<group>"; };
+		F3EC0E3F224BC92C00D4BF29 /* BallImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallImageName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				F396436522478EBE0088568E /* NodeName.swift */,
+				F3EC0E3F224BC92C00D4BF29 /* BallImageName.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				F396435C2247873E0088568E /* AppDelegate.swift in Sources */,
 				F39643592247873E0088568E /* GameScene.swift in Sources */,
 				F39643562247873E0088568E /* GameViewController.swift in Sources */,
+				F3EC0E40224BC92C00D4BF29 /* BallImageName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

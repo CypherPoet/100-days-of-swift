@@ -29,6 +29,15 @@ class GameScene: SKScene {
 }
 
 
+// MARK: - Computed Properties
+
+extension GameScene {
+    var newBallNode: SKSpriteNode {
+        return SKSpriteNode(imageNamed: AssetName.Ball.all.randomElement()!)
+    }
+}
+
+
 // MARK: - Lifecycle
 
 extension GameScene {
@@ -148,7 +157,7 @@ private extension GameScene {
     
     
     func makeBall(at position: CGPoint) -> SKNode {
-        let ball = SKSpriteNode(imageNamed: "ballRed")
+        let ball = newBallNode
         let ballPhysicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
         
         ballPhysicsBody.restitution = 0.4
