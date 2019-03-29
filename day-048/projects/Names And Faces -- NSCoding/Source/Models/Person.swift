@@ -8,12 +8,25 @@
 
 import UIKit
 
-class Person: NSObject {
+final class Person: NSObject {
     var name: String
     var imageName: String
     
     init(name: String, imageName: String) {
         self.name = name
         self.imageName = imageName
+    }
+    
+    init?(coder aDecoder: NSCoder) {
+        name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
+        imageName = aDecoder.decodeObject(forKey: "imageName") as? String ?? ""
+    }
+}
+
+
+extension Person: NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(imageName, forKey: "imageName")
     }
 }

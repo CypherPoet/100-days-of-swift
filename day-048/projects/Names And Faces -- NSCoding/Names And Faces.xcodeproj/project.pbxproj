@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3138311224D953D002AF7D2 /* UIViewController+PeopleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3138310224D953D002AF7D2 /* UIViewController+PeopleData.swift */; };
 		F37697F62242D717006966DA /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37697E82242D716006966DA /* Person.swift */; };
 		F37697F72242D717006966DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37697E92242D717006966DA /* LaunchScreen.storyboard */; };
 		F37697FA2242D717006966DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37697F02242D717006966DA /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3138310224D953D002AF7D2 /* UIViewController+PeopleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PeopleData.swift"; sourceTree = "<group>"; };
 		F35A33BE21F8F29C0025CFE0 /* Names And Faces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Names And Faces.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37697E82242D716006966DA /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		F37697EA2242D717006966DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F313830F224D9506002AF7D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3138310224D953D002AF7D2 /* UIViewController+PeopleData.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F35A33B521F8F29C0025CFE0 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +71,7 @@
 		F37697E42242D716006966DA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F313830F224D9506002AF7D2 /* Extensions */,
 				F37698082242E294006966DA /* Helpers */,
 				F37698052242D857006966DA /* Content */,
 				F37697FD2242D843006966DA /* Scenes */,
@@ -193,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F37698022242D843006966DA /* PersonCell.swift in Sources */,
+				F3138311224D953D002AF7D2 /* UIViewController+PeopleData.swift in Sources */,
 				F37697FA2242D717006966DA /* AppDelegate.swift in Sources */,
 				F37697F62242D717006966DA /* Person.swift in Sources */,
 				F37698042242D843006966DA /* HomeViewController.swift in Sources */,

@@ -12,10 +12,13 @@ class HomeViewController: UICollectionViewController {
     var people: [Person] = []
     
     lazy var imagePicker: UIImagePickerController = makeImagePicker()
+    lazy var userDefaults = UserDefaults.standard
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        loadPeople()
     }
 }
 
@@ -85,6 +88,19 @@ private extension HomeViewController {
     }
     
     
+    func loadPeople() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            self.people = self.getPeople(fromDefaults: self.userDefaults) ?? [Person]()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    
     func setStyles(forCell cell: PersonCell) {
         cell.personImageView.layer.borderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
         cell.personImageView.layer.borderWidth = 2
@@ -115,11 +131,12 @@ private extension HomeViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         alertController.addAction(
-            UIAlertAction(title: "OK", style: .default) { [unowned self, alertController] _ in
+            UIAlertAction(title: "OK", style: .default) { (_) in
                 let newName = alertController.textFields![0].text!
                 
                 person.name = newName
-                self.collectionView?.reloadData()
+                self.save(people: self.people, toDefaults: self.userDefaults)
+                self.collectionView.reloadData()
             }
         )
         
@@ -140,10 +157,12 @@ private extension HomeViewController {
         return imagePicker
     }
     
+    
     func delete(_ person: Person) {
         guard let personIndex = self.people.firstIndex(of: person) else { return }
         
         people.remove(at: personIndex)
+        save(people: people, toDefaults: userDefaults)
         collectionView.reloadData()
     }
 }
@@ -174,7 +193,9 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         }
         
         people.append(Person(name: "Unknown", imageName: fileName))
-        collectionView?.reloadData()
+        
+        save(people: people, toDefaults: userDefaults)
+        collectionView.reloadData()
         
         picker.dismiss(animated: true)
     }
