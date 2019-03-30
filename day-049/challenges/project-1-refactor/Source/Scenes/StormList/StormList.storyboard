@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s9F-vx-4qu">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s9F-vx-4qu">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,7 @@
             <objects>
                 <collectionViewController id="IRx-bI-zq3" customClass="StormListViewController" customModule="Storm_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="GFb-vW-nvv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xF8-1P-GgX">
@@ -67,17 +67,25 @@
             <objects>
                 <viewController storyboardIdentifier="Storm Detail View" id="CPB-R6-9Cf" customClass="StormDetailViewController" customModule="Storm_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GBY-9N-YdR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XEW-Lo-AqF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Count: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4u-1A-ymI">
+                                <rect key="frame" x="283" y="818" width="111" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.4443453316" blue="0.45344745139999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2gv-9e-Yej" firstAttribute="trailing" secondItem="M4u-1A-ymI" secondAttribute="trailing" constant="20" id="LBC-Zs-Bcu"/>
                             <constraint firstItem="XEW-Lo-AqF" firstAttribute="leading" secondItem="GBY-9N-YdR" secondAttribute="leading" id="Rrr-Ib-fgB"/>
                             <constraint firstItem="XEW-Lo-AqF" firstAttribute="top" secondItem="GBY-9N-YdR" secondAttribute="top" id="fhq-mS-UKb"/>
+                            <constraint firstItem="2gv-9e-Yej" firstAttribute="bottom" secondItem="M4u-1A-ymI" secondAttribute="bottom" constant="20" id="r5E-XK-wRL"/>
                             <constraint firstItem="XEW-Lo-AqF" firstAttribute="bottom" secondItem="GBY-9N-YdR" secondAttribute="bottom" id="rFn-Ho-Mml"/>
                             <constraint firstAttribute="trailing" secondItem="XEW-Lo-AqF" secondAttribute="trailing" id="tAb-Tf-8eg"/>
                         </constraints>
@@ -85,6 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="XEW-Lo-AqF" id="XzE-xQ-8al"/>
+                        <outlet property="viewCountLabel" destination="M4u-1A-ymI" id="Tjf-hP-5BY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mE-fN-JfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -97,7 +106,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s9F-vx-4qu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J8R-Q0-aGL">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

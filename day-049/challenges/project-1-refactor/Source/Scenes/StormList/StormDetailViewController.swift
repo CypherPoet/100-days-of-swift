@@ -9,12 +9,20 @@
 import UIKit
 
 class StormDetailViewController: UIViewController {
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var viewCountLabel: UILabel!
+    
+    lazy var userDefaults = UserDefaults.standard
     
     var displayImage: DisplayImage!
     var imageNumber: Int!
     var totalImageCount: Int!
-    
+}
+
+
+// MARK: - Lifecycle
+
+extension StormDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +30,30 @@ class StormDetailViewController: UIViewController {
         setupNavbar()
         imageView.image = UIImage(named: displayImage.imagePath)
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.hidesBarsOnTap = true
+        viewCountLabel.text = "View Count: \(displayImage.timesViewed + 1)"
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        displayImage.timesViewed += 1
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.hidesBarsOnTap = false
+    }
 }
+
 
 
 // MARK: - Computed Properties
@@ -33,18 +64,6 @@ extension StormDetailViewController {
         get {
             return navigationController?.hidesBarsOnTap ?? false
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.hidesBarsOnTap = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.hidesBarsOnTap = false
     }
 }
 

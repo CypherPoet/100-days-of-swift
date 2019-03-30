@@ -17,7 +17,6 @@ class StormListViewController: UICollectionViewController {
         
         loadImages()
     }
-    
 }
 
 
@@ -91,7 +90,7 @@ private extension StormListViewController {
                     .filter({ $0.hasPrefix("nssl") })
                     .sorted()
                     .map({ DisplayImage(imagePath: $0) })
-                
+                                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
