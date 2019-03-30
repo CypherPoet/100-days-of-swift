@@ -11,6 +11,7 @@ class HomeViewController: UIViewController {
     @IBOutlet var button2: UIButton!
     @IBOutlet var button3: UIButton!
     @IBOutlet weak var scoreButton: UIBarButtonItem!
+    @IBOutlet weak var highestScoreLabel: UILabel!
     
     var flags: [Flag] = []
     var flagChoices: [Flag] = []
@@ -25,11 +26,20 @@ class HomeViewController: UIViewController {
         }
     }
     
+    var highestScore = 0 {
+        didSet {
+            UserDefaults.standard.set(highestScore, forKey: "High Score")
+            highestScoreLabel.text = "Highset Score: \(highestScore)"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
         currentScore = 0
+        highestScore = UserDefaults.standard.integer(forKey: "High Score")
+        
         loadFlagData()
         setupButtonStyles()
         askQuestion()
@@ -91,6 +101,7 @@ private extension HomeViewController {
     func loadFlagData() {
         if let jsonData = loadFlagJSON() {
             let decoder = JSONDecoder()
+            
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
@@ -121,6 +132,10 @@ private extension HomeViewController {
     
     
     func endGame() {
+        if currentScore > highestScore {
+            highestScore = currentScore
+        }
+        
         let alertController = UIAlertController(title: "Game Over", message: "Your final score is \(currentScore)", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Play Again", style: .default) { [unowned self] _ in

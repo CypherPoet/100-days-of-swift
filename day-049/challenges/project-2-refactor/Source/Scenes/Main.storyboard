@@ -58,14 +58,22 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U4R-CP-ARt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highest Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPR-Iq-El0">
+                                <rect key="frame" x="113.5" y="816.5" width="187" height="31.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cPR-Iq-El0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-14" id="64t-T9-9fK"/>
                             <constraint firstItem="NEb-PX-xnZ" firstAttribute="centerX" secondItem="ZzW-Kt-38n" secondAttribute="centerX" id="9DD-6n-qia"/>
                             <constraint firstItem="ZzW-Kt-38n" firstAttribute="height" secondItem="NEb-PX-xnZ" secondAttribute="height" id="Ab0-DN-UFy"/>
                             <constraint firstItem="vFN-ge-cVu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Ana-r5-8X4"/>
+                            <constraint firstItem="cPR-Iq-El0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dPC-x4-x9l"/>
                             <constraint firstItem="vFN-ge-cVu" firstAttribute="height" secondItem="ZzW-Kt-38n" secondAttribute="height" id="hbJ-GK-OgD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NEb-PX-xnZ" secondAttribute="bottom" constant="20" id="iBf-nZ-frt"/>
+                            <constraint firstItem="cPR-Iq-El0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NEb-PX-xnZ" secondAttribute="bottom" constant="20" id="iBf-nZ-frt"/>
                             <constraint firstItem="ZzW-Kt-38n" firstAttribute="centerX" secondItem="vFN-ge-cVu" secondAttribute="centerX" id="lWQ-jf-5mz"/>
                             <constraint firstItem="vFN-ge-cVu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="mvu-kE-JYZ"/>
                             <constraint firstItem="ZzW-Kt-38n" firstAttribute="top" secondItem="vFN-ge-cVu" secondAttribute="bottom" constant="30" id="qvO-bf-ZhS"/>
@@ -82,6 +90,7 @@
                         <outlet property="button1" destination="vFN-ge-cVu" id="tFe-hn-j0d"/>
                         <outlet property="button2" destination="ZzW-Kt-38n" id="gbi-UL-J0u"/>
                         <outlet property="button3" destination="NEb-PX-xnZ" id="FBe-Yt-iKY"/>
+                        <outlet property="highestScoreLabel" destination="cPR-Iq-El0" id="fCl-Hz-XPe"/>
                         <outlet property="scoreButton" destination="Sk7-j8-1co" id="2IO-nq-DpK"/>
                     </connections>
                 </viewController>
