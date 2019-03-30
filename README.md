@@ -64,3 +64,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 46: _Project 11: Pachinko_, Part Two](/day-046)
 - [Day 47: _Project 11: Pachinko_, Part Three](/day-047)
 - [Day 48: _Project 12: User Defaults_, Part One](/day-048)
+- [Day 49: _Project 12: User Defaults_, Part Two](/day-049)
