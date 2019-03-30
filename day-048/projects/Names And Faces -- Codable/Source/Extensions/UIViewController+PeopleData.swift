@@ -14,18 +14,28 @@ extension UIViewController {
         people: [Person],
         toDefaults userDefaults: UserDefaults = UserDefaults.standard
     ) {
-        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: people, requiringSecureCoding: false) {
-            userDefaults.setValue(savedData, forKey: "people")
+        let encoder = JSONEncoder()
+        
+        do {
+            let data = try encoder.encode(people)
+            userDefaults.set(data, forKey: "people")
+        } catch {
+            print("Failed to saved people")
         }
     }
     
     func getPeople(fromDefaults userDefaults: UserDefaults = UserDefaults.standard) -> [Person]? {
-        if let savedPeople = userDefaults.object(forKey: "people") as? Data {
-            if let decodedPeople = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedPeople) as? [Person] {
-                return decodedPeople
+        let decoder = JSONDecoder()
+        
+        if let peopleData = userDefaults.object(forKey: "people") as? Data {
+            do {
+                return try decoder.decode([Person].self, from: peopleData)
+            } catch {
+                showError(error, title: "Error while loading saved people")
             }
         }
         
+        print("No people data found in UserDefaultsloaded.")
         return nil
     }
 }

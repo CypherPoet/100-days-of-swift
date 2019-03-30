@@ -159,7 +159,7 @@ private extension HomeViewController {
     
     
     func delete(_ person: Person) {
-        guard let personIndex = self.people.firstIndex(of: person) else { return }
+        guard let personIndex = people.firstIndex(of: person) else { return }
         
         people.remove(at: personIndex)
         save(people: people, toDefaults: userDefaults)
