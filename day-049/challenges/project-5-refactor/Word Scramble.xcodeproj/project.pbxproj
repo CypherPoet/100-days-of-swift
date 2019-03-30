@@ -13,6 +13,7 @@
 		F3D74B7F224EFC2300640297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D74B77224EFC2300640297 /* Assets.xcassets */; };
 		F3D74B80224EFC2300640297 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D74B79224EFC2300640297 /* LaunchScreen.storyboard */; };
 		F3D74B81224EFC2300640297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74B7A224EFC2300640297 /* AppDelegate.swift */; };
+		F3D74BEF224F303E00640297 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74BEE224F303E00640297 /* UserDefaultsKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		F3D74B79224EFC2300640297 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3D74B7A224EFC2300640297 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D74B7B224EFC2300640297 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3D74BEE224F303E00640297 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F3FD7EB121F06A6D009FDABA /* Word Scramble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Scramble.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -43,6 +45,7 @@
 				F3D74B71224EFC2300640297 /* Scenes */,
 				F3D74B75224EFC2300640297 /* Content */,
 				F3D74B78224EFC2300640297 /* App Start */,
+				F3D74BED224F303200640297 /* Helpers */,
 				F3D74B7B224EFC2300640297 /* Info.plist */,
 			);
 			path = "Word Scramble";
@@ -81,6 +84,14 @@
 				F3D74B7A224EFC2300640297 /* AppDelegate.swift */,
 			);
 			path = "App Start";
+			sourceTree = "<group>";
+		};
+		F3D74BED224F303200640297 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F3D74BEE224F303E00640297 /* UserDefaultsKey.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F3FD7EA821F06A6D009FDABA = {
@@ -172,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D74BEF224F303E00640297 /* UserDefaultsKey.swift in Sources */,
 				F3D74B81224EFC2300640297 /* AppDelegate.swift in Sources */,
 				F3D74B7C224EFC2300640297 /* HomeViewController.swift in Sources */,
 			);

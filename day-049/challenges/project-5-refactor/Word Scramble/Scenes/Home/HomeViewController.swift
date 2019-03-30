@@ -9,24 +9,50 @@
 import UIKit
 
 class HomeViewController: UITableViewController {
+    lazy var userDefaults = UserDefaults.standard
+    
     var allWords: [String] = []
-    var usedWords: [String] = []
+    
+    var usedWords: [String] = [] {
+        didSet {
+            userDefaults.set(usedWords, forKey: UserDefaultsKey.usedWords)
+        }
+    }
+
     
     var currentSubject = "" {
         didSet {
             title = "Anagrams of \"\(currentSubject)\""
+            userDefaults.set(currentSubject, forKey: UserDefaultsKey.currentSubject)
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        loadWords()
-        startGame()
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            self.loadWords()
+            
+            DispatchQueue.main.async {
+                self.usedWords = self.userDefaults.array(forKey: UserDefaultsKey.usedWords) as? [String] ?? [String]()
+                
+                self.currentSubject = self.userDefaults.value(forKey: UserDefaultsKey.currentSubject) as? String
+                    ?? self.allWords.randomElement()!
+                
+                self.tableView.reloadData()
+            }
+        }
     }
-    
+}
+
+
+// MARK: - Data Source
+
+extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return usedWords.count
@@ -40,7 +66,12 @@ class HomeViewController: UITableViewController {
         
         return cell
     }
-    
+}
+
+
+// MARK: - Private Helper Methods
+
+private extension HomeViewController {
     
     func loadWords() {
         if let pathToStartWords = Bundle.main.path(forResource: "starting-words", ofType: "txt") {
@@ -55,60 +86,17 @@ class HomeViewController: UITableViewController {
     }
     
     
-    func startGame() {
-        guard let subject = allWords.randomElement() else {
-            fatalError("Failed to load words for game")
-        }
-        
-        currentSubject = subject
+    func loadDefaultWords() {
+        allWords = ["silkworm"]
+    }
+    
+    
+    func startNewRound(withSubject newSubject: String? = nil) {
+        currentSubject = newSubject ?? allWords.randomElement()!
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
     
-    
-    /**
-        Shows a UIAlertController with space for the user to enter an answer.
-     
-        When the user clicks Submit to that alert controller,
-        the answer is checked to make sure it's valid.
-     */
-    @IBAction func promptForAnswer() {
-        let alertController = UIAlertController(
-            title: "Enter an anagram for \(currentSubject)",
-            message: nil,
-            preferredStyle: .alert
-        )
-        
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak alertController] _ in
-            guard let answer = alertController?.textFields?[0].text else {
-                return
-            }
-         
-            self?.handleSubmit(answer)
-        }
-        
-        alertController.addTextField()
-        alertController.addAction(submitAction)
-        
-        present(alertController, animated: true)
-    }
-    
-    
-    @IBAction func restartTapped(_ sender: Any) {
-        let alertController = UIAlertController(
-            title: "Are you sure?",
-            message: "Restarting the game will remove your answers and generate a new subject.",
-            preferredStyle: .alert
-        )
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        alertController.addAction(UIAlertAction(title: "Restart", style: .default) { [weak self] _ in
-            self?.startGame()
-        })
-        
-        present(alertController, animated: true)
-    }
     
     /*
      Given a subject word, we check that an answer:
@@ -199,10 +187,54 @@ class HomeViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertController, animated: true)
     }
-    
-    
-    func loadDefaultWords() {
-        allWords = ["silkworm"]
-    }
 }
 
+
+// MARK: - Event handling
+
+extension HomeViewController {
+    
+    /**
+     Shows a UIAlertController with space for the user to enter an answer.
+     
+     When the user clicks Submit to that alert controller,
+     the answer is checked to make sure it's valid.
+     */
+    @IBAction func promptForAnswer() {
+        let alertController = UIAlertController(
+            title: "Enter an anagram for \(currentSubject)",
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak alertController] _ in
+            guard let answer = alertController?.textFields?[0].text else {
+                return
+            }
+            
+            self?.handleSubmit(answer)
+        }
+        
+        alertController.addTextField()
+        alertController.addAction(submitAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    
+    @IBAction func restartTapped(_ sender: Any) {
+        let alertController = UIAlertController(
+            title: "Are you sure?",
+            message: "Restarting the game will remove your answers and generate a new subject.",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        alertController.addAction(UIAlertAction(title: "Restart", style: .default) { [weak self] _ in
+            self?.startNewRound()
+        })
+        
+        present(alertController, animated: true)
+    }
+}
