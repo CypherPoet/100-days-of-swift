@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fuw-q6-QnT">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--📸 Snap Gallery-->
+        <scene sceneID="zPj-2S-wL9">
+            <objects>
+                <collectionViewController id="H5u-dl-ceR" customClass="PhotosListViewController" customModule="SnapGallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="b88-qB-HTS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eCR-wN-dnC">
+                            <size key="itemSize" width="200" height="150"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Photo Cell" id="VLB-HZ-rbX" customClass="PhotoCollectionViewCell" customModule="SnapGallery" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-rB-Efm">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="128"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptc-y2-fMe">
+                                            <rect key="frame" x="0.0" y="126" width="200" height="24"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ptc-y2-fMe" firstAttribute="leading" secondItem="VLB-HZ-rbX" secondAttribute="leading" id="8DK-RV-UHh"/>
+                                    <constraint firstItem="cdL-rB-Efm" firstAttribute="top" secondItem="VLB-HZ-rbX" secondAttribute="top" id="Irm-Vj-2wa"/>
+                                    <constraint firstAttribute="bottom" secondItem="ptc-y2-fMe" secondAttribute="bottom" id="ZuQ-hH-hBo"/>
+                                    <constraint firstAttribute="trailing" secondItem="cdL-rB-Efm" secondAttribute="trailing" id="c7U-It-rB6"/>
+                                    <constraint firstAttribute="trailing" secondItem="ptc-y2-fMe" secondAttribute="trailing" id="cY7-bS-htf"/>
+                                    <constraint firstItem="cdL-rB-Efm" firstAttribute="leading" secondItem="VLB-HZ-rbX" secondAttribute="leading" id="lNJ-ay-fCI"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="photoImageView" destination="cdL-rB-Efm" id="Z1u-Ub-7eN"/>
+                                    <outlet property="photoLabel" destination="ptc-y2-fMe" id="JJO-rE-TLF"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="H5u-dl-ceR" id="tmb-nm-9xp"/>
+                            <outlet property="delegate" destination="H5u-dl-ceR" id="VKm-sV-6p1"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="📸 Snap Gallery" id="NY9-Py-P2R">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="UcW-d2-m0L">
+                            <connections>
+                                <action selector="addPhotoTapped:" destination="H5u-dl-ceR" id="oNw-4a-pg5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ygH-3u-Uaa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1371.0144927536232" y="-258.48214285714283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ANE-r3-6Lm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fuw-q6-QnT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nun-BC-hYF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="H5u-dl-ceR" kind="relationship" relationship="rootViewController" id="ZyO-lf-2bZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="InS-Xb-nkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="460.86956521739131" y="-258.48214285714283"/>
+        </scene>
+    </scenes>
+</document>
