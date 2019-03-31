@@ -9,25 +9,36 @@
 import Foundation
 
 struct Photo: Codable {
-    var title: String
+    var title: String? = nil
     var imageName: String
+    
+    init(imageName: String) {
+        self.imageName = imageName
+    }
 }
 
 
 // MARK: - Computed Properties
 
 extension Photo {
-    
-    
     /// Uses NSAttributedString to generate a randomly styled display title at a "small"
     /// size -- preferably for use inside a collection view grid
     var smallFormattedTitle: String {
-        // TODO: Implement
-        return ""
+        if let title = title {
+            // TODO: Implement
+            return title
+        }
+        
+        return "Unnamed Image"
     }
     
+    
     var largeFormattedTitle: String {
-        // TODO: Implement
-        return ""
+        if let title = title {
+            // TODO: Implement
+            return title
+        }
+        
+        return "Unnamed Image"
     }
 }

@@ -16,7 +16,9 @@
 		F3D74C4B225001BB00640297 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C4A225001BB00640297 /* PhotoCollectionViewCell.swift */; };
 		F3D74C4E2250025100640297 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C4D2250025100640297 /* Photo.swift */; };
 		F3D74C532250585700640297 /* UIViewController+URLForFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C522250585700640297 /* UIViewController+URLForFileName.swift */; };
-		F3D74C552250601E00640297 /* UIViewController+SavePhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C542250601E00640297 /* UIViewController+SavePhotos.swift */; };
+		F3D74C552250601E00640297 /* UIViewController+PhotoPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C542250601E00640297 /* UIViewController+PhotoPersistance.swift */; };
+		F3D74C572250727000640297 /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C562250727000640297 /* UIViewController+ShowError.swift */; };
+		F3D74C592250731800640297 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C582250731800640297 /* UserDefaultsKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +33,9 @@
 		F3D74C4A225001BB00640297 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3D74C4D2250025100640297 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		F3D74C522250585700640297 /* UIViewController+URLForFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+URLForFileName.swift"; sourceTree = "<group>"; };
-		F3D74C542250601E00640297 /* UIViewController+SavePhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SavePhotos.swift"; sourceTree = "<group>"; };
+		F3D74C542250601E00640297 /* UIViewController+PhotoPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PhotoPersistance.swift"; sourceTree = "<group>"; };
+		F3D74C562250727000640297 /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
+		F3D74C582250731800640297 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D74C48224FFE8D00640297 /* StoryboardID.swift */,
+				F3D74C582250731800640297 /* UserDefaultsKey.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -130,7 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				F3D74C522250585700640297 /* UIViewController+URLForFileName.swift */,
-				F3D74C542250601E00640297 /* UIViewController+SavePhotos.swift */,
+				F3D74C542250601E00640297 /* UIViewController+PhotoPersistance.swift */,
+				F3D74C562250727000640297 /* UIViewController+ShowError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -206,11 +212,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D74C592250731800640297 /* UserDefaultsKey.swift in Sources */,
 				F3D74C49224FFE8D00640297 /* StoryboardID.swift in Sources */,
 				F3D74C532250585700640297 /* UIViewController+URLForFileName.swift in Sources */,
 				F3D74C4B225001BB00640297 /* PhotoCollectionViewCell.swift in Sources */,
 				F3D74C40224FED6600640297 /* AppDelegate.swift in Sources */,
-				F3D74C552250601E00640297 /* UIViewController+SavePhotos.swift in Sources */,
+				F3D74C572250727000640297 /* UIViewController+ShowError.swift in Sources */,
+				F3D74C552250601E00640297 /* UIViewController+PhotoPersistance.swift in Sources */,
 				F3D74C46224FF13B00640297 /* PhotosListViewController.swift in Sources */,
 				F3D74C4E2250025100640297 /* Photo.swift in Sources */,
 			);

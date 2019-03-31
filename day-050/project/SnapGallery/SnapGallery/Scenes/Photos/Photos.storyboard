@@ -31,11 +31,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-rB-Efm">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="128"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-rB-Efm">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="110"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptc-y2-fMe">
-                                            <rect key="frame" x="0.0" y="126" width="200" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptc-y2-fMe">
+                                            <rect key="frame" x="0.0" y="118" width="200" height="24"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -50,6 +50,8 @@
                                     <constraint firstAttribute="trailing" secondItem="cdL-rB-Efm" secondAttribute="trailing" id="c7U-It-rB6"/>
                                     <constraint firstAttribute="trailing" secondItem="ptc-y2-fMe" secondAttribute="trailing" id="cY7-bS-htf"/>
                                     <constraint firstItem="cdL-rB-Efm" firstAttribute="leading" secondItem="VLB-HZ-rbX" secondAttribute="leading" id="lNJ-ay-fCI"/>
+                                    <constraint firstAttribute="bottom" secondItem="ptc-y2-fMe" secondAttribute="bottom" constant="8" id="lba-eO-Iqi"/>
+                                    <constraint firstItem="ptc-y2-fMe" firstAttribute="top" secondItem="cdL-rB-Efm" secondAttribute="bottom" constant="8" id="n9y-gL-6VJ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="photoImageView" destination="cdL-rB-Efm" id="Z1u-Ub-7eN"/>

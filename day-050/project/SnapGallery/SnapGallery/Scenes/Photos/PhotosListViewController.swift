@@ -15,13 +15,36 @@ class PhotosListViewController: UICollectionViewController {
     private lazy var imagePicker = makeImagePicker()
     
     private var photos: [Photo] = []
-    
+}
+
+
+// MARK: - Lifecycle
+
+extension PhotosListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            self.photos = self.loadPhotos()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+}
+
+
+// MARK: - Event handling
+
+extension PhotosListViewController {
     @IBAction func addPhotoTapped(_ sender: Any) {
         present(imagePicker, animated: true)
     }
@@ -103,7 +126,7 @@ extension PhotosListViewController: UIImagePickerControllerDelegate {
             try? jpegData.write(to: imageURL)
         }
         
-        photos.append(Photo(title: "", imageName: fileName))
+        photos.append(Photo(imageName: fileName))
         
         save(photos: photos)
         collectionView.reloadData()
