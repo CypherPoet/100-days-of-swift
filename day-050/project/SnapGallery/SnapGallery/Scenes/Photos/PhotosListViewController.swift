@@ -11,6 +11,10 @@ import UIKit
 class PhotosListViewController: UICollectionViewController {
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let itemsPerRow: CGFloat = 2
+
+    private lazy var imagePicker = makeImagePicker()
+    
+    private var photos: [Photo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +23,7 @@ class PhotosListViewController: UICollectionViewController {
 
     
     @IBAction func addPhotoTapped(_ sender: Any) {
-        
+        present(imagePicker, animated: true)
     }
 }
 
@@ -28,7 +32,7 @@ class PhotosListViewController: UICollectionViewController {
 
 extension PhotosListViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,8 +42,7 @@ extension PhotosListViewController {
             fatalError("Unable to dequeue Photo Cell")
         }
         
-//        let photo = photos[indexPath.row]
-        let photo = Photo(title: "Cats", imageName: "Test")
+        let photo = photos[indexPath.row]
         
         cell.photoImageView.image = UIImage(contentsOfFile: url(forFileName: photo.imageName).path)
         cell.photoLabel.text = photo.smallFormattedTitle
@@ -91,6 +94,40 @@ extension PhotosListViewController: UIImagePickerControllerDelegate {
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
-        // TODO: Implement
+        guard let imagePicked = info[.editedImage] as? UIImage else { return }
+        
+        let fileName = UUID().uuidString
+        let imageURL = url(forFileName: fileName)
+        
+        if let jpegData = imagePicked.jpegData(compressionQuality: 0.8) {
+            try? jpegData.write(to: imageURL)
+        }
+        
+        photos.append(Photo(title: "", imageName: fileName))
+        
+        save(photos: photos)
+        collectionView.reloadData()
+        
+        picker.dismiss(animated: true)
+    }
+}
+
+extension PhotosListViewController: UINavigationControllerDelegate {}
+
+
+// MARK: - Private Helper Methods
+
+private extension PhotosListViewController {
+    func makeImagePicker() -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        }
+        
+        return imagePicker
     }
 }
