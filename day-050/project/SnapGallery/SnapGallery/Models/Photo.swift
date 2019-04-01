@@ -11,17 +11,13 @@ import UIKit
 class Photo: Codable {
     var imageName: String
     
-//    var title: String? = nil
-    
     var title: String? = nil {
         didSet {
-            smallFormattedTitle = makeSmallFormattedTitle()
-            largeFormattedTitle = makeLargeFormattedTitle()
+            formattedTitle = makeFormattedTitle()
         }
     }
     
-    lazy var smallFormattedTitle = makeSmallFormattedTitle()
-    lazy var largeFormattedTitle = makeLargeFormattedTitle()
+    lazy var formattedTitle = makeFormattedTitle()
     
     init(imageName: String) {
         self.imageName = imageName
@@ -32,30 +28,9 @@ class Photo: Codable {
 // MARK: - Private Helper Methods
 
 private extension Photo {
-    func makeSmallFormattedTitle() -> NSAttributedString {
+    func makeFormattedTitle() -> NSAttributedString {
         if let title = title {
-            let finalString = NSMutableAttributedString()
-            
-            for letter in title {
-                finalString.append(DecoratedPhotoTitle.makeAttributedString(for: String(letter)))
-            }
-            
-            return finalString
-        } else {
-            return DecoratedPhotoTitle.unnamedTitleString
-        }
-    }
-    
-    
-    func makeLargeFormattedTitle() -> NSAttributedString {
-        if let title = title {
-            let finalString = NSMutableAttributedString()
-            
-            for letter in title {
-                finalString.append(DecoratedPhotoTitle.makeAttributedString(for: String(letter)))
-            }
-            
-            return finalString
+            return DecoratedPhotoTitle.makeAttributedString(forTitle: title)
         } else {
             return DecoratedPhotoTitle.unnamedTitleString
         }

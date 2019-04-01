@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PhotosListViewController
 //  SnapGallery
 //
 //  Created by Brian Sipple on 3/30/19.
@@ -68,12 +68,13 @@ extension PhotosListViewController {
 }
 
 
-// MARK: - Data Source
+// MARK: - Collection View Data Source
 
 extension PhotosListViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView
@@ -85,9 +86,9 @@ extension PhotosListViewController {
         let photo = photos[indexPath.row]
         
         cell.photoImageView.image = UIImage(contentsOfFile: url(forFileName: photo.imageName).path)
-        cell.photoLabel.attributedText = photo.smallFormattedTitle
+        cell.photoLabel.attributedText = photo.formattedTitle
         
-        return cell;
+        return cell
     }
 }
 
@@ -150,11 +151,28 @@ extension PhotosListViewController: UIImagePickerControllerDelegate {
         
         picker.dismiss(animated: true)
     }
-    
-    
 }
-
 extension PhotosListViewController: UINavigationControllerDelegate {}
+
+
+// MARK: - Navigation
+
+extension PhotosListViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            let detailVC = segue.destination as? PhotoDetailViewController,
+            let selectedCell = sender as? PhotoCollectionViewCell,
+            let indexPath = collectionView.indexPath(for: selectedCell)
+        else {
+            return
+        }
+        
+        let photo = photos[indexPath.row]
+        
+        detailVC.photoImage = selectedCell.photoImageView.image
+        detailVC.attributedPhotoTitle = photo.formattedTitle
+    }
+}
 
 
 // MARK: - Private Helper Methods

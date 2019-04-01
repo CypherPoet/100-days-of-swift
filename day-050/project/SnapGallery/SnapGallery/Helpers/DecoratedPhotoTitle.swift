@@ -24,36 +24,44 @@ enum DecoratedPhotoTitle {
         #colorLiteral(red: 1, green: 0.3038279712, blue: 0.4778062105, alpha: 1),
         #colorLiteral(red: 0.29, green: 0.95, blue: 0.63, alpha: 1)
     ]
-
-    static func makeAttributedString(for text: String) -> NSAttributedString {
-        let attributes = makeAttributes(for: text)
+    
+    
+    static func makeAttributedString(forTitle title: String) -> NSAttributedString {
+        let finalString = NSMutableAttributedString()
         
-        return NSAttributedString(string: text, attributes: attributes)
+        for letter in title {
+            finalString.append(DecoratedPhotoTitle.makeAttributedString(forLetter: letter))
+        }
+        
+        return finalString
+    }
+
+    
+    static func makeAttributedString(forLetter letter: Character) -> NSAttributedString {
+        let attributes = makeAttributes(for: letter)
+        
+        return NSAttributedString(string: String(letter), attributes: attributes)
     }
     
-    static func makeAttributes(for title: String) -> [NSAttributedString.Key: Any] {
+    
+    static func makeAttributes(for letter: Character) -> [NSAttributedString.Key: Any] {
         let font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
-            //            .strokeWidth: CGFloat.random(in: (font.pointSize / 10.0) ... (font.pointSize / 4.0)),
+            .strokeWidth: CGFloat.random(in: (font.pointSize * 0.1) ... (font.pointSize * 0.5)),
             .obliqueness: CGFloat.random(in: -0.2...0.2),
             .shadow: shadow,
-            .kern: CGFloat.random(in: 0...2),
-            //            .backgroundColor: randomLightColor,
+            .kern: CGFloat.random(in: 1...5),
             .strokeColor: DecoratedPhotoTitle.fontColors.randomElement()!,
             .foregroundColor: DecoratedPhotoTitle.fontColors.randomElement()!,
         ]
         
-        //        let color = DecoratedString.fontColors.randomElement()!
-        //        let colorKey: NSAttributedString.Key = Int.random(in: 0...1) == 1 ? .strokeColor : .foregroundColor
-        
-        //        attributes[colorKey] = color
-        
         return attributes
     }
     
-    static func randomLightColor() -> UIColor {
+    
+    static var randomLightColor: UIColor {
         return UIColor(
             hue: CGFloat.random(in: 0...1.0),
             saturation: CGFloat.random(in: 0...1.0),
@@ -63,7 +71,7 @@ enum DecoratedPhotoTitle {
     }
     
     
-    static func randomDarkColor() -> UIColor {
+    static var randomDarkColor: UIColor {
         return UIColor(
             hue: CGFloat.random(in: 0...1),
             saturation: CGFloat.random(in: 0...1),
@@ -74,7 +82,7 @@ enum DecoratedPhotoTitle {
     
     
     static var fontSize: CGFloat {
-        return CGFloat.random(in: 12...28)
+        return CGFloat.random(in: 22...28)
     }
     
     
@@ -86,8 +94,9 @@ enum DecoratedPhotoTitle {
     
     static var shadow: NSShadow {
         let shadow = NSShadow()
-        shadow.shadowColor = randomDarkColor()
-        shadow.shadowBlurRadius = CGFloat.random(in: 0...4)
+//        shadow.shadowColor = randomDarkColor
+        shadow.shadowColor = fontColors.randomElement()!
+        shadow.shadowBlurRadius = CGFloat.random(in: 0...5)
         shadow.shadowOffset = CGSize(width: CGFloat.random(in: 0...4), height: CGFloat.random(in: 0...4))
         
         return shadow

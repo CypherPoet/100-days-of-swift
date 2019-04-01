@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fuw-q6-QnT">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina6_1" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
             <objects>
                 <collectionViewController id="H5u-dl-ceR" customClass="PhotosListViewController" customModule="SnapGallery" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="b88-qB-HTS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eCR-wN-dnC">
@@ -32,11 +33,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-rB-Efm">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="110"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="102"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptc-y2-fMe">
-                                            <rect key="frame" x="0.0" y="118" width="200" height="24"/>
+                                            <rect key="frame" x="0.0" y="110" width="200" height="32"/>
                                             <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="ucv-Hw-3fa"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -58,6 +62,7 @@
                                 <connections>
                                     <outlet property="photoImageView" destination="cdL-rB-Efm" id="Z1u-Ub-7eN"/>
                                     <outlet property="photoLabel" destination="ptc-y2-fMe" id="JJO-rE-TLF"/>
+                                    <segue destination="UhS-F3-UTn" kind="show" id="TKV-pK-wHE"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -66,7 +71,7 @@
                             <outlet property="delegate" destination="H5u-dl-ceR" id="VKm-sV-6p1"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="📸 Snap Gallery" id="NY9-Py-P2R">
+                    <navigationItem key="navigationItem" title="📸 Snap Gallery" largeTitleDisplayMode="never" id="NY9-Py-P2R">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="UcW-d2-m0L">
                             <connections>
                                 <action selector="addPhotoTapped:" destination="H5u-dl-ceR" id="oNw-4a-pg5"/>
@@ -78,14 +83,72 @@
             </objects>
             <point key="canvasLocation" x="1371.0144927536232" y="-258.48214285714283"/>
         </scene>
+        <!--Photo Detail View Controller-->
+        <scene sceneID="LvU-Lj-dt8">
+            <objects>
+                <viewController id="UhS-F3-UTn" customClass="PhotoDetailViewController" customModule="SnapGallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BV7-WJ-XMH">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2p-f3-5ZX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Photo Title" largeTitleDisplayMode="always" id="hB2-Nh-pMg"/>
+                                </items>
+                            </navigationBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t6L-EA-Cda">
+                                <rect key="frame" x="44" y="44" width="808" height="349"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="1zi-2g-x3D"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1zi-2g-x3D"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="1zi-2g-x3D"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="t6L-EA-Cda" firstAttribute="leading" secondItem="GNy-jO-xHJ" secondAttribute="leading" id="3uh-5F-2xy"/>
+                            <constraint firstItem="GNy-jO-xHJ" firstAttribute="bottom" secondItem="t6L-EA-Cda" secondAttribute="bottom" id="BeU-iC-Lm6"/>
+                            <constraint firstItem="GNy-jO-xHJ" firstAttribute="trailing" secondItem="t6L-EA-Cda" secondAttribute="trailing" id="Ckl-fU-7jv"/>
+                            <constraint firstItem="t6L-EA-Cda" firstAttribute="centerX" secondItem="GNy-jO-xHJ" secondAttribute="centerX" id="DFw-Y1-15c"/>
+                            <constraint firstItem="t6L-EA-Cda" firstAttribute="centerY" secondItem="GNy-jO-xHJ" secondAttribute="centerY" id="PqD-k6-iox"/>
+                            <constraint firstItem="t6L-EA-Cda" firstAttribute="top" secondItem="GNy-jO-xHJ" secondAttribute="top" id="uD2-qS-4tH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GNy-jO-xHJ"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="c2p-f3-5ZX"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="photoImageView" destination="t6L-EA-Cda" id="o1L-75-gaL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kKR-P5-Dda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2300" y="-258"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ANE-r3-6Lm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fuw-q6-QnT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nun-BC-hYF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="nun-BC-hYF">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
