@@ -19,6 +19,7 @@
 		F3D74C552250601E00640297 /* UIViewController+PhotoPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C542250601E00640297 /* UIViewController+PhotoPersistance.swift */; };
 		F3D74C572250727000640297 /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C562250727000640297 /* UIViewController+ShowError.swift */; };
 		F3D74C592250731800640297 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C582250731800640297 /* UserDefaultsKey.swift */; };
+		F3D74C5B2251774600640297 /* DecoratedPhotoTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74C5A2251774600640297 /* DecoratedPhotoTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F3D74C542250601E00640297 /* UIViewController+PhotoPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PhotoPersistance.swift"; sourceTree = "<group>"; };
 		F3D74C562250727000640297 /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
 		F3D74C582250731800640297 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		F3D74C5A2251774600640297 /* DecoratedPhotoTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoratedPhotoTitle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				F3D74C48224FFE8D00640297 /* StoryboardID.swift */,
 				F3D74C582250731800640297 /* UserDefaultsKey.swift */,
+				F3D74C5A2251774600640297 /* DecoratedPhotoTitle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				F3D74C572250727000640297 /* UIViewController+ShowError.swift in Sources */,
 				F3D74C552250601E00640297 /* UIViewController+PhotoPersistance.swift in Sources */,
 				F3D74C46224FF13B00640297 /* PhotosListViewController.swift in Sources */,
+				F3D74C5B2251774600640297 /* DecoratedPhotoTitle.swift in Sources */,
 				F3D74C4E2250025100640297 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

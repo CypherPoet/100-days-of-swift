@@ -6,11 +6,22 @@
 //  Copyright © 2019 Brian Sipple. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct Photo: Codable {
-    var title: String? = nil
+class Photo: Codable {
     var imageName: String
+    
+//    var title: String? = nil
+    
+    var title: String? = nil {
+        didSet {
+            smallFormattedTitle = makeSmallFormattedTitle()
+            largeFormattedTitle = makeLargeFormattedTitle()
+        }
+    }
+    
+    lazy var smallFormattedTitle = makeSmallFormattedTitle()
+    lazy var largeFormattedTitle = makeLargeFormattedTitle()
     
     init(imageName: String) {
         self.imageName = imageName
@@ -18,27 +29,35 @@ struct Photo: Codable {
 }
 
 
-// MARK: - Computed Properties
+// MARK: - Private Helper Methods
 
-extension Photo {
-    /// Uses NSAttributedString to generate a randomly styled display title at a "small"
-    /// size -- preferably for use inside a collection view grid
-    var smallFormattedTitle: String {
+private extension Photo {
+    func makeSmallFormattedTitle() -> NSAttributedString {
         if let title = title {
-            // TODO: Implement
-            return title
+            let finalString = NSMutableAttributedString()
+            
+            for letter in title {
+                finalString.append(DecoratedPhotoTitle.makeAttributedString(for: String(letter)))
+            }
+            
+            return finalString
+        } else {
+            return DecoratedPhotoTitle.unnamedTitleString
         }
-        
-        return "Unnamed Image"
     }
     
     
-    var largeFormattedTitle: String {
+    func makeLargeFormattedTitle() -> NSAttributedString {
         if let title = title {
-            // TODO: Implement
-            return title
+            let finalString = NSMutableAttributedString()
+            
+            for letter in title {
+                finalString.append(DecoratedPhotoTitle.makeAttributedString(for: String(letter)))
+            }
+            
+            return finalString
+        } else {
+            return DecoratedPhotoTitle.unnamedTitleString
         }
-        
-        return "Unnamed Image"
     }
 }

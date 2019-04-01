@@ -24,7 +24,10 @@ extension PhotosListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        setupGestureRecognizers()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -48,6 +51,20 @@ extension PhotosListViewController {
     @IBAction func addPhotoTapped(_ sender: Any) {
         present(imagePicker, animated: true)
     }
+    
+    
+    @objc func photoCellLongPressed(gestureRecognizer: UIGestureRecognizer) {
+        guard gestureRecognizer.state == .began else {
+            return
+        }
+        
+        let location = gestureRecognizer.location(in: collectionView)
+        
+        if let indexPath = collectionView.indexPathForItem(at: location) {
+            let photo = photos[indexPath.item]
+            promptForTitleEdit(of: photo)
+        }
+    }
 }
 
 
@@ -68,7 +85,7 @@ extension PhotosListViewController {
         let photo = photos[indexPath.row]
         
         cell.photoImageView.image = UIImage(contentsOfFile: url(forFileName: photo.imageName).path)
-        cell.photoLabel.text = photo.smallFormattedTitle
+        cell.photoLabel.attributedText = photo.smallFormattedTitle
         
         return cell;
     }
@@ -133,6 +150,8 @@ extension PhotosListViewController: UIImagePickerControllerDelegate {
         
         picker.dismiss(animated: true)
     }
+    
+    
 }
 
 extension PhotosListViewController: UINavigationControllerDelegate {}
@@ -152,5 +171,41 @@ private extension PhotosListViewController {
         }
         
         return imagePicker
+    }
+    
+    
+    func setupGestureRecognizers() {
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(photoCellLongPressed(gestureRecognizer:))
+        )
+        
+        longPressRecognizer.minimumPressDuration = 0.5
+        longPressRecognizer.delaysTouchesBegan = true
+        
+        collectionView.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    
+    func promptForTitleEdit(of photo: Photo) {
+        let alertController = UIAlertController(title: "Photo Title", message: nil, preferredStyle: .alert)
+        
+        alertController.addTextField()
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak alertController] (_) in
+            guard
+                let title = alertController?.textFields?.first?.text,
+                let self = self
+            else {
+                return
+            }
+            
+            photo.title = title
+            self.save(photos: self.photos)
+            self.collectionView.reloadData()
+        })
+        
+        present(alertController, animated: true)
     }
 }

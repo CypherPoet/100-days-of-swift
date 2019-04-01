@@ -36,13 +36,15 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptc-y2-fMe">
                                             <rect key="frame" x="0.0" y="118" width="200" height="24"/>
+                                            <gestureRecognizers/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="ptc-y2-fMe" firstAttribute="leading" secondItem="VLB-HZ-rbX" secondAttribute="leading" id="8DK-RV-UHh"/>
                                     <constraint firstItem="cdL-rB-Efm" firstAttribute="top" secondItem="VLB-HZ-rbX" secondAttribute="top" id="Irm-Vj-2wa"/>
