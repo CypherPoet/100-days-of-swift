@@ -77,7 +77,7 @@ extension HomeViewController {
         super.viewDidLoad()
         
         currentImageFilterName = "CISepiaTone"
-        setupUI()
+        intensitySlider.isEnabled = false
     }
 }
     
@@ -85,6 +85,16 @@ extension HomeViewController {
 // MARK: - Event handling
 
 extension HomeViewController {
+
+    @IBAction func importPictureTapped() {
+        let picker = UIImagePickerController()
+        
+        picker.allowsEditing = true
+        picker.delegate = self
+        
+        present(picker, animated: true)
+    }
+    
     
     @IBAction func changeFilter(_ sender: Any) {
         let controller = UIAlertController(title: "Choose a Filter", message: nil, preferredStyle: .actionSheet)
@@ -114,28 +124,7 @@ extension HomeViewController {
 // MARK: - Private Helper Methods
 
 private extension HomeViewController {
-    
-    func setupUI() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(importPicture)
-        )
-        
-        intensitySlider.isEnabled = false
-    }
-    
-    
-    @objc func importPicture() {
-        let picker = UIImagePickerController()
-        
-        picker.allowsEditing = true
-        picker.delegate = self
-        
-        present(picker, animated: true)
-    }
-    
-    
+
     func applyImageProcessing() {
         guard let (filterKey, value) = currentFilterInfo else { return }
         

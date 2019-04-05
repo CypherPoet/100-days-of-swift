@@ -67,3 +67,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 49: _Project 12: User Defaults_, Part Two](/day-049)
 - [Day 50: Milestone for Projects 10-12](/day-050)
 - [Day 51: Conference Talks and Functional Programming](/day-051)
+- [Day 52: _Project 13: Instafilter_, Part One](/day-052)
