@@ -13,8 +13,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensitySlider: UISlider!
     
-    var imageFilterContext: CIContext!
     var currentImageFilter: CIFilter!
+    
+    // 🔑 Creating a CIContext is expensive, so we'll create it once and reuse it throughout the app.
+    lazy var imageFilterContext = CIContext()
     
     lazy var filterChoiceActions: [UIAlertAction] = makeFilterChoiceActions()
     
@@ -73,10 +75,6 @@ extension HomeViewController {
 extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // 🔑 Creating a CIContext is expensive, so create one during your initial setup and reuse it throughout your app.
-        imageFilterContext = CIContext()
         
         currentImageFilterName = "CISepiaTone"
         setupUI()
@@ -118,8 +116,6 @@ extension HomeViewController {
 private extension HomeViewController {
     
     func setupUI() {
-        title = "The Best Image Filter"
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
