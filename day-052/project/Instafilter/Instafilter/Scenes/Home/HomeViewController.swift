@@ -18,26 +18,20 @@ class HomeViewController: UIViewController {
     // 🔑 Creating a CIContext is expensive, so we'll create it once and reuse it throughout the app.
     lazy var imageFilterContext = CIContext()
     
-    lazy var filterChoiceActions: [UIAlertAction] = makeFilterChoiceActions()
-    
-    
     var currentImage: UIImage! {
         didSet {
-            imageView.image = self.currentImage
+            imageView.image = currentImage
             intensitySlider.isEnabled = true
-            currentImageFilter.setValue(CIImage(image: self.currentImage), forKey: kCIInputImageKey)
+            setNewFilterImage(using: currentImage)
         }
     }
     
     var currentImageFilterName = "" {
         didSet {
-            currentImageFilter = CIFilter(name: self.currentImageFilterName)
+            currentImageFilter = CIFilter(name: currentImageFilterName)
             
             if let currentImage = currentImage {
-                let newImage = CIImage(image: currentImage)
-                
-                currentImageFilter.setValue(newImage, forKey: kCIInputImageKey)
-                applyImageProcessing()
+                setNewFilterImage(using: currentImage)
             }
         }
     }
@@ -76,7 +70,7 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentImageFilterName = "CISepiaTone"
+        currentImageFilterName = CoreImageFilterName.sepiaTone.rawValue
         intensitySlider.isEnabled = false
     }
 }
@@ -96,16 +90,21 @@ extension HomeViewController {
     }
     
     
-    @IBAction func changeFilter(_ sender: Any) {
-        let controller = UIAlertController(title: "Choose a Filter", message: nil, preferredStyle: .actionSheet)
+    @IBAction func changeFilter(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Choose a Filter", message: nil, preferredStyle: .actionSheet)
         
-        filterChoiceActions.forEach { controller.addAction($0) }
+        makeFilterChoiceActions().forEach { alertController.addAction($0) }
         
-        present(controller, animated: true)
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        
+        present(alertController, animated: true)
     }
     
     
-    @IBAction func save(_ sender: Any) {
+    @IBAction func saveImage(_ sender: Any) {
         UIImageWriteToSavedPhotosAlbum(
             currentImage,
             self,
@@ -126,33 +125,30 @@ extension HomeViewController {
 private extension HomeViewController {
 
     func applyImageProcessing() {
-        guard let (filterKey, value) = currentFilterInfo else { return }
+        guard let (filterKey, filterValue) = currentFilterInfo else {
+            print("Unable to compute processing properties for current filter")
+            return
+        }
         
-        currentImageFilter.setValue(value, forKey: filterKey)
+        print("Filter key: \(filterKey)")
+        print("Filter value: \(filterValue)")
         
-        if let cgImage = imageFilterContext.createCGImage(
-            currentImageFilter.outputImage!,
-            from: currentImageFilter.outputImage!.extent
-            ) {
-            let processedImage = UIImage(cgImage: cgImage)
-            
-            currentImage = processedImage
+        guard let currentOutputImage = currentImageFilter.outputImage else {
+            print("Unable to find output image in current filter.")
+            return
+        }
+        
+        currentImageFilter.setValue(filterValue, forKey: filterKey)
+        
+        if let processedImage = imageFilterContext.createCGImage(currentOutputImage, from: currentOutputImage.extent) {
+            imageView.image = UIImage(cgImage: processedImage)
         }
     }
     
     
     func makeFilterChoiceActions() -> [UIAlertAction] {
-        var actions = [
-            "CIBumpDistortion",
-            "CIGaussianBlur",
-            "CIPixellate",
-            "CIMotionBlur",
-            "CISepiaTone",
-            "CITwirlDistortion",
-            "CIUnsharpMask",
-            "CIVignette",
-        ].map {
-            UIAlertAction(title: $0, style: .default) { [weak self] (action: UIAlertAction) in
+        var actions = CoreImageFilterName.allCases.map {
+            return UIAlertAction(title: $0.rawValue, style: .default) { [weak self] (action: UIAlertAction) in
                 self?.currentImageFilterName = action.title!
             }
         }
@@ -160,24 +156,6 @@ private extension HomeViewController {
         actions.append(UIAlertAction(title: "Cancel", style: .cancel))
         
         return actions
-    }
-}
-
-
-// MARK: - UIImagePickerControllerDelegate
-
-extension HomeViewController: UIImagePickerControllerDelegate {
-    
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
-    ) {
-        guard let image = info[.editedImage] as? UIImage else { return }
-        
-        currentImage = image
-        applyImageProcessing()
-        
-        dismiss(animated: true)
     }
     
     
@@ -195,6 +173,30 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         
         present(alertController, animated: true)
+    }
+    
+    
+    func setNewFilterImage(using image: UIImage) {
+        let newImage = CIImage(image: image)
+        
+        currentImageFilter.setValue(newImage, forKey: kCIInputImageKey)
+        applyImageProcessing()
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension HomeViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        
+        currentImage = image
+        dismiss(animated: true)
     }
 }
 
