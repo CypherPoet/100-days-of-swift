@@ -126,16 +126,14 @@ private extension HomeViewController {
 
     func applyImageProcessing() {
         guard let (filterKey, filterValue) = currentFilterInfo else {
-            print("Unable to compute processing properties for current filter")
-            return
+            return assertionFailure("Unable to compute processing properties for current filter")
         }
         
         print("Filter key: \(filterKey)")
         print("Filter value: \(filterValue)")
         
         guard let currentOutputImage = currentImageFilter.outputImage else {
-            print("Unable to find output image in current filter.")
-            return
+            return assertionFailure("Unable to find output image in current filter.")
         }
         
         currentImageFilter.setValue(filterValue, forKey: filterKey)

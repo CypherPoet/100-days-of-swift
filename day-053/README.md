@@ -20,7 +20,7 @@ _Follow along at https://www.hackingwithswift.com/100/53_.
 For image processing, it's useful to think of the ways Core Image is separate from `UIImage`. Essentially, `UIImage`s are the "high-level" bookends to the "low-level" processing that Core Image and Core Graphics do in between:
 
 - A `CIImage` is _instantiated_ with a `UIImage`.
-- A `CIImage` is _set_ as one of the values on a `CIImageFilter`.
+- That `CIImage` is _set_ as one of the values on a `CIImageFilter`.
 - `CIImageFilter`s have an `outputImage` that's lying in wait to be processed by the `CIContext`.
 - The processed image is a `CGImage` (CG being "Core Graphics").
 - This `CGImage` can then be converted into another `UIImage` &mdash; thus completing the filtering cycle ♻.
@@ -33,13 +33,11 @@ With respect to our app, it means we need ways to handle all of these properties
 ```swift
 func applyImageProcessing() {
     guard let (filterKey, filterValue) = currentFilterInfo else {
-        print("Unable to compute processing properties for current filter")
-        return
+        return assertionFailure("Unable to compute processing properties for current filter")
     }
 
     guard let currentOutputImage = currentImageFilter.outputImage else {
-        print("Unable to find output image in current filter.")
-        return
+        return assertionFailure("Unable to find output image in current filter.")
     }
 
     currentImageFilter.setValue(filterValue, forKey: filterKey)
