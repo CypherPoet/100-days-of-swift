@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Instafilter
 //
 //  Created by Brian Sipple on 1/27/19.
