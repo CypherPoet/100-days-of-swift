@@ -108,7 +108,7 @@ extension HomeViewController {
         UIImageWriteToSavedPhotosAlbum(
             currentImage,
             self,
-            #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)),
+            #selector(image(_:didFinishSavingWithError:contextInfo:)),
             nil
         )
     }
@@ -159,7 +159,19 @@ private extension HomeViewController {
     }
     
     
-    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    func setNewFilterImage(using image: UIImage) {
+        let newImage = CIImage(image: image)
+        
+        currentImageFilter.setValue(newImage, forKey: kCIInputImageKey)
+        applyImageProcessing()
+    }
+}
+
+
+// MARK: - Save image to photos album delegate
+
+extension HomeViewController {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
         if let error = error {
@@ -173,14 +185,6 @@ private extension HomeViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         
         present(alertController, animated: true)
-    }
-    
-    
-    func setNewFilterImage(using image: UIImage) {
-        let newImage = CIImage(image: image)
-        
-        currentImageFilter.setValue(newImage, forKey: kCIInputImageKey)
-        applyImageProcessing()
     }
 }
 
