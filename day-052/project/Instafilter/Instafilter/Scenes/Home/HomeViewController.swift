@@ -12,6 +12,7 @@ import CoreImage
 class HomeViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensitySlider: UISlider!
+    @IBOutlet weak var saveButton: UIButton!
     
     var currentImageFilter: CIFilter!
     
@@ -21,7 +22,10 @@ class HomeViewController: UIViewController {
     var currentImage: UIImage! {
         didSet {
             imageView.image = currentImage
+            
             intensitySlider.isEnabled = true
+            saveButton.isEnabled = true
+            
             setNewFilterImage(using: currentImage)
         }
     }

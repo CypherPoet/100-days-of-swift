@@ -60,7 +60,7 @@
                                     <action selector="changeFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6l9-hY-Mya"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-IB-zsa">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-IB-zsa">
                                 <rect key="frame" x="254" y="790" width="140" height="48"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
@@ -119,6 +119,7 @@
                     <connections>
                         <outlet property="imageView" destination="HJX-np-VHd" id="wLi-Qm-OGD"/>
                         <outlet property="intensitySlider" destination="KAC-hZ-01y" id="I1p-56-I2s"/>
+                        <outlet property="saveButton" destination="o5g-IB-zsa" id="Nxj-xq-myy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
