@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensitySlider: UISlider!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var currentFilterButton: UIButton!
     
     var currentImageFilter: CIFilter!
     
@@ -30,9 +31,10 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var currentImageFilterName = "" {
+    var currentImageFilterName: CoreImageFilterName = .sepiaTone {
         didSet {
-            currentImageFilter = CIFilter(name: currentImageFilterName)
+            currentImageFilter = CIFilter(name: currentImageFilterName.rawValue)
+            currentFilterButton.setTitle("\(filterDisplayNames[currentImageFilterName]!) 🔽", for: .normal)
             
             if let currentImage = currentImage {
                 setNewFilterImage(using: currentImage)
@@ -74,7 +76,7 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentImageFilterName = CoreImageFilterName.sepiaTone.rawValue
+        currentImageFilterName = CoreImageFilterName.sepiaTone
         intensitySlider.isEnabled = false
     }
 }
@@ -149,9 +151,9 @@ private extension HomeViewController {
     
     
     func makeFilterChoiceActions() -> [UIAlertAction] {
-        var actions = CoreImageFilterName.allCases.map {
-            return UIAlertAction(title: $0.rawValue, style: .default) { [weak self] (action: UIAlertAction) in
-                self?.currentImageFilterName = action.title!
+        var actions = CoreImageFilterName.allCases.map { filterName in
+            return UIAlertAction(title: filterDisplayNames[filterName], style: .default) { [weak self] (action: UIAlertAction) in
+                self?.currentImageFilterName = filterName
             }
         }
         

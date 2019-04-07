@@ -49,42 +49,50 @@
                                     <action selector="intensityChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="HTX-aV-j3M"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEU-CL-Dpg">
-                                <rect key="frame" x="20" y="790" width="140" height="48"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SSb-lp-phb">
+                                <rect key="frame" x="12" y="821" width="390" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEU-CL-Dpg">
+                                        <rect key="frame" x="0.0" y="0.0" width="155" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="F9c-Zb-fWY"/>
+                                            <constraint firstAttribute="width" constant="155" id="L9T-VE-S0e"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Gaussian Blur "/>
+                                        <connections>
+                                            <action selector="changeFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6l9-hY-Mya"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-IB-zsa">
+                                        <rect key="frame" x="235" y="0.0" width="155" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cu8-s2-5WE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="F9c-Zb-fWY"/>
-                                    <constraint firstAttribute="width" constant="140" id="L9T-VE-S0e"/>
+                                    <constraint firstItem="AEU-CL-Dpg" firstAttribute="height" secondItem="o5g-IB-zsa" secondAttribute="height" id="SeK-gO-Vz3"/>
+                                    <constraint firstItem="AEU-CL-Dpg" firstAttribute="width" secondItem="o5g-IB-zsa" secondAttribute="width" id="rQo-Wz-gud"/>
                                 </constraints>
-                                <state key="normal" title="Change Filter"/>
-                                <connections>
-                                    <action selector="changeFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6l9-hY-Mya"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-IB-zsa">
-                                <rect key="frame" x="254" y="790" width="140" height="48"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cu8-s2-5WE"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.97254901959999995" green="0.39607843139999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="HmI-Ut-KrO" firstAttribute="top" secondItem="lFv-xc-o9L" secondAttribute="bottom" constant="44" id="3mg-q6-M7w"/>
-                            <constraint firstItem="AEU-CL-Dpg" firstAttribute="top" secondItem="o5g-IB-zsa" secondAttribute="top" id="4cJ-D0-G0H"/>
-                            <constraint firstItem="KAC-hZ-01y" firstAttribute="trailing" secondItem="o5g-IB-zsa" secondAttribute="trailing" id="Bz9-nO-icf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SSb-lp-phb" secondAttribute="trailing" constant="12" id="5IC-0T-LJk"/>
                             <constraint firstItem="KAC-hZ-01y" firstAttribute="top" secondItem="lFv-xc-o9L" secondAttribute="bottom" constant="40" id="ItQ-XS-7Qc"/>
                             <constraint firstItem="lFv-xc-o9L" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.6" id="Jqi-tt-T2L"/>
+                            <constraint firstItem="SSb-lp-phb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LaD-Hb-cq1"/>
                             <constraint firstItem="lFv-xc-o9L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MBA-d2-Rwk"/>
-                            <constraint firstItem="o5g-IB-zsa" firstAttribute="height" secondItem="AEU-CL-Dpg" secondAttribute="height" id="MXx-BS-I5g"/>
                             <constraint firstItem="KAC-hZ-01y" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PMk-6M-sxT"/>
                             <constraint firstItem="HmI-Ut-KrO" firstAttribute="centerY" secondItem="KAC-hZ-01y" secondAttribute="centerY" id="Qkf-5S-1Mj"/>
-                            <constraint firstItem="HmI-Ut-KrO" firstAttribute="leading" secondItem="AEU-CL-Dpg" secondAttribute="leading" id="TTu-bM-Zrt"/>
+                            <constraint firstAttribute="bottom" secondItem="SSb-lp-phb" secondAttribute="bottom" constant="27" id="U13-0Z-at7"/>
                             <constraint firstItem="KAC-hZ-01y" firstAttribute="top" secondItem="lFv-xc-o9L" secondAttribute="bottom" constant="20.5" id="X3i-hk-u9X"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AEU-CL-Dpg" secondAttribute="bottom" constant="24" id="dph-rH-TGw"/>
-                            <constraint firstItem="AEU-CL-Dpg" firstAttribute="baseline" secondItem="o5g-IB-zsa" secondAttribute="firstBaseline" id="gNG-YW-ffx"/>
-                            <constraint firstItem="o5g-IB-zsa" firstAttribute="width" secondItem="AEU-CL-Dpg" secondAttribute="width" id="nxD-Gk-uZY"/>
+                            <constraint firstItem="SSb-lp-phb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="gIF-fl-Dvp"/>
                             <constraint firstItem="lFv-xc-o9L" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pq4-Lh-yKM"/>
                             <constraint firstItem="KAC-hZ-01y" firstAttribute="leading" secondItem="HmI-Ut-KrO" secondAttribute="trailing" constant="16" id="tAR-ff-oFX"/>
                             <constraint firstItem="HmI-Ut-KrO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="uUV-oM-z9t"/>
@@ -93,6 +101,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="5IC-0T-LJk"/>
                                 <exclude reference="X3i-hk-u9X"/>
                             </mask>
                         </variation>
@@ -117,6 +126,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentFilterButton" destination="AEU-CL-Dpg" id="zZu-Rf-LTy"/>
                         <outlet property="imageView" destination="HJX-np-VHd" id="wLi-Qm-OGD"/>
                         <outlet property="intensitySlider" destination="KAC-hZ-01y" id="I1p-56-I2s"/>
                         <outlet property="saveButton" destination="o5g-IB-zsa" id="Nxj-xq-myy"/>
