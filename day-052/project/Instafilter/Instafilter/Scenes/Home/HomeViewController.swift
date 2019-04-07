@@ -12,6 +12,8 @@ import CoreImage
 class HomeViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensitySlider: UISlider!
+    @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var angleSlider: UISlider!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var currentFilterButton: UIButton!
     
@@ -25,6 +27,8 @@ class HomeViewController: UIViewController {
             imageView.image = currentImage
             
             intensitySlider.isEnabled = true
+            radiusSlider.isEnabled = true
+            angleSlider.isEnabled = true
             saveButton.isEnabled = true
             
             setNewFilterImage(using: currentImage)
@@ -48,24 +52,28 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     
-    var currentFilterInfo: (key: String, value: Any)? {
+    var currentFilterValuePairs: [(key: String, value: Any)] {
+        var pairs: [(key: String, value: Any)] = []
         let inputKeys = currentImageFilter.inputKeys
         
         if inputKeys.contains(kCIInputIntensityKey) {
-            return (kCIInputIntensityKey, intensitySlider.value)
-            
-        } else if inputKeys.contains(kCIInputRadiusKey) {
-            return (kCIInputRadiusKey, intensitySlider.value * 200)
-            
-        } else if inputKeys.contains(kCIInputScaleKey) {
-            return (kCIInputScaleKey, intensitySlider.value * 10)
-            
-        } else if inputKeys.contains(kCIInputCenterKey) {
+            pairs.append((kCIInputIntensityKey, intensitySlider.value))
+        }
+        if inputKeys.contains(kCIInputRadiusKey) {
+            pairs.append((kCIInputRadiusKey, radiusSlider.value))
+        }
+        if inputKeys.contains(kCIInputAngleKey) {
+            pairs.append((kCIInputAngleKey, Double.radians(fromDegrees: Double(angleSlider.value))))
+        }
+        if inputKeys.contains(kCIInputScaleKey) {
+            pairs.append((kCIInputScaleKey, intensitySlider.value * 10))
+        }
+        if inputKeys.contains(kCIInputCenterKey) {
             let vector = CIVector(x: currentImage.size.width / 2, y: currentImage.size.height / 2)
-            return (kCIInputCenterKey, vector)
+            pairs.append((kCIInputCenterKey, vector))
         }
         
-        return nil
+        return pairs
     }
 }
 
@@ -77,7 +85,6 @@ extension HomeViewController {
         super.viewDidLoad()
         
         currentImageFilterName = CoreImageFilterName.sepiaTone
-        intensitySlider.isEnabled = false
     }
 }
     
@@ -120,7 +127,7 @@ extension HomeViewController {
     }
     
     
-    @IBAction func intensityChanged(_ sender: Any) {
+    @IBAction func filterSliderChanged(_ sender: Any) {
         applyImageProcessing()
     }
 }
@@ -131,18 +138,20 @@ extension HomeViewController {
 private extension HomeViewController {
 
     func applyImageProcessing() {
-        guard let (filterKey, filterValue) = currentFilterInfo else {
+        guard !currentFilterValuePairs.isEmpty else {
             return assertionFailure("Unable to compute processing properties for current filter")
         }
-        
-        print("Filter key: \(filterKey)")
-        print("Filter value: \(filterValue)")
-        
+    
         guard let currentOutputImage = currentImageFilter.outputImage else {
             return assertionFailure("Unable to find output image in current filter.")
         }
         
-        currentImageFilter.setValue(filterValue, forKey: filterKey)
+        for (filterKey, filterValue) in currentFilterValuePairs {
+            print("Filter key: \(filterKey)")
+            print("Filter value: \(filterValue)")
+            
+            currentImageFilter.setValue(filterValue, forKey: filterKey)
+        }
         
         if let processedImage = imageFilterContext.createCGImage(currentOutputImage, from: currentOutputImage.extent) {
             imageView.image = UIImage(cgImage: processedImage)

@@ -17,4 +17,6 @@ let filterDisplayNames: [CoreImageFilterName: String] = [
     .twirlDistortion: "Twirl Distortion Filter",
     .unsharpMask: "Unsharp Mask Filter",
     .vignette: "Vignette Filter",
+    .colorInvert: "Color Invert",
+    .crystallize: "Crystallize",
 ]

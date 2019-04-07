@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F3149805225819330022A12F /* CoreImageFilterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3149804225819330022A12F /* CoreImageFilterName.swift */; };
 		F314980E2259E52E0022A12F /* FilterDisplayNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F314980D2259E52E0022A12F /* FilterDisplayNames.swift */; };
+		F3149811225AA8630022A12F /* Double+Radians.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3149810225AA8630022A12F /* Double+Radians.swift */; };
 		F3D74CB62256BE6F00640297 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D74CAE2256BE6F00640297 /* Home.storyboard */; };
 		F3D74CB72256BE6F00640297 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74CAF2256BE6F00640297 /* HomeViewController.swift */; };
 		F3D74CB82256BE6F00640297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D74CB12256BE6F00640297 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		F3048B6921FD81DE00ECADB1 /* Instafilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instafilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3149804225819330022A12F /* CoreImageFilterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImageFilterName.swift; sourceTree = "<group>"; };
 		F314980D2259E52E0022A12F /* FilterDisplayNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDisplayNames.swift; sourceTree = "<group>"; };
+		F3149810225AA8630022A12F /* Double+Radians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Radians.swift"; sourceTree = "<group>"; };
 		F3D74CAE2256BE6F00640297 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		F3D74CAF2256BE6F00640297 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F3D74CB12256BE6F00640297 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,9 +66,18 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		F314980F225AA84F0022A12F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3149810225AA8630022A12F /* Double+Radians.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F3D74CAB2256BE6F00640297 /* Instafilter */ = {
 			isa = PBXGroup;
 			children = (
+				F314980F225AA84F0022A12F /* Extensions */,
 				F3149803225819040022A12F /* Helpers */,
 				F3D74CAC2256BE6F00640297 /* Scenes */,
 				F3D74CB02256BE6F00640297 /* Content */,
@@ -182,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D74CBA2256BE6F00640297 /* AppDelegate.swift in Sources */,
+				F3149811225AA8630022A12F /* Double+Radians.swift in Sources */,
 				F3149805225819330022A12F /* CoreImageFilterName.swift in Sources */,
 				F3D74CB72256BE6F00640297 /* HomeViewController.swift in Sources */,
 				F314980E2259E52E0022A12F /* FilterDisplayNames.swift in Sources */,

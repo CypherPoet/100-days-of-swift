@@ -17,4 +17,6 @@ enum CoreImageFilterName: String, CaseIterable {
     case twirlDistortion = "CITwirlDistortion"
     case unsharpMask = "CIUnsharpMask"
     case vignette = "CIVignette"
+    case colorInvert = "CIColorInvert"
+    case crystallize = "CICrystallize"
 }
