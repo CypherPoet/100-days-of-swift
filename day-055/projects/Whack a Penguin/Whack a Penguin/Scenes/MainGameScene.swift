@@ -10,16 +10,34 @@ import SpriteKit
 
 
 class MainGameScene: SKScene {
-    var currentScoreLabel: SKLabelNode!
+    enum GameState {
+        case active
+        case over
+    }
+    
     var popupTime = 0.85
-    var currentRound = 0
+    let maxRounds = 30
     
     lazy var slots: [WhackSlot] = makeWhackSlots()
+    lazy var currentScoreLabel: SKLabelNode = makeCurrentScoreLabel()
+    
     
     var currentScore = 0 {
         didSet {
             currentScoreLabel.text = "Score: \(self.currentScore)"
         }
+    }
+    
+    var currentRound = 0 {
+        didSet {
+            if currentRound > maxRounds {
+                currentGameState = .over
+            }
+        }
+    }
+    
+    var currentGameState: GameState = .active {
+        didSet { gameStateChanged() }
     }
 }
 
@@ -31,12 +49,6 @@ extension MainGameScene {
     var sceneCenterPoint: CGPoint {
         return CGPoint(x: frame.midX, y: frame.midY)
     }
-    
-    
-    var remainingRounds: Int {
-        return 30 - currentRound
-    }
-    
     
     var randomEnemyDelay: Double {
         let minDelay = popupTime / 2.0
@@ -56,6 +68,7 @@ extension MainGameScene {
         setupUI()
         
         currentScore = 0
+        currentRound = 1
         
         startPopupLoop()
     }
@@ -97,12 +110,6 @@ private extension MainGameScene {
     
     
     func setupUI() {
-        currentScoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        
-        currentScoreLabel.position = CGPoint(x: frame.maxX * 0.007, y: frame.maxY * 0.007)
-        currentScoreLabel.horizontalAlignmentMode = .left
-        currentScoreLabel.fontSize = 48
-        
         addChild(currentScoreLabel)
     }
     
@@ -145,26 +152,39 @@ private extension MainGameScene {
     }
     
     
+    func makeCurrentScoreLabel() -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        
+        label.position = CGPoint(x: frame.maxX * 0.007, y: frame.maxY * 0.007)
+        label.horizontalAlignmentMode = .left
+        label.fontSize = 48
+        
+        return label
+    }
+    
+    
     func startPopupLoop() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.createEnemy()
+            self?.runNewEnemyRound()
         }
     }
     
     
-    @objc func createEnemy() {
-        currentRound += 1
-        
-        guard remainingRounds > 0 else { return endGame() }
+    func runNewEnemyRound() {
+        guard currentGameState == .active else {
+            preconditionFailure(#""runNewEnemyRound" called when game state was not active."#)
+        }
         
         popupTime *= 0.991
         
-        for slot in getSlotsToShow() {
-            slot.show(for: popupTime)
-        }
+        getSlotsToShow().forEach { $0.show(for: popupTime) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + randomEnemyDelay) { [weak self] in
-            self?.createEnemy()
+            self?.currentRound += 1
+            
+            if self?.currentGameState == .active {
+                self?.runNewEnemyRound()
+            }
         }
     }
     
@@ -200,6 +220,13 @@ private extension MainGameScene {
             currentScore -= 5
             
             run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+        }
+    }
+
+    
+    func gameStateChanged() {
+        if currentGameState == .over {
+            endGame()
         }
     }
     

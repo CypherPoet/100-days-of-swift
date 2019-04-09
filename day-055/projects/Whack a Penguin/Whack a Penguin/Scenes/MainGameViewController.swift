@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+
 class MainGameViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ class MainGameViewController: UIViewController {
             // Load the SKScene from 'MainGameScene'
             if let scene = SKScene(fileNamed: "MainGameScene") {
                 // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
+                scene.scaleMode = .fill
                 
                 // Present the scene
                 view.presentScene(scene)
