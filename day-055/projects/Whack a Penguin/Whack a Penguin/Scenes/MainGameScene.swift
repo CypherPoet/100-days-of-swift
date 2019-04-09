@@ -120,7 +120,7 @@ private extension MainGameScene {
         makeSlotPositions().forEach { position in
             let whackSlot = WhackSlot()
             
-            whackSlot.setup(at: position)
+            whackSlot.configure(at: position)
             addChild(whackSlot)
             slots.append(whackSlot)
         }
@@ -205,15 +205,15 @@ private extension MainGameScene {
     
     
     func whackPenguin(inSlot slot: WhackSlot) {
-        if slot.penguinNode.name == WhackSlot.NodeName.goodPenguin.rawValue {
+        if slot.penguinNode.name == WhackSlot.NodeName.goodPenguin {
             guard !slot.isWhacked && slot.isShowingPenguin else { return }
             
-            slot.whack(andShrink: true)
+            slot.whack()
             currentScore += 1
             
             run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
             
-        } else if slot.penguinNode.name == WhackSlot.NodeName.evilPenguin.rawValue {
+        } else if slot.penguinNode.name == WhackSlot.NodeName.evilPenguin {
             guard !slot.isWhacked && slot.isShowingPenguin else { return }
             
             slot.whack()

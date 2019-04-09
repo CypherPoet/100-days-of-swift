@@ -11,10 +11,12 @@
 		F3B33000225C540F00B76D7D /* MainGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B32FF4225C540F00B76D7D /* MainGameScene.swift */; };
 		F3B33001225C540F00B76D7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B32FF5225C540F00B76D7D /* Main.storyboard */; };
 		F3B33002225C540F00B76D7D /* MainGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F3B32FF6225C540F00B76D7D /* MainGameScene.sks */; };
-		F3B33003225C540F00B76D7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B32FF8225C540F00B76D7D /* Assets.xcassets */; };
 		F3B33004225C540F00B76D7D /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B32FFA225C540F00B76D7D /* WhackSlot.swift */; };
 		F3B33005225C540F00B76D7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B32FFC225C540F00B76D7D /* LaunchScreen.storyboard */; };
 		F3B33006225C540F00B76D7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B32FFD225C540F00B76D7D /* AppDelegate.swift */; };
+		F3B3300B225C796100B76D7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B33008225C796000B76D7D /* Assets.xcassets */; };
+		F3B3300C225C796100B76D7D /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = F3B33009225C796000B76D7D /* whack.caf */; };
+		F3B3300D225C796100B76D7D /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = F3B3300A225C796100B76D7D /* whackBad.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +25,13 @@
 		F3B32FF4225C540F00B76D7D /* MainGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGameScene.swift; sourceTree = "<group>"; };
 		F3B32FF5225C540F00B76D7D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F3B32FF6225C540F00B76D7D /* MainGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainGameScene.sks; sourceTree = "<group>"; };
-		F3B32FF8225C540F00B76D7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3B32FFA225C540F00B76D7D /* WhackSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
 		F3B32FFC225C540F00B76D7D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3B32FFD225C540F00B76D7D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3B32FFE225C540F00B76D7D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B33008225C796000B76D7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3B33009225C796000B76D7D /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
+		F3B3300A225C796100B76D7D /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +87,9 @@
 		F3B32FF7225C540F00B76D7D /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				F3B32FF8225C540F00B76D7D /* Assets.xcassets */,
+				F3B33008225C796000B76D7D /* Assets.xcassets */,
+				F3B33009225C796000B76D7D /* whack.caf */,
+				F3B3300A225C796100B76D7D /* whackBad.caf */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -165,9 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3B33001225C540F00B76D7D /* Main.storyboard in Resources */,
+				F3B3300C225C796100B76D7D /* whack.caf in Resources */,
 				F3B33005225C540F00B76D7D /* LaunchScreen.storyboard in Resources */,
-				F3B33003225C540F00B76D7D /* Assets.xcassets in Resources */,
+				F3B3300B225C796100B76D7D /* Assets.xcassets in Resources */,
 				F3B33002225C540F00B76D7D /* MainGameScene.sks in Resources */,
+				F3B3300D225C796100B76D7D /* whackBad.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
