@@ -20,7 +20,8 @@ class MainGameScene: SKScene {
     
     lazy var slots: [WhackSlot] = makeWhackSlots()
     lazy var currentScoreLabel: SKLabelNode = makeCurrentScoreLabel()
-    
+    lazy var gameOverLabel: SKSpriteNode = makeGameOverLabel()
+    lazy var finalScoreLabel: SKLabelNode = makeFinalScoreLabel()
     
     var currentScore = 0 {
         didSet {
@@ -163,6 +164,30 @@ private extension MainGameScene {
     }
     
     
+    func makeGameOverLabel() -> SKSpriteNode {
+        let label = SKSpriteNode(imageNamed: "gameOver")
+        
+        label.position = sceneCenterPoint
+        label.zPosition = 1
+        
+        return label
+    }
+    
+    
+    func makeFinalScoreLabel() -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        
+        label.text = "Final Score: \(currentScore)"
+        label.horizontalAlignmentMode = .center
+        label.fontColor = #colorLiteral(red: 1, green: 0.3426768184, blue: 0.5157134533, alpha: 1)
+        label.zPosition = 1
+        label.fontSize = 42
+        label.position = CGPoint(x: sceneCenterPoint.x, y: sceneCenterPoint.y - 84)
+        
+        return label
+    }
+    
+    
     func startPopupLoop() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.runNewEnemyRound()
@@ -233,13 +258,12 @@ private extension MainGameScene {
     
     func endGame() {
         slots.forEach { $0.hide() }
+
+        currentScoreLabel.isHidden = true
         
-        let gameOverText = SKSpriteNode(imageNamed: "gameOver")
+        addChild(gameOverLabel)
+        addChild(finalScoreLabel)
         
-        gameOverText.position = CGPoint(x: frame.maxX / 2, y: frame.maxY / 2)
-        gameOverText.zPosition = 1
-        
-        addChild(gameOverText)
         run(SKAction.playSoundFileNamed(FileName.Sound.gameOver, waitForCompletion: false))
     }
 }
