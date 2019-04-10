@@ -20,10 +20,6 @@ class WhackSlot: SKNode {
     var isShowingPenguin: Bool = false
     var isWhacked: Bool = false
     
-    var penguinTextureName: String {
-        return isPenguinGood ? "penguinGood" : "penguinEvil"
-    }
-    
     var isPenguinGood = false {
         didSet {
             penguinNode.texture = SKTexture(imageNamed: penguinTextureName)
@@ -36,6 +32,9 @@ class WhackSlot: SKNode {
 // MARK: - Computed Properties
 
 extension WhackSlot {
+    var penguinTextureName: String {
+        return isPenguinGood ? "penguinGood" : "penguinEvil"
+    }
     
     var showAction: SKAction {
         return SKAction.moveBy(x: 0, y: 80, duration: 0.05)
