@@ -211,7 +211,7 @@ private extension MainGameScene {
             slot.whack()
             currentScore += 1
             
-            run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed(FileName.Sound.whackGood, waitForCompletion: false))
             
         } else if slot.penguinNode.name == WhackSlot.NodeName.evilPenguin {
             guard !slot.isWhacked && slot.isShowingPenguin else { return }
@@ -219,7 +219,7 @@ private extension MainGameScene {
             slot.whack()
             currentScore -= 5
             
-            run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed(FileName.Sound.whackBad, waitForCompletion: false))
         }
     }
 
@@ -240,5 +240,6 @@ private extension MainGameScene {
         gameOverText.zPosition = 1
         
         addChild(gameOverText)
+        run(SKAction.playSoundFileNamed(FileName.Sound.gameOver, waitForCompletion: false))
     }
 }
