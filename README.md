@@ -71,3 +71,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 53: _Project 13: Instafilter_, Part Two](/day-053)
 - [Day 54: _Project 13: Instafilter_, Part Three](/day-054)
 - [Day 55: _Project 14: Whack-a-Penguin_, Part One](/day-055)
+- [Day 56: _Project 14: Whack-a-Penguin_, Part Two](/day-056)
