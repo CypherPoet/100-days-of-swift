@@ -295,7 +295,7 @@ private extension HomeViewController {
     func levelUp(action: UIAlertAction) {
         currentLevel += 1
         solutionWords.removeAll(keepingCapacity: true)
-        letterGroupButtons.forEach { $0.isHidden = false }
+        letterGroupButtons.forEach { $0.unhideFromGame() }
         
         setupLevel(number: currentLevel)
     }
@@ -304,7 +304,7 @@ private extension HomeViewController {
     func clearAnswer() {
         currentAnswer = ""
         
-        activatedButtons.forEach { $0.isHidden = false }
+        activatedButtons.forEach { $0.unhideFromGame() }
         activatedButtons.removeAll()
     }
 }
@@ -339,6 +339,6 @@ extension HomeViewController {
 
         currentAnswer += buttontext
         activatedButtons.append(button)
-        button.isHidden = true
+        button.hideFromGame()
     }
 }
