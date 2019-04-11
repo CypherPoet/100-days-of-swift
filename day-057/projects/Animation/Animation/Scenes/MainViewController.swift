@@ -36,7 +36,7 @@ extension MainViewController {
 // MARK: - Event handling
 extension MainViewController {
 
-    @IBAction func triggerAnimation(_ sender: Any) {
+    @IBAction func triggerAnimation(_ sender: UIButton) {
         triggerButton.alpha = 0.0
         
         UIView.animate(
@@ -45,11 +45,11 @@ extension MainViewController {
             usingSpringWithDamping: 0.5,
             initialSpringVelocity: 5,
             options: [],
-            animations: { [weak self] in
-                self?.runCurrentAnimation()
+            animations: {
+                self.runCurrentAnimation()
             },
-            completion: { [weak self] _ in
-                self?.triggerButton.alpha = 1.0
+            completion: { _ in
+                self.triggerButton.alpha = 1.0
             }
         )
     
@@ -65,21 +65,21 @@ private extension MainViewController {
     func runCurrentAnimation() {
         switch currentAnimationIndex {
         case 1, 3, 5:
-            self.imageView.transform = CGAffineTransform.identity
+            imageView.transform = .identity
         case 0:
-            self.imageView.transform = CGAffineTransform(scaleX: 2, y: 2)
+            imageView.transform = CGAffineTransform(scaleX: 2, y: 2)
         case 2:
-            self.imageView.transform = CGAffineTransform(translationX: -(view.center.x / 2), y: -(view.center.y / 2))
+            imageView.transform = CGAffineTransform(translationX: -(view.center.x / 2), y: -(view.center.y / 2))
         case 4:
-            self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         case 6:
-            self.imageView.alpha = 0.1
-            self.imageView.backgroundColor = UIColor.purple
+            imageView.alpha = 0.1
+            imageView.backgroundColor = UIColor.purple
         case 7:
-            self.imageView.alpha = 1.0
-            self.imageView.backgroundColor = UIColor.clear
+            imageView.alpha = 1.0
+            imageView.backgroundColor = UIColor.clear
         default:
-            break
+            preconditionFailure("Current animation index is out of range")
         }
     }
     
