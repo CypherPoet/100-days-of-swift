@@ -16,6 +16,8 @@ class WhackSlot: SKNode {
     }
     
     lazy var penguinNode: SKSpriteNode = makePenguinNode()
+    lazy var cropNode: SKCropNode = makeCropNode()
+    lazy var slotOpening: SKSpriteNode = makeSlotOpening()
     
     var isShowingPenguin: Bool = false
     var isWhacked: Bool = false
@@ -33,16 +35,47 @@ class WhackSlot: SKNode {
 
 extension WhackSlot {
     var penguinTextureName: String {
-        return isPenguinGood ? "penguinGood" : "penguinEvil"
+        return isPenguinGood ? FileName.Image.goodPenguin : FileName.Image.badPenguin
+    }
+    
+    var mudEffect: SKAction {
+        return SKAction.run { [unowned self] in
+            guard let emitter = SKEmitterNode(fileNamed: FileName.Emitter.mudDisplacement) else {
+                preconditionFailure("Failed to load mud emitter file")
+            }
+            
+            emitter.zPosition = self.slotOpening.zPosition
+            emitter.position = CGPoint(x: self.slotOpening.position.x, y: self.slotOpening.position.y)
+
+            self.addChild(emitter)
+        }
+    }
+    
+    var hitEffect: SKAction {
+        return SKAction.run { [unowned self] in
+            let emitterName = self.isPenguinGood ? FileName.Emitter.goodHit : FileName.Emitter.badHit
+            
+            guard let emitter = SKEmitterNode(fileNamed: emitterName) else {
+                preconditionFailure("Failed to load spark emitter file")
+            }
+            
+            emitter.position = CGPoint(
+                x: self.slotOpening.position.x,
+                y: self.slotOpening.position.y + (self.slotOpening.size.height / 4)
+            )
+            emitter.zPosition = self.penguinNode.zPosition + 1
+            
+            self.addChild(emitter)
+        }
     }
     
     var showAction: SKAction {
-        return SKAction.moveBy(x: 0, y: 80, duration: 0.05)
+        return SKAction.moveBy(x: 0, y: penguinNode.size.height, duration: 0.05)
     }
     
     var hideActions: SKAction {
         return SKAction.group([
-            SKAction.moveBy(x: 0, y: -80, duration: 0.05),
+            SKAction.moveBy(x: 0, y: -penguinNode.size.height, duration: 0.05),
             SKAction.scale(to: 0.08, duration: 0.025),
             SKAction.run { [weak self] in
                 self?.isShowingPenguin = false
@@ -74,12 +107,8 @@ extension WhackSlot {
 extension WhackSlot {
     
     func configure(at position: CGPoint) {
-        self.position = position
-        
-        let hole = SKSpriteNode(imageNamed: "whackHole")
-        
         setupPenguin(at: position)
-        self.addChild(hole)
+        self.addChild(slotOpening)
     }
     
     
@@ -90,7 +119,11 @@ extension WhackSlot {
         
         penguinNode.xScale = 1
         penguinNode.yScale = 1
-        penguinNode.run(showAction)
+        
+        penguinNode.run(SKAction.group([
+            mudEffect,
+            showAction,
+        ]))
         
         isShowingPenguin = true
         isWhacked = false
@@ -104,7 +137,7 @@ extension WhackSlot {
     func hide() {
         guard isShowingPenguin else { return }
         
-        penguinNode.run(hideActions)
+        penguinNode.run(SKAction.group([mudEffect, hideActions]))
     }
     
     
@@ -113,8 +146,7 @@ extension WhackSlot {
         
         isWhacked = true
         
-        let delay = SKAction.wait(forDuration: 0.25)
-        penguinNode.run(SKAction.sequence([delay, hideActions]))
+        penguinNode.run(SKAction.sequence([hitEffect, hideActions]))
     }
 }
 
@@ -124,14 +156,9 @@ extension WhackSlot {
 private extension WhackSlot {
     
     func setupPenguin(at position: CGPoint) {
-        let cropNode = SKCropNode()
-        
-        cropNode.position = CGPoint(x: 0, y: 15)
-        cropNode.zPosition = 1
-        cropNode.maskNode = SKSpriteNode(imageNamed: "whackMask")
+        self.position = position
         
         penguinNode.position = CGPoint(x: 0, y: -penguinNode.size.height * 1.1)
-        
         cropNode.addChild(penguinNode)
         
         self.addChild(cropNode)
@@ -139,8 +166,30 @@ private extension WhackSlot {
     
     
     func makePenguinNode() -> SKSpriteNode {
-        let node = SKSpriteNode(imageNamed: "penguinGood")
+        let node = SKSpriteNode(imageNamed: FileName.Image.goodPenguin)
+        
         node.name = NodeName.goodPenguin
+        node.zPosition = 3
+        
+        return node
+    }
+    
+    
+    func makeCropNode() -> SKCropNode {
+        let cropNode = SKCropNode()
+        
+        cropNode.position = CGPoint(x: 0, y: 15)
+        cropNode.zPosition = 1
+        cropNode.maskNode = SKSpriteNode(imageNamed: FileName.Image.whackMask)
+        
+        return cropNode
+    }
+    
+    
+    func makeSlotOpening() -> SKSpriteNode {
+        let node = SKSpriteNode(imageNamed: FileName.Image.slotOpening)
+        
+        node.zPosition = 0
         
         return node
     }

@@ -14,4 +14,18 @@ enum FileName {
         static let whackBad = "whackBad.caf"
         static let gameOver = "game-over-mixed.mp3"
     }
+    
+    enum Emitter {
+        static let goodHit = "hit-spark-good"
+        static let badHit = "hit-spark-bad"
+        static let mudDisplacement = "mud-displacement"
+    }
+    
+    enum Image {
+        static let background = "whackBackground"
+        static let goodPenguin = "penguinGood"
+        static let badPenguin = "penguinEvil"
+        static let whackMask = "whackMask"
+        static let slotOpening = "whackHole"
+    }
 }
