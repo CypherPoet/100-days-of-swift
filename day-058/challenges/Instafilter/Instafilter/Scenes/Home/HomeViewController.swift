@@ -24,12 +24,12 @@ class HomeViewController: UIViewController {
     
     var currentImage: UIImage! {
         didSet {
-            imageView.image = currentImage
-            
             intensitySlider.isEnabled = true
             radiusSlider.isEnabled = true
             angleSlider.isEnabled = true
             saveButton.isEnabled = true
+            
+            imageView.image = currentImage
             
             setNewFilterImage(using: currentImage)
         }
@@ -214,6 +214,15 @@ extension HomeViewController: UIImagePickerControllerDelegate {
         
         currentImage = image
         dismiss(animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0.25,
+                options: [],
+                animations: { self?.imageView.alpha = 1 }
+            )
+        }
     }
 }
 
