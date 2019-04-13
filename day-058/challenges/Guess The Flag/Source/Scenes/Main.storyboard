@@ -29,6 +29,8 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="60c-f8-bO2"/>
+                                    <action selector="buttonTouchedUpOutside:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="0Qe-k0-gb7"/>
+                                    <action selector="flagButtonTouchedDown:" destination="BYZ-38-t0r" eventType="touchDown" id="AMr-xy-BJU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzW-Kt-38n">
@@ -43,6 +45,8 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5VZ-Mb-yvZ"/>
+                                    <action selector="buttonTouchedUpOutside:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="lxu-Vq-LjO"/>
+                                    <action selector="flagButtonTouchedDown:" destination="BYZ-38-t0r" eventType="touchDown" id="MEa-ip-Ghb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEb-PX-xnZ">
@@ -56,6 +60,8 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U4R-CP-ARt"/>
+                                    <action selector="buttonTouchedUpOutside:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="vF8-lw-Vzb"/>
+                                    <action selector="flagButtonTouchedDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Ghu-Fd-GyB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highest Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPR-Iq-El0">
@@ -87,11 +93,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="button1" destination="vFN-ge-cVu" id="tFe-hn-j0d"/>
-                        <outlet property="button2" destination="ZzW-Kt-38n" id="gbi-UL-J0u"/>
-                        <outlet property="button3" destination="NEb-PX-xnZ" id="FBe-Yt-iKY"/>
                         <outlet property="highestScoreLabel" destination="cPR-Iq-El0" id="fCl-Hz-XPe"/>
                         <outlet property="scoreButton" destination="Sk7-j8-1co" id="2IO-nq-DpK"/>
+                        <outletCollection property="flagButtons" destination="vFN-ge-cVu" collectionClass="NSMutableArray" id="cnr-Xb-7FF"/>
+                        <outletCollection property="flagButtons" destination="ZzW-Kt-38n" collectionClass="NSMutableArray" id="7IK-hn-dHK"/>
+                        <outletCollection property="flagButtons" destination="NEb-PX-xnZ" collectionClass="NSMutableArray" id="gNS-Fe-eUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

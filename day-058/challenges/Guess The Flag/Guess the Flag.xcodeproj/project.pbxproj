@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3B3305422616BA700B76D7D /* UIButton+AnimateFlagTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3305322616BA700B76D7D /* UIButton+AnimateFlagTouch.swift */; };
 		F3D74B92224F04AE00640297 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D74B86224F04AE00640297 /* HomeViewController.swift */; };
 		F3D74B93224F04AE00640297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D74B87224F04AE00640297 /* Main.storyboard */; };
 		F3D74B94224F04AE00640297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D74B89224F04AE00640297 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3B3305322616BA700B76D7D /* UIButton+AnimateFlagTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+AnimateFlagTouch.swift"; sourceTree = "<group>"; };
 		F3B5E34121EC2CB200D48258 /* Guess the Flag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guess the Flag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D74B86224F04AE00640297 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F3D74B87224F04AE00640297 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3B3305222616B8C00B76D7D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3B3305322616BA700B76D7D /* UIButton+AnimateFlagTouch.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F3B5E33821EC2CB200D48258 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		F3D74B83224F04AE00640297 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F3B3305222616B8C00B76D7D /* Extensions */,
 				F3D74B8E224F04AE00640297 /* App Start */,
 				F3D74B84224F04AE00640297 /* Scenes */,
 				F3D74B88224F04AE00640297 /* Content */,
@@ -194,6 +205,7 @@
 				F3D74B98224F04AE00640297 /* AppDelegate.swift in Sources */,
 				F3D74B92224F04AE00640297 /* HomeViewController.swift in Sources */,
 				F3D74B95224F04AE00640297 /* Flag.swift in Sources */,
+				F3B3305422616BA700B76D7D /* UIButton+AnimateFlagTouch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

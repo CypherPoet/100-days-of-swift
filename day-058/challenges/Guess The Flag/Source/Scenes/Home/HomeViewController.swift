@@ -7,9 +7,7 @@ import UIKit
 
 
 class HomeViewController: UIViewController {
-    @IBOutlet var button1: UIButton!
-    @IBOutlet var button2: UIButton!
-    @IBOutlet var button3: UIButton!
+    @IBOutlet var flagButtons: [UIButton]!
     @IBOutlet weak var scoreButton: UIBarButtonItem!
     @IBOutlet weak var highestScoreLabel: UILabel!
     
@@ -58,16 +56,16 @@ private extension HomeViewController {
 
         title = "Which flag belongs to \(correctFlag.displayName)?"
         
-        for (index, button) in [button1, button2, button3].enumerated() {
-            button?.setImage(UIImage(named: flagChoices[index].assetName), for: .normal)
+        for (index, button) in flagButtons.enumerated() {
+            button.setImage(UIImage(named: flagChoices[index].assetName), for: .normal)
         }
     }
     
     
     func setupButtonStyles() {
-        for button in [button1, button2, button3] {
-            button?.layer.borderWidth = 1
-            button?.layer.borderColor = UIColor(red: 1.00, green: 0.28, blue: 0.38, alpha: 1.00).cgColor
+        for button in flagButtons {
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor(red: 1.00, green: 0.28, blue: 0.38, alpha: 1.00).cgColor
         }
     }
     
@@ -153,13 +151,31 @@ private extension HomeViewController {
 
 extension HomeViewController {
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
-        let chosenFlag = flagChoices[sender.tag]
+    @IBAction func flagButtonTouchedDown(_ button: UIButton) {
+        button.animateFlagTouchDown()
+    }
+    
+    
+    @IBAction func buttonTouchedUpOutside(_ button: UIButton) {
+        button.animateFlagTouchUp()
+    }
+
+    
+    @IBAction func buttonTapped(_ button: UIButton) {
+        button.animateFlagTouchUp()
         
-        if chosenFlag.displayName == correctFlag.displayName {
-            handleChoice(chosenFlag, wasCorrect: true)
-        } else {
-            handleChoice(chosenFlag, wasCorrect: false)
+        let chosenFlag = flagChoices[button.tag]
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            guard let self = self else { return }
+            
+            if chosenFlag.displayName == self.correctFlag.displayName {
+                self.handleChoice(chosenFlag, wasCorrect: true)
+            } else {
+                self.handleChoice(chosenFlag, wasCorrect: false)
+            }
         }
     }
 }
+
+
