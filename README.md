@@ -73,3 +73,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 55: _Project 14: Whack-a-Penguin_, Part One](/day-055)
 - [Day 56: _Project 14: Whack-a-Penguin_, Part Two](/day-056)
 - [Day 57: _Project 15: Animation_, Part One](/day-057)
+- [Day 58: _Project 15: Animation_, Part Two](/day-058)
