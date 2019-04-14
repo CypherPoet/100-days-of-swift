@@ -1,0 +1,81 @@
+{
+    "cities": [
+        {
+            "name": "New York City",
+            "country": "United States",
+            "population": 8623000,
+            "year_founded": "1624 CE",
+            "last_census_year": 2016,
+            "thumbnail_image_name": "nyc-thumbnail",
+            "day_image_name": "nyc-day",
+            "night_image_name": "nyc-night",
+            "description": "New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square."
+        },
+        {
+            "name": "London",
+            "country": "United Kingdom",
+            "population": 8811000,
+            "year_founded": "50 CE",
+            "last_census_year": 2011,
+            "thumbnail_image_name": "london-thumbnail",
+            "day_image_name": "london-day",
+            "night_image_name": "london-night",
+            "description": "London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city."
+        },
+        {
+            "name": "Paris",
+            "country": "France",
+            "population": 2200000,
+            "year_founded": "52 BCE",
+            "last_census_year": 2016,
+            "thumbnail_image_name": "paris-thumbnail",
+            "day_image_name": "paris-day",
+            "night_image_name": "paris-night",
+            "description": "Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré."
+        },
+        {
+            "name": "Amsterdam",
+            "country": "Netherlands",
+            "population": 821752,
+            "year_founded": "1275 CE",
+            "last_census_year": 2015,
+            "thumbnail_image_name": "amsterdam-thumbnail",
+            "day_image_name": "amsterdam-day",
+            "night_image_name": "amsterdam-night",
+            "description": "Amsterdam is the Netherlands’ capital, known for its artistic heritage, elaborate canal system and narrow houses with gabled facades, legacies of the city’s 17th-century Golden Age. Its Museum District houses the Van Gogh Museum, works by Rembrandt and Vermeer at the Rijksmuseum, and modern art at the Stedelijk. Cycling is key to the city’s character, and there are numerous bike paths."
+        },
+        {
+            "name": "Singapore",
+            "country": "Singapore",
+            "population": 1000,
+            "year_founded": "1965 CE",
+            "last_census_year": 100,
+            "thumbnail_image_name": "singapore-thumbnail",
+            "day_image_name": "singapore-day",
+            "night_image_name": "singapore-night",
+            "description": "Singapore, an island city-state off southern Malaysia, is a global financial center with a tropical climate and multicultural population. Its colonial core centers on the Padang, a cricket field since the 1830s and now flanked by grand buildings such as City Hall, with its 18 Corinthian columns. In Singapore's circa-1820 Chinatown stands the red-and-gold Buddha Tooth Relic Temple, said to house one of Buddha's teeth."
+        },
+        {
+            "name": "Seoul",
+            "country": "Republic of Korea",
+            "population": 9776000,
+            "year_founded": "18 BCE",
+            "last_census_year": 2017,
+            "thumbnail_image_name": "seoul-thumbnail",
+            "day_image_name": "seoul-day",
+            "night_image_name": "seoul-night",
+            "description": "Seoul, the capital of South Korea, is a huge metropolis where modern skyscrapers, high-tech subways and pop culture meet Buddhist temples, palaces and street markets. Notable attractions include futuristic Dongdaemun Design Plaza, a convention hall with curving architecture and a rooftop park; Gyeongbokgung Palace, which once had more than 7,000 rooms; and Jogyesa Temple, site of ancient locust and pine trees."
+        },
+        {
+            "name": "Bath",
+            "country": "United Kingdom",
+            "population": 88859,
+            "year_founded": "60 BCE",
+            "last_census_year": 2011,
+            "thumbnail_image_name": "bath-thumbnail",
+            "day_image_name": "bath-day",
+            "night_image_name": "bath-night",
+            "description": "Founded by the Romans as a thermal spa, Bath is pronounced \"Barth\"."
+        }
+    ]
+}
