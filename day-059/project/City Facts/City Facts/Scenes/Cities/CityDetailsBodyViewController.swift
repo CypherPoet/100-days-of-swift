@@ -12,6 +12,7 @@ class CityDetailsBodyViewController: UIViewController {
     @IBOutlet weak var cityNameLabel: UILabel!
     
     var city: City!
+    var currentViewMode: CityViewMode = .day
     
     override func viewDidLoad() {
         super.viewDidLoad()

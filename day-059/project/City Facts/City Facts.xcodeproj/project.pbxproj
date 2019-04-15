@@ -20,6 +20,7 @@
 		F3B330D52262C30A00B76D7D /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B330D42262C30A00B76D7D /* CityCollectionViewCell.swift */; };
 		F3B330D72262C5C200B76D7D /* city-data.json in Resources */ = {isa = PBXBuildFile; fileRef = F3B330D62262C5C200B76D7D /* city-data.json */; };
 		F3B330DA2262D31C00B76D7D /* UIViewController+AddAndRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B330D92262D31C00B76D7D /* UIViewController+AddAndRemove.swift */; };
+		F3B330E02262F59B00B76D7D /* CityViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B330DF2262F59B00B76D7D /* CityViewMode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F3B330D42262C30A00B76D7D /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3B330D62262C5C200B76D7D /* city-data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "city-data.json"; sourceTree = "<group>"; };
 		F3B330D92262D31C00B76D7D /* UIViewController+AddAndRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddAndRemove.swift"; sourceTree = "<group>"; };
+		F3B330DF2262F59B00B76D7D /* CityViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewMode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				F3B330D22262C2A300B76D7D /* StoryboardID.swift */,
 				F3B330D62262C5C200B76D7D /* city-data.json */,
+				F3B330DF2262F59B00B76D7D /* CityViewMode.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				F3B330DA2262D31C00B76D7D /* UIViewController+AddAndRemove.swift in Sources */,
 				F3B330D52262C30A00B76D7D /* CityCollectionViewCell.swift in Sources */,
 				F3B330C32262764900B76D7D /* AppDelegate.swift in Sources */,
+				F3B330E02262F59B00B76D7D /* CityViewMode.swift in Sources */,
 				F3B330D02262C1AC00B76D7D /* City.swift in Sources */,
 				F3B330C62262AB2B00B76D7D /* CityDetailsViewController.swift in Sources */,
 				F3B330D32262C2A300B76D7D /* StoryboardID.swift in Sources */,

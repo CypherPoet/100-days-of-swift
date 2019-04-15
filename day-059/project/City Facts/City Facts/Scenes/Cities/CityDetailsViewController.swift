@@ -11,19 +11,14 @@ import UIKit
 class CityDetailsViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var detailsBodyView: UIView!
-
-    enum ViewMode {
-        case day, night
-    }
     
     var city: City!
+    var detailsBodyViewController: CityDetailsBodyViewController!
+    
     lazy var dayNightSegmentView = makeDayNightSegmentControl()
     
-    var currentViewMode: ViewMode = .day {
-        didSet {
-            headerImageView.image = UIImage(named: currentHeaderImageName)
-            // TODO: update child view here?
-        }
+    var currentViewMode: CityViewMode = .day {
+        didSet { viewModeChanged() }
     }
 }
 
@@ -40,8 +35,6 @@ extension CityDetailsViewController {
         
         setupViews()
         setupUI()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dayNightSegmentView)
     }
 }
 
@@ -61,25 +54,51 @@ extension CityDetailsViewController {
 }
 
 
+// MARK: - Event handling
+
+extension CityDetailsViewController {
+    @objc func contentModeChanged(_ sender: UISegmentedControl) {
+        currentViewMode = sender.selectedSegmentIndex == 0 ? .day : .night
+    }
+}
+
+
 // MARK: - Private Helper Methods
 
 private extension CityDetailsViewController {
     func makeDayNightSegmentControl() -> UISegmentedControl {
         let segmentControl = UISegmentedControl(items: ["☀️ Day", "🌒 Night"])
         
+        segmentControl.sizeToFit()
+        segmentControl.addTarget(self, action: #selector(contentModeChanged(_:)), for: .valueChanged)
+        
         return segmentControl
     }
     
     
     func setupViews() {
-        let cityDetailsBodyVC = CityDetailsBodyViewController()
-        cityDetailsBodyVC.city = city
+        detailsBodyViewController = CityDetailsBodyViewController()
+        detailsBodyViewController.city = city
 
-        add(child: cityDetailsBodyVC, toView: detailsBodyView)
+        add(child: detailsBodyViewController, toView: detailsBodyView)
     }
 
     
     func setupUI() {
+        navigationItem.titleView = dayNightSegmentView
         currentViewMode = .day
+    }
+    
+    
+    func viewModeChanged() {
+        headerImageView.image = UIImage(named: currentHeaderImageName)
+        detailsBodyViewController.currentViewMode = currentViewMode
+        
+        switch currentViewMode {
+        case .day:
+            dayNightSegmentView.selectedSegmentIndex = 0
+        case .night:
+            dayNightSegmentView.selectedSegmentIndex = 1
+        }
     }
 }

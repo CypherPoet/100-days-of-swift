@@ -21,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Name of A City" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7s-he-udj">
-                    <rect key="frame" x="116.5" y="67" width="181" height="36"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Name of A City" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7s-he-udj">
+                    <rect key="frame" x="24" y="68" width="366" height="36"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -31,6 +31,8 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="V7s-he-udj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1C8-Cj-ibW"/>
+                <constraint firstItem="V7s-he-udj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="CKC-x7-YMM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="V7s-he-udj" secondAttribute="trailing" constant="24" id="SaW-Vx-1hI"/>
                 <constraint firstItem="V7s-he-udj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="hjY-gW-tEx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
