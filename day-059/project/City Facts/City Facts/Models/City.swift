@@ -10,7 +10,14 @@ import Foundation
 
 struct City {
     var name: String
+    var country: String
+    var population: Int
+    var yearFounded: Int
+    var lastCensusYear: Int
+    var description: String
     var thumbnailImageName: String
     var dayImageName: String
     var nightImageName: String
 }
+
+extension City: Decodable {}

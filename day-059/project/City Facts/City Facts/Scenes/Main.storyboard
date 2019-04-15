@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cities List View Controller-->
+        <!--City List View Controller-->
         <scene sceneID="pJK-C8-cEi">
             <objects>
-                <collectionViewController id="Hx0-sg-s3X" customClass="CitiesListViewController" customModule="City_Facts" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="Hx0-sg-s3X" customClass="CityListViewController" customModule="City_Facts" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vJl-9S-1lY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
