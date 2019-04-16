@@ -56,17 +56,6 @@
             "description": "Singapore, an island city-state off southern Malaysia, is a global financial center with a tropical climate and multicultural population. Its colonial core centers on the Padang, a cricket field since the 1830s and now flanked by grand buildings such as City Hall, with its 18 Corinthian columns. In Singapore's circa-1820 Chinatown stands the red-and-gold Buddha Tooth Relic Temple, said to house one of Buddha's teeth."
         },
         {
-            "name": "Seoul",
-            "country": "Republic of Korea",
-            "population": 9776000,
-            "year_founded": -18,
-            "last_census_year": 2017,
-            "thumbnail_image_name": "seoul-thumbnail",
-            "day_image_name": "seoul-day",
-            "night_image_name": "seoul-night",
-            "description": "Seoul, the capital of South Korea, is a huge metropolis where modern skyscrapers, high-tech subways and pop culture meet Buddhist temples, palaces and street markets. Notable attractions include futuristic Dongdaemun Design Plaza, a convention hall with curving architecture and a rooftop park; Gyeongbokgung Palace, which once had more than 7,000 rooms; and Jogyesa Temple, site of ancient locust and pine trees."
-        },
-        {
             "name": "Bath",
             "country": "United Kingdom",
             "population": 88859,

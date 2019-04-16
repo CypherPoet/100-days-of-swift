@@ -10,6 +10,7 @@
 		F3B30701226526C000BB3390 /* CityTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B30700226526C000BB3390 /* CityTableDataSource.swift */; };
 		F3B30703226531CE00BB3390 /* CityLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B30702226531CE00BB3390 /* CityLoader.swift */; };
 		F3B30705226536C600BB3390 /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B30704226536C600BB3390 /* UIViewController+ShowError.swift */; };
+		F3B307072266783E00BB3390 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B307062266783E00BB3390 /* Style.swift */; };
 		F3B330BF2262764900B76D7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B330B52262764900B76D7D /* Main.storyboard */; };
 		F3B330C02262764900B76D7D /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B330B72262764900B76D7D /* CityListViewController.swift */; };
 		F3B330C12262764900B76D7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B330B92262764900B76D7D /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		F3B30700226526C000BB3390 /* CityTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableDataSource.swift; sourceTree = "<group>"; };
 		F3B30702226531CE00BB3390 /* CityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLoader.swift; sourceTree = "<group>"; };
 		F3B30704226536C600BB3390 /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
+		F3B307062266783E00BB3390 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		F3B3309E2262666700B76D7D /* City Facts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "City Facts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B330B52262764900B76D7D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F3B330B72262764900B76D7D /* CityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				F3B330D62262C5C200B76D7D /* city-data.json */,
 				F3B330DF2262F59B00B76D7D /* CityViewMode.swift */,
 				F3B30702226531CE00BB3390 /* CityLoader.swift */,
+				F3B307062266783E00BB3390 /* Style.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				F3B330D52262C30A00B76D7D /* CityCollectionViewCell.swift in Sources */,
 				F3B330C32262764900B76D7D /* AppDelegate.swift in Sources */,
 				F3B330E02262F59B00B76D7D /* CityViewMode.swift in Sources */,
+				F3B307072266783E00BB3390 /* Style.swift in Sources */,
 				F3B330D02262C1AC00B76D7D /* City.swift in Sources */,
 				F3B30703226531CE00BB3390 /* CityLoader.swift in Sources */,
 				F3B330C62262AB2B00B76D7D /* CityDetailsViewController.swift in Sources */,

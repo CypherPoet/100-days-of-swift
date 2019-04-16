@@ -33,12 +33,6 @@ class CityDetailsBodyViewController: UIViewController {
         
         setupUI()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        calculatePreferredSize()
-    }
 }
 
 
@@ -51,30 +45,20 @@ private extension CityDetailsBodyViewController {
         yearFoundedLabel.text = "Year Founded: \(city.formattedYearFounded)"
         populationLabel.text = "Population: \(city.formattedPopulation)"
         lastCensusYearLabel.text = "(Last Census: \(city.lastCensusYear))"
-        descriptionText.text = city.description + city.description + city.description
+        descriptionText.text = city.description
     }
     
     
     func viewModeChanged() {
         switch currentViewMode {
         case .day:
-            view.backgroundColor = .white
-            viewLabels.forEach { $0.textColor = #colorLiteral(red: 0.2123888731, green: 0.234394908, blue: 0.3121399283, alpha: 1) }
-            descriptionText.textColor = #colorLiteral(red: 0.2123888731, green: 0.234394908, blue: 0.3121399283, alpha: 1)
+            view.backgroundColor = Style.DayView.backgroundColor
+            viewLabels.forEach { $0.textColor = Style.DayView.textColor }
+            descriptionText.textColor = Style.DayView.textColor
         case .night:
-            view.backgroundColor = #colorLiteral(red: 0.2123888731, green: 0.234394908, blue: 0.3121399283, alpha: 1)
-            viewLabels.forEach { $0.textColor = #colorLiteral(red: 0.8934791684, green: 0.5303660035, blue: 1, alpha: 1) }
-            descriptionText.textColor = #colorLiteral(red: 0.8934791684, green: 0.5303660035, blue: 1, alpha: 1)
+            view.backgroundColor = Style.NightView.backgroundColor
+            viewLabels.forEach { $0.textColor = Style.NightView.textColor }
+            descriptionText.textColor = Style.NightView.textColor
         }
-    }
-    
-    
-    func calculatePreferredSize() {
-        let targetSize = CGSize(
-            width: view.bounds.width,
-            height: UIView.layoutFittingCompressedSize.height
-        )
-        
-        preferredContentSize = view.systemLayoutSizeFitting(targetSize)
     }
 }

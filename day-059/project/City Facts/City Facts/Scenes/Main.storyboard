@@ -17,36 +17,37 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vJl-9S-1lY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.70226535097775922" green="0.70475288457471419" blue="0.72442434210526319" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="ubS-aq-ZrG">
-                            <size key="itemSize" width="170" height="212"/>
+                            <size key="itemSize" width="180" height="212"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="12" maxX="10" maxY="12"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="12"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="City Cell" id="k0o-eP-934" customClass="CityCollectionViewCell" customModule="City_Facts" customModuleProvider="target">
-                                <rect key="frame" x="10" y="12" width="170" height="212"/>
+                                <rect key="frame" x="20" y="20" width="180" height="212"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="170" height="212"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="212"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="london-thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="BWH-E6-EyZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="170"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="170" id="AeY-rc-cpy"/>
+                                                <constraint firstAttribute="width" constant="180" id="AeY-rc-cpy"/>
                                                 <constraint firstAttribute="height" constant="170" id="qUc-UF-PUu"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potentially Long City Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvX-gs-fC3">
-                                            <rect key="frame" x="0.0" y="170" width="170" height="42"/>
+                                            <rect key="frame" x="0.0" y="170" width="180" height="42"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.209541482" green="0.2432959566" blue="0.4129317434" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
+                                <color key="backgroundColor" red="0.89518914469999999" green="0.89518914469999999" blue="0.89518914469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xvX-gs-fC3" secondAttribute="trailing" id="5Ut-xP-OHt"/>
                                     <constraint firstItem="xvX-gs-fC3" firstAttribute="leading" secondItem="k0o-eP-934" secondAttribute="leading" id="Dvk-cd-lgr"/>
@@ -82,35 +83,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-Ng-kEP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-ZY-ifQ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris-night" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-Mq-g6b">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="dd5-Mq-g6b" secondAttribute="height" multiplier="400:300" id="A1B-O5-dPC"/>
-                                        </constraints>
-                                    </imageView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-LB-dtG">
-                                        <rect key="frame" x="0.0" y="310.5" width="414" height="463.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="750" constant="463.5" identifier="DetailsBodyPreferredHeight" id="V5d-fA-RfI"/>
-                                        </constraints>
-                                    </containerView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-Ng-kEP">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris-night" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-Mq-g6b">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="dd5-Mq-g6b" secondAttribute="height" multiplier="400:300" id="A1B-O5-dPC"/>
+                                                </constraints>
+                                            </imageView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-LB-dtG">
+                                                <rect key="frame" x="0.0" y="310.5" width="414" height="585.5"/>
+                                            </containerView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="eb2-Ng-kEP" firstAttribute="top" secondItem="0gj-ZY-ifQ" secondAttribute="top" id="7Gb-Hd-YWU"/>
+                                    <constraint firstAttribute="bottom" secondItem="eb2-Ng-kEP" secondAttribute="bottom" id="Fpu-Z1-84s"/>
+                                    <constraint firstItem="eb2-Ng-kEP" firstAttribute="leading" secondItem="0gj-ZY-ifQ" secondAttribute="leading" id="IAK-mX-XtX"/>
+                                    <constraint firstAttribute="trailing" secondItem="eb2-Ng-kEP" secondAttribute="trailing" id="ixm-8q-Ian"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bfi-Et-b2V" firstAttribute="bottom" secondItem="eb2-Ng-kEP" secondAttribute="bottom" id="3Yo-qA-VHx"/>
-                            <constraint firstItem="eb2-Ng-kEP" firstAttribute="leading" secondItem="bfi-Et-b2V" secondAttribute="leading" id="8Bl-j7-DNf"/>
-                            <constraint firstItem="eb2-Ng-kEP" firstAttribute="top" secondItem="bfi-Et-b2V" secondAttribute="top" id="IAL-ek-h6C"/>
-                            <constraint firstItem="bfi-Et-b2V" firstAttribute="trailing" secondItem="eb2-Ng-kEP" secondAttribute="trailing" id="fLs-kx-155"/>
+                            <constraint firstItem="0gj-ZY-ifQ" firstAttribute="leading" secondItem="bfi-Et-b2V" secondAttribute="leading" id="BhP-Zf-RbR"/>
+                            <constraint firstItem="bfi-Et-b2V" firstAttribute="trailing" secondItem="0gj-ZY-ifQ" secondAttribute="trailing" id="Hqt-js-36j"/>
+                            <constraint firstItem="0gj-ZY-ifQ" firstAttribute="top" secondItem="bfi-Et-b2V" secondAttribute="top" id="N9r-aN-cHs"/>
+                            <constraint firstItem="bfi-Et-b2V" firstAttribute="bottom" secondItem="0gj-ZY-ifQ" secondAttribute="bottom" id="l8P-Fc-g8V"/>
+                            <constraint firstItem="eb2-Ng-kEP" firstAttribute="height" secondItem="LWc-7a-J38" secondAttribute="height" priority="250" id="seW-5g-WG3"/>
+                            <constraint firstItem="eb2-Ng-kEP" firstAttribute="width" secondItem="LWc-7a-J38" secondAttribute="width" id="taN-Zy-2Cj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bfi-Et-b2V"/>
                     </view>
                     <connections>
-                        <outlet property="detailsBodyHeightConstraint" destination="V5d-fA-RfI" id="oj0-bl-Ax7"/>
                         <outlet property="detailsBodyView" destination="MMT-LB-dtG" id="ey2-jE-K9b"/>
                         <outlet property="headerImageView" destination="dd5-Mq-g6b" id="wQr-05-go7"/>
                     </connections>
@@ -128,7 +138,7 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.209541482" green="0.2432959566" blue="0.4129317434" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
