@@ -13,7 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityDetailsBodyViewController" customModule="City_Facts" customModuleProvider="target">
             <connections>
                 <outlet property="cityNameLabel" destination="V7s-he-udj" id="OS7-fC-KKZ"/>
+                <outlet property="countryNameLabel" destination="4Xp-rR-dKm" id="oEZ-2f-JmU"/>
+                <outlet property="descriptionText" destination="I1Y-lq-yzX" id="M0S-2N-NGE"/>
+                <outlet property="lastCensusYearLabel" destination="2QD-e9-etP" id="YJM-aJ-dQB"/>
+                <outlet property="populationLabel" destination="Sre-KM-ido" id="rL3-im-Rr3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="Zaa-sR-dxo"/>
+                <outlet property="yearFoundedLabel" destination="OZp-T7-byx" id="1wU-yJ-Pfx"/>
+                <outletCollection property="viewLabels" destination="V7s-he-udj" collectionClass="NSMutableArray" id="IBN-xT-MmZ"/>
+                <outletCollection property="viewLabels" destination="2QD-e9-etP" collectionClass="NSMutableArray" id="iEQ-oe-lFo"/>
+                <outletCollection property="viewLabels" destination="Sre-KM-ido" collectionClass="NSMutableArray" id="8db-yR-ikh"/>
+                <outletCollection property="viewLabels" destination="4Xp-rR-dKm" collectionClass="NSMutableArray" id="7no-jU-vko"/>
+                <outletCollection property="viewLabels" destination="OZp-T7-byx" collectionClass="NSMutableArray" id="r9f-6K-qcj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,21 +31,68 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Name of A City" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7s-he-udj">
-                    <rect key="frame" x="24" y="68" width="366" height="36"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="e9V-B8-g1G">
+                    <rect key="frame" x="10" y="54" width="394" height="832"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Name of A City" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7s-he-udj">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="36"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="YHw-4M-rOh">
+                            <rect key="frame" x="0.0" y="70" width="394" height="89.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country: United States of America" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xp-rR-dKm">
+                                    <rect key="frame" x="0.0" y="0.0" width="261" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year Founded: 2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZp-T7-byx">
+                                    <rect key="frame" x="0.0" y="34.5" width="156" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jyS-D1-Vs8">
+                                    <rect key="frame" x="0.0" y="69" width="334.5" height="20.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Population: 2,000,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sre-KM-ido">
+                                            <rect key="frame" x="0.0" y="0.0" width="169" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Last Census: 2016)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QD-e9-etP">
+                                            <rect key="frame" x="181" y="0.0" width="153.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="I1Y-lq-yzX">
+                            <rect key="frame" x="0.0" y="193.5" width="394" height="638.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="V7s-he-udj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1C8-Cj-ibW"/>
-                <constraint firstItem="V7s-he-udj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="CKC-x7-YMM"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="V7s-he-udj" secondAttribute="trailing" constant="24" id="SaW-Vx-1hI"/>
-                <constraint firstItem="V7s-he-udj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="hjY-gW-tEx"/>
+                <constraint firstAttribute="trailing" secondItem="e9V-B8-g1G" secondAttribute="trailing" constant="10" id="TWT-Xr-rza"/>
+                <constraint firstAttribute="bottom" secondItem="e9V-B8-g1G" secondAttribute="bottom" constant="10" id="XbT-Oh-v58"/>
+                <constraint firstItem="e9V-B8-g1G" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="dJO-f8-cyY"/>
+                <constraint firstItem="e9V-B8-g1G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="phH-XY-K6D"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="134.78260869565219" y="126.5625"/>
         </view>
     </objects>
 </document>

@@ -20,4 +20,24 @@ struct City {
     var nightImageName: String
 }
 
+
+// MARK: - Computed Properties
+
+extension City {
+    var formattedYearFounded: String {
+        if yearFounded == 0 {
+            return "0"
+        } else {
+            return "\(yearFounded) \(yearFounded > 0 ? "CE" : "BCE")"
+        }
+    }
+    
+    var formattedPopulation: String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: population))!
+    }
+}
+
 extension City: Decodable {}
