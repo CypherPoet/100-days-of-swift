@@ -9,12 +9,11 @@
 import UIKit
 
 class CityListViewController: UICollectionViewController {
-    var dataSource = CityCollectionDataSource()
+    var dataSource: CollectionViewDataSource<City>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.dataSource = dataSource
         loadCities()
     }
 }
@@ -32,14 +31,14 @@ extension CityListViewController {
             preconditionFailure("Unable to find indexPath for selected cell during segue to CityDetailsViewController")
         }
 
-        cityDetailsVC.city = dataSource.cities[indexPath.item]
+        cityDetailsVC.city = dataSource.models[indexPath.item]
     }
 }
 
 
 // MARK: - Private Helper Methods
 
-extension CityListViewController {
+private extension CityListViewController {
     
     func loadCities() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -51,8 +50,7 @@ extension CityListViewController {
                     let cities = try cityLoader.decodeCities(from: cityData)
                     
                     DispatchQueue.main.async {
-                        self?.dataSource.cities = cities
-                        self?.collectionView.reloadData()
+                        self?.citiesDidLoad(cities)
                     }
                 } catch {
                     DispatchQueue.main.async {
@@ -64,6 +62,26 @@ extension CityListViewController {
                 preconditionFailure("Unable to find city data")
             }
         }
-        
     }
+    
+    
+    func citiesDidLoad(_ cities: [City]) {
+        let dataSource = CollectionViewDataSource(
+            models: cities,
+            cellReuseIdentifier: StoryboardID.cityCell,
+            cellConfigurator: { (city, cell) in
+                guard let cell = cell as? CityCollectionViewCell else {
+                    preconditionFailure("Failed to dequeue city cell from collection view")
+                }
+
+                cell.configure(with: city)
+            }
+        )
+        
+        // We need to keep a strong reference to the data source,
+        // since UICollectionView only uses a weak reference for it.
+        self.dataSource = dataSource
+        collectionView.dataSource = dataSource
+    }
+    
 }
