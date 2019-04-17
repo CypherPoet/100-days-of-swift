@@ -1,0 +1,50 @@
+[
+    {
+        "name": "London",
+        "short_description": "Home to the British Museum",
+        "latitude": 51.507351,
+        "longitude": -0.127758
+    },
+    {
+        "name": "Paris",
+        "short_description": "Always up for a good protest.",
+        "latitude": 48.856613,
+        "longitude": 2.352222
+    },
+    {
+        "name": "Amsterdam",
+        "short_description": "Lots of boats. Lots of bikes. Not many cars.",
+        "latitude": 52.3680,
+        "longitude": 4.9036
+    },
+    {
+        "name": "Rome",
+        "short_description": "Home to the Colosseum",
+        "latitude": 41.902782,
+        "longitude": 12.496366
+    },
+    {
+        "name": "Washington D.C.",
+        "short_description": "Not actually within any U.S. State",
+        "latitude": 38.907192,
+        "longitude": -77.036873
+    },
+    {
+        "name": "Singapore",
+        "short_description": "One of only three surviving city-states in the world.",
+        "latitude": 1.3521,
+        "longitude": 103.8198
+    },
+    {
+        "name": "Seoul",
+        "short_description": "Hosted the 2002 FIFA World Cup.",
+        "latitude": 37.566536,
+        "longitude": 126.977966
+    },
+    {
+        "name": "Antananarivo",
+        "short_description": "The political, economic, and cultural heart of Madagascar.",
+        "latitude": -18.879190,
+        "longitude": 47.507904
+    }
+]
