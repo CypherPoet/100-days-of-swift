@@ -13,8 +13,6 @@ import MapKit
 class MainViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
-    let annotationReuseIdentifier = "Capital"
-    
     let mapStyleChoices = [
         "Standard": MKMapType.standard,
         "Satellite": MKMapType.satellite,
@@ -106,7 +104,7 @@ extension MainViewController: MKMapViewDelegate {
             return nil
         }
         
-        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationReuseIdentifier) {
+        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CapitalAnnotation.reuseIdentifier) {
             annotationView.annotation = capitalAnnotation
             
             return annotationView
@@ -124,7 +122,7 @@ extension MainViewController: MKMapViewDelegate {
     
     
     func makeNewCapitalAnnotationView(_ capitalAnnotation: CapitalAnnotation) -> MKPinAnnotationView {
-        let annotationView = MKPinAnnotationView(annotation: capitalAnnotation, reuseIdentifier: self.annotationReuseIdentifier)
+        let annotationView = MKPinAnnotationView(annotation: capitalAnnotation, reuseIdentifier: CapitalAnnotation.reuseIdentifier)
 
         let button = UIButton(type: .detailDisclosure)
         

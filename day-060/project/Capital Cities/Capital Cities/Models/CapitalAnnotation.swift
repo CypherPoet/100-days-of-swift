@@ -11,6 +11,8 @@ import MapKit
 
 
 class CapitalAnnotation: NSObject {
+    static let reuseIdentifier = "Capital City Annotation"
+    
     var title: String?
     var coordinate: CLLocationCoordinate2D
     var shortDescription: String
