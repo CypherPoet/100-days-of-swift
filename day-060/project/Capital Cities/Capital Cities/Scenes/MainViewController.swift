@@ -8,11 +8,19 @@
 
 import UIKit
 import MapKit
-
+import SafariServices
 
 class MainViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
+    lazy var safariControllerConfig: SFSafariViewController.Configuration = {
+        let config = SFSafariViewController.Configuration()
+        
+        config.entersReaderIfAvailable = true
+        
+        return config
+    }()
+
     let mapStyleChoices = [
         "Standard": MKMapType.standard,
         "Satellite": MKMapType.satellite,
@@ -98,19 +106,10 @@ private extension MainViewController {
         let annotationView = MKPinAnnotationView(annotation: capitalAnnotation, reuseIdentifier: CapitalAnnotation.reuseIdentifier)
         
         annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        annotationView.rightCalloutAccessoryView = UIButton.wikipediaMapCallout
         annotationView.pinTintColor = UIColor(hue: 0.72, saturation: 0.76, brightness: 0.87, alpha: 1.00)
         
         return annotationView
-    }
-    
-    
-    func showDetailModal(forAnnotation annotation: CapitalAnnotation) {
-        let alertController = UIAlertController(title: annotation.title, message: annotation.shortDescription, preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        present(alertController, animated: true)
     }
 }
 
@@ -137,8 +136,20 @@ extension MainViewController: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if let capitalAnnotation = view.annotation as? CapitalAnnotation {
-            showDetailModal(forAnnotation: capitalAnnotation)
-        }
+        guard let capitalAnnotation = view.annotation as? CapitalAnnotation else { return }
+        
+        let safariVC = SFSafariViewController(url: capitalAnnotation.wikipediaURL, configuration: safariControllerConfig)
+        safariVC.delegate = self
+        
+        present(safariVC, animated: true)
+    }
+}
+
+
+// MARK: - SFSafariViewControllerDelegate
+
+extension MainViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true)
     }
 }

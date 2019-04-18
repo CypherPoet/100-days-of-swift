@@ -16,6 +16,7 @@
 		F3B307192266A85000BB3390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B307122266A85000BB3390 /* AppDelegate.swift */; };
 		F3B3071D2267025B00BB3390 /* capital-data.json in Resources */ = {isa = PBXBuildFile; fileRef = F3B3071C2267025B00BB3390 /* capital-data.json */; };
 		F3B307202267150300BB3390 /* UIViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3071F2267150300BB3390 /* UIViewController+ShowError.swift */; };
+		F3B3072222682D6D00BB3390 /* UIButton+WikipediaMapCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3072122682D6D00BB3390 /* UIButton+WikipediaMapCallout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F3B307132266A85000BB3390 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3B3071C2267025B00BB3390 /* capital-data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "capital-data.json"; sourceTree = "<group>"; };
 		F3B3071F2267150300BB3390 /* UIViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowError.swift"; sourceTree = "<group>"; };
+		F3B3072122682D6D00BB3390 /* UIButton+WikipediaMapCallout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+WikipediaMapCallout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F3B3071F2267150300BB3390 /* UIViewController+ShowError.swift */,
+				F3B3072122682D6D00BB3390 /* UIButton+WikipediaMapCallout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			files = (
 				F3B307202267150300BB3390 /* UIViewController+ShowError.swift in Sources */,
 				F3B307192266A85000BB3390 /* AppDelegate.swift in Sources */,
+				F3B3072222682D6D00BB3390 /* UIButton+WikipediaMapCallout.swift in Sources */,
 				F3B307142266A85000BB3390 /* MainViewController.swift in Sources */,
 				F3B307172266A85000BB3390 /* CapitalAnnotation.swift in Sources */,
 			);

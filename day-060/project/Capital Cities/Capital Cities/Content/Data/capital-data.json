@@ -3,48 +3,56 @@
         "name": "London",
         "short_description": "Home to the British Museum",
         "latitude": 51.507351,
-        "longitude": -0.127758
+        "longitude": -0.127758,
+        "wikipedia_url": "https://wikipedia.org/wiki/London"
     },
     {
         "name": "Paris",
         "short_description": "Always up for a good protest.",
         "latitude": 48.856613,
-        "longitude": 2.352222
+        "longitude": 2.352222,
+        "wikipedia_url": "https://wikipedia.org/wiki/Paris"
     },
     {
         "name": "Amsterdam",
         "short_description": "Lots of boats. Lots of bikes. Not many cars.",
         "latitude": 52.3680,
-        "longitude": 4.9036
+        "longitude": 4.9036,
+        "wikipedia_url": "https://wikipedia.org/wiki/Amsterdam"
     },
     {
         "name": "Rome",
         "short_description": "Home to the Colosseum",
         "latitude": 41.902782,
-        "longitude": 12.496366
+        "longitude": 12.496366,
+        "wikipedia_url": "https://wikipedia.org/wiki/Rome"
     },
     {
         "name": "Washington D.C.",
         "short_description": "Not actually within any U.S. State",
         "latitude": 38.907192,
-        "longitude": -77.036873
+        "longitude": -77.036873,
+        "wikipedia_url": "https://wikipedia.org/wiki/Washington,_D.C."
     },
     {
         "name": "Singapore",
         "short_description": "One of only three surviving city-states in the world.",
         "latitude": 1.3521,
-        "longitude": 103.8198
+        "longitude": 103.8198,
+        "wikipedia_url": "https://wikipedia.org/wiki/Singapore"
     },
     {
         "name": "Seoul",
         "short_description": "Hosted the 2002 FIFA World Cup.",
         "latitude": 37.566536,
-        "longitude": 126.977966
+        "longitude": 126.977966,
+        "wikipedia_url": "https://wikipedia.org/wiki/Seoul"
     },
     {
         "name": "Antananarivo",
         "short_description": "The political, economic, and cultural heart of Madagascar.",
         "latitude": -18.879190,
-        "longitude": 47.507904
+        "longitude": 47.507904,
+        "wikipedia_url": "https://wikipedia.org/wiki/Antananarivo"
     }
 ]

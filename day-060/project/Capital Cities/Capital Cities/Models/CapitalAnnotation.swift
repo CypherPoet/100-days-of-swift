@@ -16,12 +16,14 @@ class CapitalAnnotation: NSObject {
     var title: String?
     var coordinate: CLLocationCoordinate2D
     var shortDescription: String
+    var wikipediaURL: URL
     
     
-    init(title: String, coordinate: CLLocationCoordinate2D, shortDescription: String) {
+    init(title: String, coordinate: CLLocationCoordinate2D, shortDescription: String, wikipediaURL: URL) {
         self.title = title
         self.coordinate = coordinate
         self.shortDescription = shortDescription
+        self.wikipediaURL = wikipediaURL
     }
     
     
@@ -35,7 +37,9 @@ class CapitalAnnotation: NSObject {
         let longitude = try rootContainer.decode(Double.self, forKey: .longitude)
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        self.init(title: name, coordinate: coordinate, shortDescription: shortDescription)
+        let wikipediaURL = try rootContainer.decode(URL.self, forKey: .wikipediaURL)
+        
+        self.init(title: name, coordinate: coordinate, shortDescription: shortDescription, wikipediaURL: wikipediaURL)
     }
 }
 
@@ -49,5 +53,6 @@ extension CapitalAnnotation: Decodable {
         case latitude
         case longitude
         case shortDescription = "short_description"
+        case wikipediaURL = "wikipedia_url"
     }
 }
