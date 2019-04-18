@@ -76,3 +76,4 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 58: _Project 15: Animation_, Part Two](/day-058)
 - [Day 59: Milestone for Projects 13-15](/day-059)
 - [Day 60: _Project 16: Capital Cities_, Part One](/day-060)
+- [Day 61: _Project 16: Capital Cities_, Part Two](/day-061)

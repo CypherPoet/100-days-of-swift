@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Capital Cities 🏛-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Capital_Cities" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,7 +42,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="KZy-Vo-vG7"/>
+                    <navigationItem key="navigationItem" title="Capital Cities 🏛" id="KZy-Vo-vG7"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="mapView" destination="Qb4-CB-UPw" id="3vY-TM-OPn"/>
