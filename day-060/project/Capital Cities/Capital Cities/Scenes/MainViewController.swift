@@ -94,11 +94,12 @@ private extension MainViewController {
     }
     
     
-    func makeNewCapitalAnnotationView(_ capitalAnnotation: CapitalAnnotation) -> MKPinAnnotationView {
+    func makeNewCapitalAnnotationView(from capitalAnnotation: CapitalAnnotation) -> MKPinAnnotationView {
         let annotationView = MKPinAnnotationView(annotation: capitalAnnotation, reuseIdentifier: CapitalAnnotation.reuseIdentifier)
         
         annotationView.canShowCallout = true
         annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        annotationView.pinTintColor = UIColor(hue: 0.72, saturation: 0.76, brightness: 0.87, alpha: 1.00)
         
         return annotationView
     }
@@ -123,12 +124,14 @@ extension MainViewController: MKMapViewDelegate {
             return nil
         }
         
-        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CapitalAnnotation.reuseIdentifier) {
+        if let annotationView = mapView.dequeueReusableAnnotationView(
+            withIdentifier: CapitalAnnotation.reuseIdentifier
+        ) as? MKPinAnnotationView {
             annotationView.annotation = capitalAnnotation
-            
+
             return annotationView
         } else {
-            return makeNewCapitalAnnotationView(capitalAnnotation)
+            return makeNewCapitalAnnotationView(from: capitalAnnotation)
         }
     }
     
