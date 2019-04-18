@@ -92,6 +92,25 @@ private extension MainViewController {
         
         mapView.mapType = mapType
     }
+    
+    
+    func makeNewCapitalAnnotationView(_ capitalAnnotation: CapitalAnnotation) -> MKPinAnnotationView {
+        let annotationView = MKPinAnnotationView(annotation: capitalAnnotation, reuseIdentifier: CapitalAnnotation.reuseIdentifier)
+        
+        annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        
+        return annotationView
+    }
+    
+    
+    func showDetailModal(forAnnotation annotation: CapitalAnnotation) {
+        let alertController = UIAlertController(title: annotation.title, message: annotation.shortDescription, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alertController, animated: true)
+    }
 }
 
 
@@ -118,26 +137,5 @@ extension MainViewController: MKMapViewDelegate {
         if let capitalAnnotation = view.annotation as? CapitalAnnotation {
             showDetailModal(forAnnotation: capitalAnnotation)
         }
-    }
-    
-    
-    func makeNewCapitalAnnotationView(_ capitalAnnotation: CapitalAnnotation) -> MKPinAnnotationView {
-        let annotationView = MKPinAnnotationView(annotation: capitalAnnotation, reuseIdentifier: CapitalAnnotation.reuseIdentifier)
-
-        let button = UIButton(type: .detailDisclosure)
-        
-        annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView = button
-        
-        return annotationView
-    }
-    
-    
-    func showDetailModal(forAnnotation annotation: CapitalAnnotation) {
-        let alertController = UIAlertController(title: annotation.title, message: annotation.shortDescription, preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        self.present(alertController, animated: true)
     }
 }
