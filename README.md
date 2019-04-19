@@ -16,6 +16,9 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 
 ## Days
 
+<details>
+<summary>Full List</summary>
+
 - [Day 1: Variables, simple data types, and string interpolation](/day-001)
 - [Day 2: Complex Data Types](/day-002)
 - [Day 3: Operators and Conditions](/day-003)
@@ -77,3 +80,8 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 59: Milestone for Projects 13-15](/day-059)
 - [Day 60: _Project 16: Capital Cities_, Part One](/day-060)
 - [Day 61: _Project 16: Capital Cities_, Part Two](/day-061)
+
+</details>
+
+  - [Day 62: _Project 17: Space Race_, Part One](/day-062)
+
