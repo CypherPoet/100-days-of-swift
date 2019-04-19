@@ -90,10 +90,15 @@ extension MainGameScene {
 // MARK: - Event handling
 
 extension MainGameScene {
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        
-        var touchLocation = touch.location(in: self)
+        guard
+            currentGameplayState == .inProgress,
+            var touchLocation = touches.first?.location(in: self),
+            didTouchPlayer(touchLocation)
+        else {
+            return
+        }
         
         if touchLocation.y > shipScreenBounds.top {
             touchLocation.y = shipScreenBounds.top
@@ -231,5 +236,10 @@ private extension MainGameScene {
     
     func remove(node: SKNode) {
         node.removeFromParent()
+    }
+    
+    
+    func didTouchPlayer(_ touchLocation: CGPoint) -> Bool {
+        return playerShip.contains(touchLocation)
     }
 }
