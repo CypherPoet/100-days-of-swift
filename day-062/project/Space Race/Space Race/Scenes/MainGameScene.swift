@@ -16,6 +16,10 @@ class MainGameScene: SKScene {
         case over
     }
     
+    enum BitMask {
+        static let enemy: UInt32 = 1
+    }
+    
     let enemySpawnInterval = 0.333
     
     lazy var scoreLabel: SKLabelNode = makeScoreLabel()
@@ -165,7 +169,7 @@ private extension MainGameScene {
         
         playerShip.position = CGPoint(x: 100.0, y: sceneCenterPoint.y)
         playerShip.physicsBody = SKPhysicsBody(texture: playerShip.texture!, size: playerShip.size)
-        playerShip.physicsBody?.contactTestBitMask = 1
+        playerShip.physicsBody?.contactTestBitMask = BitMask.enemy
         playerShip.name = NodeName.playerShip
         
         return playerShip
@@ -210,7 +214,7 @@ private extension MainGameScene {
         enemy.position = CGPoint(x: xPos, y: yPos)
         
         enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
-        enemy.physicsBody?.categoryBitMask = 1
+        enemy.physicsBody?.categoryBitMask = BitMask.enemy
         enemy.physicsBody?.velocity = CGVector(dx: -500, dy: 0)
         enemy.physicsBody?.angularDamping = 0
         enemy.physicsBody?.linearDamping = 0
