@@ -20,7 +20,18 @@ class MainGameScene: SKScene {
         static let enemy: UInt32 = 1
     }
     
-    let enemySpawnInterval = 0.333
+    var enemySpawnInterval = 1.0 {
+        didSet { makeGameTimer(spawnInterval: enemySpawnInterval) }
+    }
+    
+    var enemiesCreated = 0 {
+        didSet {
+            if enemiesCreated % 20 == 0 {
+                // decrement the spawn timer on every 20th enemy
+                enemySpawnInterval -= 0.1
+            }
+        }
+    }
     
     lazy var scoreLabel: SKLabelNode = makeScoreLabel()
     lazy var starfield: SKEmitterNode = makeStarfieldBackground()
@@ -46,11 +57,13 @@ class MainGameScene: SKScene {
 
 extension MainGameScene {
     var enemiesInSpace: [SKSpriteNode] {
-        return children.filter { $0 is SKSpriteNode && $0.name == NodeName.enemy } as! [SKSpriteNode]
+        return children
+            .compactMap { $0 as? SKSpriteNode }
+            .filter { $0.name == NodeName.enemy }
     }
     
     var pastEnemies: [SKSpriteNode] {
-        return enemiesInSpace.filter({ $0.position.x < $0.size.width * 3 })
+        return enemiesInSpace.filter { ($0.position.x + $0.size.width / 2) < 0 }
     }
     
     var shipScreenBounds: (top: CGFloat, bottom: CGFloat) {
@@ -67,6 +80,7 @@ extension MainGameScene {
         guard currentGameplayState == .inProgress else { return }
         
         currentScore += 1
+        checkForPastEnemies()
     }
     
     
@@ -81,8 +95,7 @@ extension MainGameScene {
         addChild(playerShip)
         
         currentScore = 0
-        
-        startGame()
+        enemySpawnInterval = 1.0
     }
 }
 
@@ -196,7 +209,11 @@ private extension MainGameScene {
     }
     
 
-    func startGame() {
+    func makeGameTimer(spawnInterval enemySpawnInterval: Double) {
+        if gameTimer != nil {
+            gameTimer.invalidate()
+        }
+        
         gameTimer = Timer.scheduledTimer(
             timeInterval: enemySpawnInterval,
             target: self,
@@ -217,6 +234,7 @@ private extension MainGameScene {
         let yPos = CGFloat.random(in: enemyHeight...(frame.maxY - enemyHeight))
         
         enemy.position = CGPoint(x: xPos, y: yPos)
+        enemy.name = NodeName.enemy
         
         enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
         enemy.physicsBody?.categoryBitMask = BitMask.enemy
@@ -225,6 +243,7 @@ private extension MainGameScene {
         enemy.physicsBody?.linearDamping = 0
         enemy.physicsBody?.angularVelocity = 5
         
+        enemiesCreated += 1
         addChild(enemy)
     }
     
