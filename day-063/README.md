@@ -33,3 +33,11 @@ _Follow along at https://www.hackingwithswift.com/100/63_.
 > Stop creating space debris after the player has died.
 
 - 🔗 [Already Covered 🙂](https://github.com/CypherPoet/100-days-of-swift/blob/65a056b7eca2aa42aa44ab5e245e7b7699b17735/day-062/project/Space%20Race/Space%20Race/Scenes/MainGameScene.swift#L80)
+
+
+## 📸 Screenshots
+
+<div style="text-align: center;">
+  <img src="./screenshot-1.png" width="75%"/>
+  <img src="./screenshot-2.png" width="75%"/>
+</div>
