@@ -14,6 +14,7 @@ Each "day" folder will contain a write-up where I'll recap the material covered,
 
 Feedback and suggestions are highly appreciated. I'll be opening up [issues](https://github.com/CypherPoet/100-days-of-swift/issues) to serve as discussion threads for each day. But feel free to open up your own as well.
 
+
 ## Days
 
 <details>
@@ -80,8 +81,10 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 59: Milestone for Projects 13-15](/day-059)
 - [Day 60: _Project 16: Capital Cities_, Part One](/day-060)
 - [Day 61: _Project 16: Capital Cities_, Part Two](/day-061)
+- [Day 62: _Project 17: Space Race_, Part One](/day-062)
+- [Day 63: _Project 17: Space Race_, Part Two](/day-063)
 
 </details>
 
-  - [Day 62: _Project 17: Space Race_, Part One](/day-062)
+- [Day 64: _Project 18: Debugging_, Part One](/day-064)
 
