@@ -83,8 +83,8 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 61: _Project 16: Capital Cities_, Part Two](/day-061)
 - [Day 62: _Project 17: Space Race_, Part One](/day-062)
 - [Day 63: _Project 17: Space Race_, Part Two](/day-063)
+- [Day 64: _Project 18: Debugging_, Part One](/day-064)
 
 </details>
 
-- [Day 64: _Project 18: Debugging_, Part One](/day-064)
-
+- [Day 65: _Project 18: Debugging_, Part Two](/day-065)
