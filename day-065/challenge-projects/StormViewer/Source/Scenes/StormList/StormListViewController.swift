@@ -58,7 +58,7 @@ extension StormListViewController {
     ) {
         guard
             let detailViewController = storyboard?
-                .instantiateViewController(withIdentifier: "This is bad")
+                .instantiateViewController(withIdentifier: StoryboardID.stormDetailViewController)
                 as? StormDetailViewController
         else {
             fatalError("Failed to dequeue StormDetailViewController")
