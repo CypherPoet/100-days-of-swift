@@ -27,6 +27,10 @@ extension StormDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let displayImage = displayImage else {
+            preconditionFailure("`StormDetailViewController` must have a `displayImage`")
+        }
+        
         setupNavbar()
         imageView.image = UIImage(named: displayImage.imagePath)
     }
