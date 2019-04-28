@@ -17,6 +17,9 @@
 		F3A1B46C220288D70007FC7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B46A220288D70007FC7E /* MainInterface.storyboard */; };
 		F3A1B470220288D70007FC7E /* My Sweet HWS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F3A1B464220288D70007FC7E /* My Sweet HWS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F3A1B4762202BE2D0007FC7E /* ExtensionAction.js in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */; };
+		F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE542275BDAB00C67293 /* Injection.swift */; };
+		F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE592275CB2100C67293 /* PageSnapshot.swift */; };
+		F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		F3A1B46B220288D70007FC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		F3A1B46D220288D70007FC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ExtensionAction.js; sourceTree = "<group>"; };
+		F3ECDE542275BDAB00C67293 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		F3ECDE592275CB2100C67293 /* PageSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSnapshot.swift; sourceTree = "<group>"; };
+		F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,13 +117,56 @@
 		F3A1B465220288D70007FC7E /* My Sweet HWS Extension */ = {
 			isa = PBXGroup;
 			children = (
-				F3A1B466220288D70007FC7E /* Media.xcassets */,
-				F3A1B468220288D70007FC7E /* ActionViewController.swift */,
-				F3A1B46A220288D70007FC7E /* MainInterface.storyboard */,
+				F3ECDE5B2275CEFA00C67293 /* Extensions */,
+				F3ECDE582275C01100C67293 /* Scenes */,
+				F3ECDE572275BFFE00C67293 /* Content */,
+				F3ECDE562275BFE100C67293 /* Supporting Files */,
+				F3ECDE532275BD6200C67293 /* Models */,
 				F3A1B46D220288D70007FC7E /* Info.plist */,
-				F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */,
 			);
 			path = "My Sweet HWS Extension";
+			sourceTree = "<group>";
+		};
+		F3ECDE532275BD6200C67293 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F3ECDE542275BDAB00C67293 /* Injection.swift */,
+				F3ECDE592275CB2100C67293 /* PageSnapshot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F3ECDE562275BFE100C67293 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3ECDE572275BFFE00C67293 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				F3A1B466220288D70007FC7E /* Media.xcassets */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		F3ECDE582275C01100C67293 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F3A1B468220288D70007FC7E /* ActionViewController.swift */,
+				F3A1B46A220288D70007FC7E /* MainInterface.storyboard */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F3ECDE5B2275CEFA00C67293 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +282,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */,
+				F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */,
 				F3A1B469220288D70007FC7E /* ActionViewController.swift in Sources */,
+				F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

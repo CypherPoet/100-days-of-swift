@@ -12,10 +12,12 @@ import MobileCoreServices
 class ActionViewController: UIViewController {
     @IBOutlet weak var scriptTextView: UITextView!
     
-    var pageURL = ""
-
-    var pageTitle = "" {
-        didSet { title = pageTitle }
+    var currentPageSnapshot: PageSnapshot? {
+        didSet {
+            if let pageSnapshot = currentPageSnapshot {
+                didTake(pageSnapshot)
+            }
+        }
     }
     
     lazy var notificationCenter = NotificationCenter.default
@@ -32,7 +34,7 @@ class ActionViewController: UIViewController {
 extension ActionViewController {
     var userJavaScriptExtensionItem: NSExtensionItem {
         let argument: NSDictionary = ["userJavaScript": scriptTextView.text]
-        
+
         // 🔑 This is what will be sent as the argument to our script's `finalize` function
         let webDictionary: NSDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: argument]
         
@@ -143,13 +145,41 @@ private extension ActionViewController {
                 guard
                     let itemDictionary = dict as? NSDictionary,
                     let javaScriptData = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary
-                else { return }
+                else {
+                    DispatchQueue.main.async {
+                        self?.display(alertMessage: "Failed to find data for current webpage.")
+                    }
+                    return
+                }
                 
-                DispatchQueue.main.async {
-                    self?.pageURL = javaScriptData["URL"] as! String
-                    self?.pageTitle = javaScriptData["title"] as! String
+                if let pageSnapshot = self?.pageSnapshot(from: javaScriptData) {
+                    DispatchQueue.main.async {
+                        self?.currentPageSnapshot = pageSnapshot
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.display(alertMessage: "Failed to find data for current webpage.")
+                    }
                 }
             }
         )
+    }
+    
+    
+    func pageSnapshot(from javaScriptData: NSDictionary) -> PageSnapshot? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: javaScriptData)
+            let decoder = JSONDecoder()
+            
+            return try decoder.decode(PageSnapshot.self, from: jsonData)
+        } catch {
+            print("Error while attempting to take page snapshot: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    
+    func didTake(_ pageSnapshot: PageSnapshot) {
+        title = pageSnapshot.title
     }
 }

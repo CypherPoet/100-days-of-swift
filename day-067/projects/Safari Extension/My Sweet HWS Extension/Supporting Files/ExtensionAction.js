@@ -13,7 +13,7 @@ class ExtensionAction {
      *   - the page title
      */
     params.completionFunction({
-      URL: document.URL,
+      url: document.URL,
       title: document.title
     });
   }
