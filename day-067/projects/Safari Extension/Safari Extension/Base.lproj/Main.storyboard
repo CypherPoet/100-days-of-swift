@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Universe!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqe-bV-W66">
-                                <rect key="frame" x="147" y="442.5" width="120" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋 Greetings! Try opening this extension in Safari and entering some custom JavaScript." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqe-bV-W66">
+                                <rect key="frame" x="68.5" y="422.5" width="277" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,6 +29,7 @@
                         <constraints>
                             <constraint firstItem="mqe-bV-W66" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="192-j6-liI"/>
                             <constraint firstItem="mqe-bV-W66" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="UDf-ZJ-2gt"/>
+                            <constraint firstItem="mqe-bV-W66" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.67" id="sKG-Xj-VtA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

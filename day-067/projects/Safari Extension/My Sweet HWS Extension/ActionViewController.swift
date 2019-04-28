@@ -20,10 +20,32 @@ class ActionViewController: UIViewController {
     
     lazy var notificationCenter = NotificationCenter.default
     
-    let keyboardNotificationNames = [
+    private let keyboardNotificationNames = [
         UIResponder.keyboardWillHideNotification,
         UIResponder.keyboardWillChangeFrameNotification
     ]
+}
+
+
+// MARK: - Computeds
+
+extension ActionViewController {
+    var userJavaScriptExtensionItem: NSExtensionItem {
+        let argument: NSDictionary = ["userJavaScript": scriptTextView.text]
+        
+        // 🔑 This is what will be sent as the argument to our script's `finalize` function
+        let webDictionary: NSDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: argument]
+        
+        let customJSProvider = NSItemProvider(
+            item: webDictionary,
+            typeIdentifier: kUTTypePropertyList as String
+        )
+        
+        let extensionItem = NSExtensionItem()
+        extensionItem.attachments = [customJSProvider]
+        
+        return extensionItem
+    }
 }
 
 
@@ -44,11 +66,12 @@ extension ActionViewController {
 // MARK: - Event handling
 
 extension ActionViewController {
+
     @IBAction func extensionCompleted() {
         // Return any edited content to the host app.
         // This template doesn't do anything, so we just echo the passed in items.
         extensionContext!.completeRequest(
-            returningItems: [makeExtensionItemOnCompletion()],
+            returningItems: [userJavaScriptExtensionItem],
             completionHandler: nil
         )
     }
@@ -103,21 +126,6 @@ private extension ActionViewController {
     }
     
     
-    func makeExtensionItemOnCompletion() -> NSExtensionItem {
-        let argument: NSDictionary = ["customJavaScript": scriptTextView.text]
-        
-        // 🔑 This is what will be sent as the argument to our script's `finalize` function
-        let webDictionary: NSDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: argument]
-        
-        let customJSProvider = NSItemProvider(item: webDictionary, typeIdentifier: kUTTypePropertyList as String)
-
-        let extensionItem = NSExtensionItem()
-        extensionItem.attachments = [customJSProvider]
-        
-        return extensionItem
-    }
-    
-    
     func processItemProvider() {
         // `inputItems` should be an array of data that the parent app is sending to our extension to use
         guard let inputItem = extensionContext!.inputItems.first as? NSExtensionItem else { return }
@@ -132,12 +140,14 @@ private extension ActionViewController {
             forTypeIdentifier: typeIdentifier,
             options: nil,
             completionHandler: { [weak self] (dict, error) in
-                let itemDictionary = dict as! NSDictionary
-                let javaScriptValues = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as! NSDictionary
+                guard
+                    let itemDictionary = dict as? NSDictionary,
+                    let javaScriptData = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary
+                else { return }
                 
                 DispatchQueue.main.async {
-                    self?.pageURL = javaScriptValues["URL"] as! String
-                    self?.pageTitle = javaScriptValues["title"] as! String
+                    self?.pageURL = javaScriptData["URL"] as! String
+                    self?.pageTitle = javaScriptData["title"] as! String
                 }
             }
         )
