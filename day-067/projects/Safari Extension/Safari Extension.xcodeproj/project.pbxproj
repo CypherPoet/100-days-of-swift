@@ -20,6 +20,7 @@
 		F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE542275BDAB00C67293 /* Injection.swift */; };
 		F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE592275CB2100C67293 /* PageSnapshot.swift */; };
 		F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */; };
+		F3ECDE612276006600C67293 /* injection-presets.json in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE602276006600C67293 /* injection-presets.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		F3ECDE542275BDAB00C67293 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		F3ECDE592275CB2100C67293 /* PageSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSnapshot.swift; sourceTree = "<group>"; };
 		F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
+		F3ECDE602276006600C67293 /* injection-presets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "injection-presets.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */,
+				F3ECDE602276006600C67293 /* injection-presets.json */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3ECDE612276006600C67293 /* injection-presets.json in Resources */,
 				F3A1B467220288D70007FC7E /* Media.xcassets in Resources */,
 				F3A1B46C220288D70007FC7E /* MainInterface.storyboard in Resources */,
 				F3A1B4762202BE2D0007FC7E /* ExtensionAction.js in Resources */,

@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Say Hi",
+        "evalString": "alert(\"👋\")"
+    },
+    {
+        "title": "Change Background Color",
+        "evalString": "document.body.style.backgroundColor = \"#F86585\";"
+    },
+    {
+        "title": "Run Windows",
+        "evalString": "document.body.style.backgroundImage='url(https://neosmart.net/wiki/wp-content/uploads/sites/5/2014/06/0x000000EA.png)';"
+    }
+]
