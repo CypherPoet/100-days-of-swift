@@ -13,14 +13,17 @@
 		F3A1B45622027C9F0007FC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B45522027C9F0007FC7E /* Assets.xcassets */; };
 		F3A1B45922027C9F0007FC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B45722027C9F0007FC7E /* LaunchScreen.storyboard */; };
 		F3A1B467220288D70007FC7E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B466220288D70007FC7E /* Media.xcassets */; };
-		F3A1B469220288D70007FC7E /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B468220288D70007FC7E /* ActionViewController.swift */; };
-		F3A1B46C220288D70007FC7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B46A220288D70007FC7E /* MainInterface.storyboard */; };
+		F3A1B469220288D70007FC7E /* MainActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B468220288D70007FC7E /* MainActionViewController.swift */; };
 		F3A1B470220288D70007FC7E /* My Sweet HWS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F3A1B464220288D70007FC7E /* My Sweet HWS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F3A1B4762202BE2D0007FC7E /* ExtensionAction.js in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */; };
 		F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE542275BDAB00C67293 /* Injection.swift */; };
 		F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE592275CB2100C67293 /* PageSnapshot.swift */; };
 		F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */; };
 		F3ECDE612276006600C67293 /* injection-presets.json in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE602276006600C67293 /* injection-presets.json */; };
+		F3ECDE822277290800C67293 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE812277290800C67293 /* Keys.swift */; };
+		F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE83227756C800C67293 /* StoryboardID.swift */; };
+		F3ECDE862277579E00C67293 /* EditScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE852277579E00C67293 /* EditScriptViewController.swift */; };
+		F3ECDE88227840DD00C67293 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE87227840DC00C67293 /* MainInterface.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,14 +60,17 @@
 		F3A1B45A22027C9F0007FC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3A1B464220288D70007FC7E /* My Sweet HWS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "My Sweet HWS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A1B466220288D70007FC7E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		F3A1B468220288D70007FC7E /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
-		F3A1B46B220288D70007FC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		F3A1B468220288D70007FC7E /* MainActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionViewController.swift; sourceTree = "<group>"; };
 		F3A1B46D220288D70007FC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3A1B4752202BE2D0007FC7E /* ExtensionAction.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ExtensionAction.js; sourceTree = "<group>"; };
 		F3ECDE542275BDAB00C67293 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		F3ECDE592275CB2100C67293 /* PageSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSnapshot.swift; sourceTree = "<group>"; };
 		F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 		F3ECDE602276006600C67293 /* injection-presets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "injection-presets.json"; sourceTree = "<group>"; };
+		F3ECDE812277290800C67293 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		F3ECDE83227756C800C67293 /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
+		F3ECDE852277579E00C67293 /* EditScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScriptViewController.swift; sourceTree = "<group>"; };
+		F3ECDE87227840DC00C67293 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 		F3A1B465220288D70007FC7E /* My Sweet HWS Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F3ECDE80227728D800C67293 /* Helpers */,
 				F3ECDE5B2275CEFA00C67293 /* Extensions */,
 				F3ECDE582275C01100C67293 /* Scenes */,
 				F3ECDE572275BFFE00C67293 /* Content */,
@@ -158,8 +165,9 @@
 		F3ECDE582275C01100C67293 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				F3A1B468220288D70007FC7E /* ActionViewController.swift */,
-				F3A1B46A220288D70007FC7E /* MainInterface.storyboard */,
+				F3ECDE87227840DC00C67293 /* MainInterface.storyboard */,
+				F3A1B468220288D70007FC7E /* MainActionViewController.swift */,
+				F3ECDE852277579E00C67293 /* EditScriptViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -170,6 +178,15 @@
 				F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F3ECDE80227728D800C67293 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F3ECDE812277290800C67293 /* Keys.swift */,
+				F3ECDE83227756C800C67293 /* StoryboardID.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,9 +240,11 @@
 				TargetAttributes = {
 					F3A1B44A22027C9E0007FC7E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					F3A1B463220288D70007FC7E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -264,8 +283,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3ECDE612276006600C67293 /* injection-presets.json in Resources */,
+				F3ECDE88227840DD00C67293 /* MainInterface.storyboard in Resources */,
 				F3A1B467220288D70007FC7E /* Media.xcassets in Resources */,
-				F3A1B46C220288D70007FC7E /* MainInterface.storyboard in Resources */,
 				F3A1B4762202BE2D0007FC7E /* ExtensionAction.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,8 +307,11 @@
 			files = (
 				F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */,
-				F3A1B469220288D70007FC7E /* ActionViewController.swift in Sources */,
+				F3A1B469220288D70007FC7E /* MainActionViewController.swift in Sources */,
+				F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */,
 				F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */,
+				F3ECDE822277290800C67293 /* Keys.swift in Sources */,
+				F3ECDE862277579E00C67293 /* EditScriptViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,14 +340,6 @@
 				F3A1B45822027C9F0007FC7E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		F3A1B46A220288D70007FC7E /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3A1B46B220288D70007FC7E /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -461,7 +475,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.sipple.Safari-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -480,7 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.sipple.Safari-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -499,7 +513,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.sipple.Safari-Extension.My-Sweet-HWS-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -518,7 +532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.sipple.Safari-Extension.My-Sweet-HWS-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

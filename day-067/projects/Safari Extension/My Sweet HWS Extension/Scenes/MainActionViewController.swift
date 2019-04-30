@@ -1,5 +1,5 @@
 //
-//  ActionViewController.swift
+//  MainActionViewController.swift
 //  My Sweet HWS Extension
 //
 //  Created by Brian Sipple on 1/30/19.
@@ -9,17 +9,21 @@
 import UIKit
 import MobileCoreServices
 
-class ActionViewController: UIViewController {
-    @IBOutlet weak var scriptTextView: UITextView!
+class MainActionViewController: UITableViewController {
+    @IBOutlet weak var siteHistoryButton: UIBarButtonItem!
     
-    private lazy var notificationCenter = NotificationCenter.default
+    private lazy var userDefaults = UserDefaults.standard
+    
     private var injectionPresets: [Injection] = []
-    private var selectedJavaScriptText: String = ""
+    private var previousSiteInjections: [Injection] = []
     
-    private let keyboardNotificationNames = [
-        UIResponder.keyboardWillHideNotification,
-        UIResponder.keyboardWillChangeFrameNotification
-    ]
+    private var customSiteInjections: [Injection] = [] {
+        didSet {
+            userDefaults.set(customSiteInjections, forKey: Keys.UserDefaults.customInjections)
+        }
+    }
+    
+    private var selectedJavaScriptText: String = ""
     
     var currentPageSnapshot: PageSnapshot! {
         didSet {
@@ -33,7 +37,7 @@ class ActionViewController: UIViewController {
 
 // MARK: - Computeds
 
-extension ActionViewController {
+extension MainActionViewController {
     
     var userJavaScriptExtensionItem: NSExtensionItem {
         let argument: NSDictionary = ["userJavaScript": selectedJavaScriptText]
@@ -51,28 +55,19 @@ extension ActionViewController {
         
         return extensionItem
     }
-    
-    
-    var scriptPresetActions: [UIAlertAction] {
-        return injectionPresets.map { injection in
-            return UIAlertAction(title: injection.title, style: .default, handler: { [weak self] _ in
-                self?.selectedJavaScriptText = injection.evalString
-                self?.exitExtension()
-            })
-        }
-    }
 }
 
 
 // MARK: - Lifecycle
 
-extension ActionViewController {
+extension MainActionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotificationObservers()
-        loadInjectionOptions()
+        loadInjectionPresets()
+        loadPreviousSiteInjections()
+        loadCustomInjections()
         processItemProvider()
     }
 }
@@ -80,7 +75,7 @@ extension ActionViewController {
 
 // MARK: - Event/Action handling
 
-extension ActionViewController {
+extension MainActionViewController {
     
     @IBAction func promptForScriptPresets(_ sender: UIBarButtonItem) {
         let alertVC = UIAlertController(
@@ -89,7 +84,20 @@ extension ActionViewController {
             preferredStyle: .actionSheet
         )
         
-        scriptPresetActions.forEach { alertVC.addAction($0) }
+        alertActionsFor(injectionPresets).forEach { alertVC.addAction($0) }
+        
+        present(alertVC, animated: true)
+    }
+    
+    
+    @IBAction func promptForPreviousSiteScripts(_ sender: UIBarButtonItem) {
+        let alertVC = UIAlertController(
+            title: "Site History",
+            message: "Script you previously ran on \(currentPageSnapshot.title)",
+            preferredStyle: .actionSheet
+        )
+        
+        alertActionsFor(previousSiteInjections).forEach { alertVC.addAction($0) }
         
         present(alertVC, animated: true)
     }
@@ -102,49 +110,47 @@ extension ActionViewController {
     }
     
     
-    @objc func keyboardDidMove(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        extensionContext?.completeRequest(returningItems: nil)
+    }
+}
+
+
+// MARK: - Navigation
+
+extension MainActionViewController {
+ 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            segue.identifier == StoryboardID.Segue.presentEditInjectionScriptView,
+            let editScriptVC = segue.destination.children.first as? EditScriptViewController
+        else { return }
         
-        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keybardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        editScriptVC.pageSnapshot = currentPageSnapshot
+    }
+    
+    
+    @IBAction func unwindFromCancelNewScript(unwindSegue: UIStoryboardSegue) {}
+    
+    
+    @IBAction func unwindFromSaveNewScript(unwindSegue: UIStoryboardSegue) {
+        guard let editScriptVC = unwindSegue.source as? EditScriptViewController else { return }
         
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            // 🔑 workaround for hardware keyboards being connected
-            scriptTextView.contentInset = UIEdgeInsets.zero
-        } else {
-            scriptTextView.contentInset = UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: keybardViewEndFrame.height,
-                right: 0
-            )
-        }
-        
-        scriptTextView.scrollIndicatorInsets = scriptTextView.contentInset
-        
-        // scroll to the current positoin of the text entry cursor if it's off screen
-        scriptTextView.scrollRangeToVisible(scriptTextView.selectedRange)
+//        if editScriptVC.isNewScript {
+            customInjectionCreated(editScriptVC.injectionScript)
+//        } else {
+//            // get selected index path
+//            // update custom scripts array at the selected row
+//        }
     }
 }
 
 
 // MARK: - Private Helper Methods
 
-private extension ActionViewController {
+private extension MainActionViewController {
     
-    func setupNotificationObservers() {
-        for notificationName in keyboardNotificationNames {
-            notificationCenter.addObserver(
-                self,
-                selector: #selector(keyboardDidMove(notification:)),
-                name: notificationName,
-                object: nil
-            )
-        }
-    }
-    
-    
-    func loadInjectionOptions() {
+    func loadInjectionPresets() {
         guard let presetURL = Bundle.main.url(forResource: "injection-presets", withExtension: "json") else {
             preconditionFailure("Failed to load injection presets from Bundle")
         }
@@ -162,7 +168,30 @@ private extension ActionViewController {
                 fatalError("Error while loading injection presets:\n\n\(error.localizedDescription)")
             }
         }
-
+    }
+    
+    
+    func loadPreviousSiteInjections() {
+        if let injections = userDefaults.object(forKey: Keys.UserDefaults.siteSpecificInjections) as? [Injection] {
+            previousSiteInjections = injections
+        } else {
+            siteHistoryButton.isEnabled = false
+        }
+    }
+    
+    
+    func loadCustomInjections() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            if let injections = self?
+                .userDefaults.object(forKey: Keys.UserDefaults.customInjections)
+                as? [Injection]
+            {
+                DispatchQueue.main.async {
+                    self?.customSiteInjections = injections
+                    self?.tableView.reloadData()
+                }
+            }
+        }
     }
     
     
@@ -227,5 +256,23 @@ private extension ActionViewController {
             returningItems: [userJavaScriptExtensionItem],
             completionHandler: nil
         )
+    }
+    
+    
+    func alertActionsFor(_ injections: [Injection]) -> [UIAlertAction] {
+        return injections.map { injection in
+            return UIAlertAction(title: injection.title, style: .default, handler: { [weak self] _ in
+                self?.selectedJavaScriptText = injection.evalString
+                self?.exitExtension()
+            })
+        }
+    }
+    
+    
+    func customInjectionCreated(_ injection: Injection) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        customSiteInjections.insert(injection, at: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
 }
