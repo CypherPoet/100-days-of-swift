@@ -18,8 +18,11 @@ class MainActionViewController: UITableViewController {
     private var injectionPresets: [Injection] = []
     private var selectedJavaScriptText: String = ""
     
-    private var currentPageSnapshot: PageSnapshot! {
-        didSet { didTake(currentPageSnapshot) }
+    private var currentPageSnapshot: PageSnapshot? {
+        didSet {
+            guard let snapshot = currentPageSnapshot else { return }
+            didTake(snapshot)
+        }
     }
     
 }
@@ -46,8 +49,24 @@ extension MainActionViewController {
         return extensionItem
     }
     
+    
+    var customInjectionsFromDefaults: [Injection]? {
+        if let injectionData = userDefaults.data(forKey: Keys.UserDefaults.customInjections) {
+            let decoder = JSONDecoder()
+            
+            do {
+                return try decoder.decode([Injection].self, from: injectionData)
+            } catch {
+                fatalError("Error while attempting to decode injection data:\n\n\(error.localizedDescription)")
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    
     var previousSiteInjections: [Injection] {
-        return dataSource.models.filter { $0.siteURL?.host == currentPageSnapshot.url.host }
+        return dataSource.models.filter { $0.siteURL?.host == currentPageSnapshot?.url.host }
     }
 
 }
@@ -67,6 +86,19 @@ extension MainActionViewController {
 }
 
 
+// MARK: - UITableViewDelegate
+
+extension MainActionViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let injection = dataSource.models[indexPath.row]
+        
+        selectedJavaScriptText = injection.evalString
+        print("New `selectedJavaScriptText`: \(selectedJavaScriptText)")
+        exitExtension()
+    }
+}
+
+
 // MARK: - Event/Action handling
 
 extension MainActionViewController {
@@ -74,7 +106,7 @@ extension MainActionViewController {
     @IBAction func promptForScriptPresets(_ sender: UIBarButtonItem) {
         let alertVC = UIAlertController(
             title: "JavaScript Presets",
-            message: "Select a script to run on \(currentPageSnapshot.title)",
+            message: "Select a script to run on \(currentPageSnapshot!.title)",
             preferredStyle: .actionSheet
         )
         
@@ -87,20 +119,13 @@ extension MainActionViewController {
     @IBAction func promptForPreviousSiteScripts(_ sender: UIBarButtonItem) {
         let alertVC = UIAlertController(
             title: "Site History",
-            message: "Script you previously ran on \(currentPageSnapshot.title)",
+            message: "Scripts previously ran on \(currentPageSnapshot!.title)",
             preferredStyle: .actionSheet
         )
         
         alertActionsFor(previousSiteInjections).forEach { alertVC.addAction($0) }
         
         present(alertVC, animated: true)
-    }
-    
-
-    @IBAction func extensionCompleted() {
-        // Return any edited content to the host app.
-        // This template doesn't do anything, so we just echo the passed in items.
-        exitExtension()
     }
     
     
@@ -169,10 +194,7 @@ private extension MainActionViewController {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
-            let injections: [Injection] = (
-                self.userDefaults.object(forKey: Keys.UserDefaults.customInjections)
-                as? [Injection]
-            ) ?? []
+            let injections: [Injection] = self.customInjectionsFromDefaults ?? []
             
             DispatchQueue.main.async {
                 let dataSource = TableViewDataSource(
@@ -257,12 +279,14 @@ private extension MainActionViewController {
     
     
     func alertActionsFor(_ injections: [Injection]) -> [UIAlertAction] {
-        return injections.map { injection in
+        let injectionActions = injections.map { injection in
             return UIAlertAction(title: injection.title, style: .default, handler: { [weak self] _ in
                 self?.selectedJavaScriptText = injection.evalString
                 self?.exitExtension()
             })
         }
+        
+        return injectionActions + [UIAlertAction(title: "Cancel", style: .cancel)]
     }
     
     

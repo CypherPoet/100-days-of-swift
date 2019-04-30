@@ -124,7 +124,7 @@ private extension EditScriptViewController {
         introLabel.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         introLabel.text = """
-        Enter the JavaScript that you'd like to run on "\(pageSnapshot.url)".
+        Enter the JavaScript that you'd like to run on \(pageSnapshot.url.host ?? "this site").
         """
         
         title =  pageSnapshot.url.host
