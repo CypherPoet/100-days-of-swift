@@ -24,6 +24,7 @@
 		F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE83227756C800C67293 /* StoryboardID.swift */; };
 		F3ECDE862277579E00C67293 /* EditScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE852277579E00C67293 /* EditScriptViewController.swift */; };
 		F3ECDE88227840DD00C67293 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE87227840DC00C67293 /* MainInterface.storyboard */; };
+		F3ECDE8E22784D6800C67293 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		F3ECDE83227756C800C67293 /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
 		F3ECDE852277579E00C67293 /* EditScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScriptViewController.swift; sourceTree = "<group>"; };
 		F3ECDE87227840DC00C67293 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		F3A1B465220288D70007FC7E /* My Sweet HWS Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F3ECDE8C22784D4F00C67293 /* Reusables */,
 				F3ECDE80227728D800C67293 /* Helpers */,
 				F3ECDE5B2275CEFA00C67293 /* Extensions */,
 				F3ECDE582275C01100C67293 /* Scenes */,
@@ -187,6 +190,14 @@
 				F3ECDE83227756C800C67293 /* StoryboardID.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F3ECDE8C22784D4F00C67293 /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */,
+			);
+			path = Reusables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +318,7 @@
 			files = (
 				F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */,
+				F3ECDE8E22784D6800C67293 /* TableViewDataSource.swift in Sources */,
 				F3A1B469220288D70007FC7E /* MainActionViewController.swift in Sources */,
 				F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */,
 				F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */,

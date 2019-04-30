@@ -13,25 +13,15 @@ class MainActionViewController: UITableViewController {
     @IBOutlet weak var siteHistoryButton: UIBarButtonItem!
     
     private lazy var userDefaults = UserDefaults.standard
+    private var dataSource: TableViewDataSource<Injection>!
     
     private var injectionPresets: [Injection] = []
-    private var previousSiteInjections: [Injection] = []
-    
-    private var customSiteInjections: [Injection] = [] {
-        didSet {
-            userDefaults.set(customSiteInjections, forKey: Keys.UserDefaults.customInjections)
-        }
-    }
-    
     private var selectedJavaScriptText: String = ""
     
-    var currentPageSnapshot: PageSnapshot! {
-        didSet {
-            if let pageSnapshot = currentPageSnapshot {
-                didTake(pageSnapshot)
-            }
-        }
+    private var currentPageSnapshot: PageSnapshot! {
+        didSet { didTake(currentPageSnapshot) }
     }
+    
 }
 
 
@@ -55,6 +45,11 @@ extension MainActionViewController {
         
         return extensionItem
     }
+    
+    var previousSiteInjections: [Injection] {
+        return dataSource.models.filter { $0.siteURL?.host == currentPageSnapshot.url.host }
+    }
+
 }
 
 
@@ -66,7 +61,6 @@ extension MainActionViewController {
         super.viewDidLoad()
         
         loadInjectionPresets()
-        loadPreviousSiteInjections()
         loadCustomInjections()
         processItemProvider()
     }
@@ -171,25 +165,28 @@ private extension MainActionViewController {
     }
     
     
-    func loadPreviousSiteInjections() {
-        if let injections = userDefaults.object(forKey: Keys.UserDefaults.siteSpecificInjections) as? [Injection] {
-            previousSiteInjections = injections
-        } else {
-            siteHistoryButton.isEnabled = false
-        }
-    }
-    
-    
     func loadCustomInjections() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            if let injections = self?
-                .userDefaults.object(forKey: Keys.UserDefaults.customInjections)
+            guard let self = self else { return }
+            
+            let injections: [Injection] = (
+                self.userDefaults.object(forKey: Keys.UserDefaults.customInjections)
                 as? [Injection]
-            {
-                DispatchQueue.main.async {
-                    self?.customSiteInjections = injections
-                    self?.tableView.reloadData()
-                }
+            ) ?? []
+            
+            DispatchQueue.main.async {
+                let dataSource = TableViewDataSource(
+                    models: injections,
+                    cellReuseIdentifier: StoryboardID.ReuseIdentifier.scriptTableCell,
+                    cellConfigurator: { (injection, cell) in
+                        cell.textLabel?.text = injection.title
+                    }
+                )
+                
+                self.dataSource = dataSource
+                self.tableView.dataSource = dataSource
+                self.siteHistoryButton.isEnabled = self.previousSiteInjections.isEmpty
+                self.tableView.reloadData()
             }
         }
     }
@@ -272,7 +269,20 @@ private extension MainActionViewController {
     func customInjectionCreated(_ injection: Injection) {
         let indexPath = IndexPath(row: 0, section: 0)
         
-        customSiteInjections.insert(injection, at: 0)
+        dataSource.models.insert(injection, at: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        save(injections: dataSource.models, withKey: Keys.UserDefaults.customInjections)
+    }
+    
+    
+    func save(injections: [Injection], withKey userDefaultsKey: String) {
+        let encoder = JSONEncoder()
+        
+        do {
+            let injectionData = try encoder.encode(injections)
+            userDefaults.set(injectionData, forKey: userDefaultsKey)
+        } catch {
+            fatalError("Error while saving injections:\n\n\(error.localizedDescription)")
+        }
     }
 }
