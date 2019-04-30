@@ -79,8 +79,6 @@ extension MainActionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadInjectionPresets()
-        loadCustomInjections()
         processItemProvider()
     }
 }
@@ -207,7 +205,7 @@ private extension MainActionViewController {
                 
                 self.dataSource = dataSource
                 self.tableView.dataSource = dataSource
-                self.siteHistoryButton.isEnabled = self.previousSiteInjections.isEmpty
+                self.siteHistoryButton.isEnabled = !self.previousSiteInjections.isEmpty
                 self.tableView.reloadData()
             }
         }
@@ -230,7 +228,8 @@ private extension MainActionViewController {
             completionHandler: { [weak self] (dict, error) in
                 guard
                     let itemDictionary = dict as? NSDictionary,
-                    let javaScriptData = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary
+                    let javaScriptData = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary,
+                    let pageSnapshot = self?.pageSnapshot(from: javaScriptData)
                 else {
                     DispatchQueue.main.async {
                         self?.display(alertMessage: "Failed to find data for current webpage.")
@@ -238,14 +237,8 @@ private extension MainActionViewController {
                     return
                 }
                 
-                if let pageSnapshot = self?.pageSnapshot(from: javaScriptData) {
-                    DispatchQueue.main.async {
-                        self?.currentPageSnapshot = pageSnapshot
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self?.display(alertMessage: "Failed to find data for current webpage.")
-                    }
+                DispatchQueue.main.async {
+                    self?.currentPageSnapshot = pageSnapshot
                 }
             }
         )
@@ -267,6 +260,8 @@ private extension MainActionViewController {
     
     func didTake(_ pageSnapshot: PageSnapshot) {
         title = pageSnapshot.title
+        loadInjectionPresets()
+        loadCustomInjections()
     }
     
     
