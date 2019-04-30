@@ -56,27 +56,13 @@ extension EditScriptViewController {
 extension EditScriptViewController {
     
     @objc func keyboardDidMove(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        
-        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keybardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            // 🔑 workaround for hardware keyboards being connected
-            scriptTextView.contentInset = UIEdgeInsets.zero
-        } else {
-            scriptTextView.contentInset = UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: keybardViewEndFrame.height,
-                right: 0
-            )
+        if let edgeInsets = edgeInsetsFromKeyboardChange(notification) {
+            scriptTextView.contentInset = edgeInsets
+            scriptTextView.scrollIndicatorInsets = edgeInsets
+            
+            // scroll to the current position of the text entry cursor if it's off screen
+            scriptTextView.scrollRangeToVisible(scriptTextView.selectedRange)
         }
-        
-        scriptTextView.scrollIndicatorInsets = scriptTextView.contentInset
-        
-        // scroll to the current positoin of the text entry cursor if it's off screen
-        scriptTextView.scrollRangeToVisible(scriptTextView.selectedRange)
     }
     
     

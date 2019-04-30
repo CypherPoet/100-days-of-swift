@@ -87,6 +87,7 @@ extension MainActionViewController {
 // MARK: - UITableViewDelegate
 
 extension MainActionViewController {
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let injection = dataSource.models[indexPath.row]
         
@@ -94,6 +95,8 @@ extension MainActionViewController {
         print("New `selectedJavaScriptText`: \(selectedJavaScriptText)")
         exitExtension()
     }
+    
+    
 }
 
 

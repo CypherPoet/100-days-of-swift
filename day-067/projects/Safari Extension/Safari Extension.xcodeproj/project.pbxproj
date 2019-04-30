@@ -25,6 +25,7 @@
 		F3ECDE862277579E00C67293 /* EditScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE852277579E00C67293 /* EditScriptViewController.swift */; };
 		F3ECDE88227840DD00C67293 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE87227840DC00C67293 /* MainInterface.storyboard */; };
 		F3ECDE8E22784D6800C67293 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */; };
+		F3ECDEAF2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		F3ECDE852277579E00C67293 /* EditScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScriptViewController.swift; sourceTree = "<group>"; };
 		F3ECDE87227840DC00C67293 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+EdgeInsetsFromKeyboardChange.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */,
+				F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			files = (
 				F3ECDE5F2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F3ECDE5A2275CB2100C67293 /* PageSnapshot.swift in Sources */,
+				F3ECDEAF2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift in Sources */,
 				F3ECDE8E22784D6800C67293 /* TableViewDataSource.swift in Sources */,
 				F3A1B469220288D70007FC7E /* MainActionViewController.swift in Sources */,
 				F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */,
