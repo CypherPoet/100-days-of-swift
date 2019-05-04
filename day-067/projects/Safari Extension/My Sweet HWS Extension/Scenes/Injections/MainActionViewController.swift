@@ -154,8 +154,7 @@ private extension MainActionViewController {
             completionHandler: { [weak self] (dict, error) in
                 guard
                     let itemDictionary = dict as? NSDictionary,
-                    let javaScriptData = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary,
-                    let pageSnapshot = self?.pageSnapshot(from: javaScriptData)
+                    let javaScriptData = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary
                 else {
                     DispatchQueue.main.async {
                         self?.display(alertMessage: "Failed to find data for current webpage.")
@@ -163,24 +162,13 @@ private extension MainActionViewController {
                     return
                 }
                 
+                let pageSnapshot: PageSnapshot = .make(from: javaScriptData)
+                
                 DispatchQueue.main.async {
                     self?.setupViewModel(with: pageSnapshot)
                 }
             }
         )
-    }
-    
-    
-    func pageSnapshot(from javaScriptData: NSDictionary) -> PageSnapshot? {
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: javaScriptData)
-            let decoder = JSONDecoder()
-            
-            return try decoder.decode(PageSnapshot.self, from: jsonData)
-        } catch {
-            print("Error while attempting to take page snapshot: \(error.localizedDescription)")
-            return nil
-        }
     }
     
     

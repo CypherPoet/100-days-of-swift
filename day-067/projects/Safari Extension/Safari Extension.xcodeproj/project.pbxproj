@@ -10,6 +10,7 @@
 		F31748BB227DFC310096F751 /* InjectionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748BA227DFC310096F751 /* InjectionListViewModel.swift */; };
 		F31748BD227DFC540096F751 /* InjectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748BC227DFC540096F751 /* InjectionManager.swift */; };
 		F31748BF227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748BE227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift */; };
+		F31748C1227E4BDF0096F751 /* PageSnapshot+makeFromJavaScriptData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748C0227E4BDF0096F751 /* PageSnapshot+makeFromJavaScriptData.swift */; };
 		F3A1B44F22027C9E0007FC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B44E22027C9E0007FC7E /* AppDelegate.swift */; };
 		F3A1B45122027C9E0007FC7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B45022027C9E0007FC7E /* MainViewController.swift */; };
 		F3A1B45422027C9E0007FC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B45222027C9E0007FC7E /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		F31748BA227DFC310096F751 /* InjectionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionListViewModel.swift; sourceTree = "<group>"; };
 		F31748BC227DFC540096F751 /* InjectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionManager.swift; sourceTree = "<group>"; };
 		F31748BE227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+MakeForInjections.swift"; sourceTree = "<group>"; };
+		F31748C0227E4BDF0096F751 /* PageSnapshot+makeFromJavaScriptData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageSnapshot+makeFromJavaScriptData.swift"; sourceTree = "<group>"; };
 		F3A1B44B22027C9E0007FC7E /* Safari Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safari Extension.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A1B44E22027C9E0007FC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A1B45022027C9E0007FC7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */,
 				F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */,
 				F31748BE227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift */,
+				F31748C0227E4BDF0096F751 /* PageSnapshot+makeFromJavaScriptData.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				F31748BB227DFC310096F751 /* InjectionListViewModel.swift in Sources */,
 				F3ECDE862277579E00C67293 /* AddEditScriptViewController.swift in Sources */,
 				F31748BD227DFC540096F751 /* InjectionManager.swift in Sources */,
+				F31748C1227E4BDF0096F751 /* PageSnapshot+makeFromJavaScriptData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
