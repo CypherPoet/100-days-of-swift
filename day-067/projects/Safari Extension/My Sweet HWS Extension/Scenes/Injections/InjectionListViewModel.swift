@@ -79,4 +79,12 @@ extension InjectionListViewModel {
         
         completionHandler(customInjections)
     }
+    
+    
+    func delete(customInjectionAt index: Int, then completionHandler: @escaping CompletionHandler) {
+        customInjections.remove(at: index)
+        injectionManager.saveCustom(customInjections)
+        
+        completionHandler(customInjections)
+    }
 }

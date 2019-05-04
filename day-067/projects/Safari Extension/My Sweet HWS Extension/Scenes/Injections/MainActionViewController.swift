@@ -54,20 +54,6 @@ extension MainActionViewController {
 }
 
 
-// MARK: - UITableViewDelegate
-
-extension MainActionViewController {
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let injection = dataSource.models[indexPath.row]
-        
-        selectedJavaScriptText = injection.evalString
-        print("New `selectedJavaScriptText`: \(selectedJavaScriptText)")
-        exitExtension()
-    }
-}
-
-
 // MARK: - Event/Action handling
 
 extension MainActionViewController {
@@ -110,7 +96,7 @@ extension MainActionViewController {
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
-            segue.identifier == StoryboardID.Segue.presentEditInjectionScriptView,
+            segue.identifier == StoryboardID.Segue.presentAddEditInjectionScriptView,
             let viewController = segue.destination.children.first as? AddEditScriptViewController
         else { return }
         
@@ -130,6 +116,31 @@ extension MainActionViewController {
 //            // get selected index path
 //            // update custom scripts array at the selected row
 //        }
+    }
+}
+
+
+
+// MARK: - UITableViewDelegate
+
+extension MainActionViewController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let injection = dataSource.models[indexPath.row]
+        
+        selectedJavaScriptText = injection.evalString
+        print("New `selectedJavaScriptText`: \(selectedJavaScriptText)")
+        exitExtension()
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteActionSelected)
+        let edit = UITableViewRowAction(style: .normal, title: "Edit", handler: editActionSelected)
+        
+        edit.backgroundColor = .blue
+        
+        return [delete, edit]
     }
 }
 
@@ -181,10 +192,12 @@ private extension MainActionViewController {
             
             let dataSource: TableViewDataSource<Injection> = .make(for: injections)
             
-            self.dataSource = dataSource
-            self.tableView.dataSource = dataSource
-            self.siteHistoryButton.isEnabled = self.viewModel.hasPreviousSiteInjections
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.dataSource = dataSource
+                self.tableView.dataSource = dataSource
+                self.siteHistoryButton.isEnabled = self.viewModel.hasPreviousSiteInjections
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -216,5 +229,20 @@ private extension MainActionViewController {
             self?.dataSource.models.insert(injection, at: 0)
             self?.tableView.insertRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    
+    func deleteActionSelected(action: UITableViewRowAction, indexPath: IndexPath) {
+        viewModel.delete(customInjectionAt: indexPath.row) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.dataSource.models.remove(at: indexPath.row)
+                self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
+    
+    
+    func editActionSelected(action: UITableViewRowAction, indexPath: IndexPath) {
+        performSegue(withIdentifier: StoryboardID.Segue.presentAddEditInjectionScriptView, sender: self)
     }
 }

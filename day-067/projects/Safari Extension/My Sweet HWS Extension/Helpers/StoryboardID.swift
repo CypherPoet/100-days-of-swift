@@ -14,7 +14,7 @@ enum StoryboardID {
     }
     
     enum Segue {
-        static let presentEditInjectionScriptView = "Add Injection Script"
+        static let presentAddEditInjectionScriptView = "Present Add/Edit Injection Script"
         static let unwindFromSavingInjectionScript = "Unwind from saving injection script"
     }
 }

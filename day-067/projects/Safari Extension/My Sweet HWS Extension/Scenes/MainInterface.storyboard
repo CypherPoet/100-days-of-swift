@@ -56,7 +56,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xju-yx-7uP">
                             <connections>
-                                <segue destination="Vqj-27-J2E" kind="presentation" identifier="Add Injection Script" id="akE-v3-BhF"/>
+                                <segue destination="Vqj-27-J2E" kind="presentation" identifier="Present Add/Edit Injection Script" id="akE-v3-BhF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -160,7 +160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pH0-Zf-n1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dRW-w2-TpU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="134"/>
+            <point key="canvasLocation" x="2484" y="854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ebG-IU-QLq">
@@ -200,7 +200,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YG8-Me-tO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="134"/>
+            <point key="canvasLocation" x="1765" y="854"/>
         </scene>
     </scenes>
 </document>
