@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditScriptViewController: UIViewController {
+class AddEditScriptViewController: UIViewController {
     @IBOutlet weak var scriptTextView: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var introLabel: UILabel!
@@ -34,7 +34,7 @@ class EditScriptViewController: UIViewController {
 
 // MARK: - Lifecycle
 
-extension EditScriptViewController {
+extension AddEditScriptViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ extension EditScriptViewController {
 
 // MARK: - Event handling
 
-extension EditScriptViewController {
+extension AddEditScriptViewController {
     
     @objc func keyboardDidMove(notification: NSNotification) {
         if let edgeInsets = edgeInsetsFromKeyboardChange(notification) {
@@ -74,7 +74,7 @@ extension EditScriptViewController {
 
 // MARK: - UITextViewDelegate
 
-extension EditScriptViewController: UITextViewDelegate {
+extension AddEditScriptViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         UIView.animate(withDuration: 0.3, animations: {
@@ -91,7 +91,7 @@ extension EditScriptViewController: UITextViewDelegate {
 
 // MARK: - Private Helper Methods
 
-private extension EditScriptViewController {
+private extension AddEditScriptViewController {
     
     func setupNotificationObservers() {
         for notificationName in keyboardNotificationNames {
@@ -106,7 +106,7 @@ private extension EditScriptViewController {
     
     
     func setupUI() {
-        scriptTextView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        scriptTextView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         introLabel.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         introLabel.text = """

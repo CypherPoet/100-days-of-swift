@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F31748BB227DFC310096F751 /* InjectionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748BA227DFC310096F751 /* InjectionListViewModel.swift */; };
+		F31748BD227DFC540096F751 /* InjectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748BC227DFC540096F751 /* InjectionManager.swift */; };
+		F31748BF227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31748BE227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift */; };
 		F3A1B44F22027C9E0007FC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B44E22027C9E0007FC7E /* AppDelegate.swift */; };
 		F3A1B45122027C9E0007FC7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B45022027C9E0007FC7E /* MainViewController.swift */; };
 		F3A1B45422027C9E0007FC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A1B45222027C9E0007FC7E /* Main.storyboard */; };
@@ -22,7 +25,7 @@
 		F3ECDE612276006600C67293 /* injection-presets.json in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE602276006600C67293 /* injection-presets.json */; };
 		F3ECDE822277290800C67293 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE812277290800C67293 /* Keys.swift */; };
 		F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE83227756C800C67293 /* StoryboardID.swift */; };
-		F3ECDE862277579E00C67293 /* EditScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE852277579E00C67293 /* EditScriptViewController.swift */; };
+		F3ECDE862277579E00C67293 /* AddEditScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE852277579E00C67293 /* AddEditScriptViewController.swift */; };
 		F3ECDE88227840DD00C67293 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3ECDE87227840DC00C67293 /* MainInterface.storyboard */; };
 		F3ECDE8E22784D6800C67293 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */; };
 		F3ECDEAF2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */; };
@@ -53,6 +56,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F31748BA227DFC310096F751 /* InjectionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionListViewModel.swift; sourceTree = "<group>"; };
+		F31748BC227DFC540096F751 /* InjectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionManager.swift; sourceTree = "<group>"; };
+		F31748BE227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+MakeForInjections.swift"; sourceTree = "<group>"; };
 		F3A1B44B22027C9E0007FC7E /* Safari Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safari Extension.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A1B44E22027C9E0007FC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A1B45022027C9E0007FC7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +77,7 @@
 		F3ECDE602276006600C67293 /* injection-presets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "injection-presets.json"; sourceTree = "<group>"; };
 		F3ECDE812277290800C67293 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		F3ECDE83227756C800C67293 /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
-		F3ECDE852277579E00C67293 /* EditScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScriptViewController.swift; sourceTree = "<group>"; };
+		F3ECDE852277579E00C67293 /* AddEditScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditScriptViewController.swift; sourceTree = "<group>"; };
 		F3ECDE87227840DC00C67293 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		F3ECDE8D22784D6800C67293 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+EdgeInsetsFromKeyboardChange.swift"; sourceTree = "<group>"; };
@@ -95,6 +101,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F31748B6227DF6470096F751 /* AddEdit */ = {
+			isa = PBXGroup;
+			children = (
+				F3ECDE852277579E00C67293 /* AddEditScriptViewController.swift */,
+			);
+			path = AddEdit;
+			sourceTree = "<group>";
+		};
+		F31748B7227DF6600096F751 /* Injections */ = {
+			isa = PBXGroup;
+			children = (
+				F3A1B468220288D70007FC7E /* MainActionViewController.swift */,
+				F31748BA227DFC310096F751 /* InjectionListViewModel.swift */,
+				F31748BC227DFC540096F751 /* InjectionManager.swift */,
+				F31748B6227DF6470096F751 /* AddEdit */,
+			);
+			path = Injections;
+			sourceTree = "<group>";
+		};
 		F3A1B44222027C9E0007FC7E = {
 			isa = PBXGroup;
 			children = (
@@ -170,9 +195,8 @@
 		F3ECDE582275C01100C67293 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F31748B7227DF6600096F751 /* Injections */,
 				F3ECDE87227840DC00C67293 /* MainInterface.storyboard */,
-				F3A1B468220288D70007FC7E /* MainActionViewController.swift */,
-				F3ECDE852277579E00C67293 /* EditScriptViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -182,6 +206,7 @@
 			children = (
 				F3ECDE5E2275CFC900C67293 /* UIViewController+DisplayAlertMessage.swift */,
 				F3ECDEAE2278B01B00C67293 /* UIViewController+EdgeInsetsFromKeyboardChange.swift */,
+				F31748BE227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,9 +350,12 @@
 				F3ECDE8E22784D6800C67293 /* TableViewDataSource.swift in Sources */,
 				F3A1B469220288D70007FC7E /* MainActionViewController.swift in Sources */,
 				F3ECDE84227756C800C67293 /* StoryboardID.swift in Sources */,
+				F31748BF227E42A90096F751 /* TableViewDataSource+MakeForInjections.swift in Sources */,
 				F3ECDE552275BDAB00C67293 /* Injection.swift in Sources */,
 				F3ECDE822277290800C67293 /* Keys.swift in Sources */,
-				F3ECDE862277579E00C67293 /* EditScriptViewController.swift in Sources */,
+				F31748BB227DFC310096F751 /* InjectionListViewModel.swift in Sources */,
+				F3ECDE862277579E00C67293 /* AddEditScriptViewController.swift in Sources */,
+				F31748BD227DFC540096F751 /* InjectionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

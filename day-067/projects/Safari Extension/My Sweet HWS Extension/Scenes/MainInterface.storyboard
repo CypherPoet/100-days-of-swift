@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Script Table Cell" id="K3o-ro-HLb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Injection Table Cell" id="K3o-ro-HLb">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K3o-ro-HLb" id="PHB-yi-Czz">
@@ -56,7 +56,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xju-yx-7uP">
                             <connections>
-                                <segue destination="Vqj-27-J2E" kind="presentation" identifier="Present Edit Injection Script View" id="akE-v3-BhF"/>
+                                <segue destination="Vqj-27-J2E" kind="presentation" identifier="Add Injection Script" id="akE-v3-BhF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -67,12 +67,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DeY-cN-HID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1309" y="134"/>
+            <point key="canvasLocation" x="922" y="134"/>
         </scene>
         <!--Script for -->
         <scene sceneID="dHe-v0-Bhc">
             <objects>
-                <viewController id="mMM-od-hma" customClass="EditScriptViewController" customModule="My_Sweet_HWS_Extension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mMM-od-hma" customClass="AddEditScriptViewController" customModule="My_Sweet_HWS_Extension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nv9-aY-f7A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,7 +160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pH0-Zf-n1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dRW-w2-TpU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3366.666666666667" y="133.92857142857142"/>
+            <point key="canvasLocation" x="2732" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ebG-IU-QLq">
@@ -200,7 +200,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YG8-Me-tO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2456.521739130435" y="133.92857142857142"/>
+            <point key="canvasLocation" x="2014" y="134"/>
         </scene>
     </scenes>
 </document>

@@ -10,11 +10,11 @@ import Foundation
 
 enum StoryboardID {
     enum ReuseIdentifier {
-        static let scriptTableCell = "Script Table Cell"
+        static let injectionTableCell = "Injection Table Cell"
     }
     
     enum Segue {
-        static let presentEditInjectionScriptView = "Present Edit Injection Script View"
+        static let presentEditInjectionScriptView = "Add Injection Script"
         static let unwindFromSavingInjectionScript = "Unwind from saving injection script"
     }
 }

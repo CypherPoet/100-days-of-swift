@@ -12,19 +12,10 @@ import MobileCoreServices
 class MainActionViewController: UITableViewController {
     @IBOutlet weak var siteHistoryButton: UIBarButtonItem!
     
-    private lazy var userDefaults = UserDefaults.standard
     private var dataSource: TableViewDataSource<Injection>!
-    
-    private var injectionPresets: [Injection] = []
     private var selectedJavaScriptText: String = ""
     
-    private var currentPageSnapshot: PageSnapshot? {
-        didSet {
-            guard let snapshot = currentPageSnapshot else { return }
-            didTake(snapshot)
-        }
-    }
-    
+    private var viewModel: InjectionListViewModel!
 }
 
 
@@ -48,27 +39,6 @@ extension MainActionViewController {
         
         return extensionItem
     }
-    
-    
-    var customInjectionsFromDefaults: [Injection]? {
-        if let injectionData = userDefaults.data(forKey: Keys.UserDefaults.customInjections) {
-            let decoder = JSONDecoder()
-            
-            do {
-                return try decoder.decode([Injection].self, from: injectionData)
-            } catch {
-                fatalError("Error while attempting to decode injection data:\n\n\(error.localizedDescription)")
-            }
-        } else {
-            return nil
-        }
-    }
-    
-    
-    var previousSiteInjections: [Injection] {
-        return dataSource.models.filter { $0.siteURL?.host == currentPageSnapshot?.url.host }
-    }
-
 }
 
 
@@ -95,8 +65,6 @@ extension MainActionViewController {
         print("New `selectedJavaScriptText`: \(selectedJavaScriptText)")
         exitExtension()
     }
-    
-    
 }
 
 
@@ -107,11 +75,11 @@ extension MainActionViewController {
     @IBAction func promptForScriptPresets(_ sender: UIBarButtonItem) {
         let alertVC = UIAlertController(
             title: "JavaScript Presets",
-            message: "Select a script to run on \(currentPageSnapshot!.title)",
+            message: "Select a script to run on \(viewModel.title)",
             preferredStyle: .actionSheet
         )
         
-        alertActionsFor(injectionPresets).forEach { alertVC.addAction($0) }
+        alertActionsFor(viewModel.injectionPresets).forEach { alertVC.addAction($0) }
         
         present(alertVC, animated: true)
     }
@@ -120,11 +88,11 @@ extension MainActionViewController {
     @IBAction func promptForPreviousSiteScripts(_ sender: UIBarButtonItem) {
         let alertVC = UIAlertController(
             title: "Site History",
-            message: "Scripts previously ran on \(currentPageSnapshot!.title)",
+            message: "Scripts previously ran on \(viewModel.title)",
             preferredStyle: .actionSheet
         )
         
-        alertActionsFor(previousSiteInjections).forEach { alertVC.addAction($0) }
+        alertActionsFor(viewModel.previousSiteInjections).forEach { alertVC.addAction($0) }
         
         present(alertVC, animated: true)
     }
@@ -143,10 +111,10 @@ extension MainActionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             segue.identifier == StoryboardID.Segue.presentEditInjectionScriptView,
-            let editScriptVC = segue.destination.children.first as? EditScriptViewController
+            let viewController = segue.destination.children.first as? AddEditScriptViewController
         else { return }
         
-        editScriptVC.pageSnapshot = currentPageSnapshot
+        viewController.pageSnapshot = viewModel.currentPageSnapshot
     }
     
     
@@ -154,7 +122,7 @@ extension MainActionViewController {
     
     
     @IBAction func unwindFromSaveNewScript(unwindSegue: UIStoryboardSegue) {
-        guard let editScriptVC = unwindSegue.source as? EditScriptViewController else { return }
+        guard let editScriptVC = unwindSegue.source as? AddEditScriptViewController else { return }
         
 //        if editScriptVC.isNewScript {
             customInjectionCreated(editScriptVC.injectionScript)
@@ -169,51 +137,6 @@ extension MainActionViewController {
 // MARK: - Private Helper Methods
 
 private extension MainActionViewController {
-    
-    func loadInjectionPresets() {
-        guard let presetURL = Bundle.main.url(forResource: "injection-presets", withExtension: "json") else {
-            preconditionFailure("Failed to load injection presets from Bundle")
-        }
-        
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            do {
-                let presetData = try Data(contentsOf: presetURL)
-                let decoder = JSONDecoder()
-                let injections = try decoder.decode([Injection].self, from: presetData)
-                
-                DispatchQueue.main.async {
-                    self?.injectionPresets = injections
-                }
-            } catch {
-                fatalError("Error while loading injection presets:\n\n\(error.localizedDescription)")
-            }
-        }
-    }
-    
-    
-    func loadCustomInjections() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            
-            let injections: [Injection] = self.customInjectionsFromDefaults ?? []
-            
-            DispatchQueue.main.async {
-                let dataSource = TableViewDataSource(
-                    models: injections,
-                    cellReuseIdentifier: StoryboardID.ReuseIdentifier.scriptTableCell,
-                    cellConfigurator: { (injection, cell) in
-                        cell.textLabel?.text = injection.title
-                    }
-                )
-                
-                self.dataSource = dataSource
-                self.tableView.dataSource = dataSource
-                self.siteHistoryButton.isEnabled = !self.previousSiteInjections.isEmpty
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     
     func processItemProvider() {
         // `inputItems` should be an array of data that the parent app is sending to our extension to use
@@ -241,7 +164,7 @@ private extension MainActionViewController {
                 }
                 
                 DispatchQueue.main.async {
-                    self?.currentPageSnapshot = pageSnapshot
+                    self?.setupViewModel(with: pageSnapshot)
                 }
             }
         )
@@ -261,10 +184,20 @@ private extension MainActionViewController {
     }
     
     
-    func didTake(_ pageSnapshot: PageSnapshot) {
-        title = pageSnapshot.title
-        loadInjectionPresets()
-        loadCustomInjections()
+    func setupViewModel(with pageSnapshot: PageSnapshot) {
+        viewModel = InjectionListViewModel(currentPageSnapshot: pageSnapshot)
+        title = viewModel.title
+        
+        viewModel.start { [weak self] (injections) in
+            guard let self = self else { return }
+            
+            let dataSource: TableViewDataSource<Injection> = .make(for: injections)
+            
+            self.dataSource = dataSource
+            self.tableView.dataSource = dataSource
+            self.siteHistoryButton.isEnabled = self.viewModel.hasPreviousSiteInjections
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -289,22 +222,11 @@ private extension MainActionViewController {
     
     
     func customInjectionCreated(_ injection: Injection) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        
-        dataSource.models.insert(injection, at: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        save(injections: dataSource.models, withKey: Keys.UserDefaults.customInjections)
-    }
-    
-    
-    func save(injections: [Injection], withKey userDefaultsKey: String) {
-        let encoder = JSONEncoder()
-        
-        do {
-            let injectionData = try encoder.encode(injections)
-            userDefaults.set(injectionData, forKey: userDefaultsKey)
-        } catch {
-            fatalError("Error while saving injections:\n\n\(error.localizedDescription)")
+        viewModel.saveCustom(injection) { [weak self] _ in
+            let indexPath = IndexPath(row: 0, section: 0)
+            
+            self?.dataSource.models.insert(injection, at: 0)
+            self?.tableView.insertRows(at: [indexPath], with: .automatic)
         }
     }
 }
