@@ -1,6 +1,6 @@
 # Day 69: _Project 19: JavaScript Injection_, Part Three
 
-This day covers the second and final part of `Project 19: JavaScript Injection` in _[Hacking with Swift](https://www.hackingwithswift.com/read/19)_. Follow along at https://www.hackingwithswift.com/100/69_.
+This day covers the third and final part of `Project 19: JavaScript Injection` in _[Hacking with Swift](https://www.hackingwithswift.com/read/19)_. Follow along at https://www.hackingwithswift.com/100/69.
 
 
 ## 📒 Field Notes
