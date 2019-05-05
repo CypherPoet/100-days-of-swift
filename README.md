@@ -88,8 +88,13 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 66: Milestone for Projects 16-18](/day-066)
 - [Day 67: _Project 19: JavaScript Injection_, Part One](/day-067)
 - [Day 68: _Project 19: JavaScript Injection_, Part Two](/day-068)
+- [Day 69: _Project 19: JavaScript Injection_, Part Three](/day-069)
 
 </details>
 
-- [Day 69: _Project 19: JavaScript Injection_, Part Three](/day-069)
+- [Day 70: _Project 20: Fireworks Night_, Part One](/day-070)
 
+
+## Projects
+
+I previously created projects alongside _Hacking with Swift_ in a [separate repository](https://github.com/CypherPoet/book--hacking-with-swift). For _100 Days of Swift_, however, I've been extending things further and adding my revised projects to this repo under each "Part One" folder. I'll try to add direct links here soon 🙂.
