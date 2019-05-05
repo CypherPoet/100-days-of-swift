@@ -12,6 +12,10 @@ class AddEditScriptViewController: UIViewController {
     @IBOutlet weak var scriptTextView: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
+    
+    var viewModel: AddEditInjectionViewModel!
+    var savedInjection: Injection?
     
     private lazy var notificationCenter = NotificationCenter.default
 
@@ -19,15 +23,29 @@ class AddEditScriptViewController: UIViewController {
         UIResponder.keyboardWillHideNotification,
         UIResponder.keyboardWillChangeFrameNotification
     ]
-    
-    var injectionScript = Injection(title: "", evalString: "") {
-        didSet {
-            saveButton.isEnabled = !injectionScript.title.isEmpty && !injectionScript.evalString.isEmpty
-        }
+}
+
+
+// MARK: - Computed Properties
+
+extension AddEditScriptViewController {
+    var canSaveChanges: Bool {
+        return (
+            titleTextField.hasText &&
+            scriptTextView.hasText
+        )
     }
     
-    var pageSnapshot: PageSnapshot! {
-        didSet { injectionScript.siteURL = pageSnapshot.url }
+    var injectionChanges: AddEditInjectionViewModel.Changes {
+        return (
+            title: titleTextField.text ?? "",
+            scriptText: scriptTextView.text ?? ""
+        )
+    }
+    
+    
+    var isNewInjection: Bool {
+        return viewModel.isNewInjection
     }
 }
 
@@ -39,9 +57,7 @@ extension AddEditScriptViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let _ = pageSnapshot else {
-            preconditionFailure("No page snapshot data found for new script")
-        }
+        configure(with: viewModel)
         
         scriptTextView.delegate = self
         
@@ -67,7 +83,25 @@ extension AddEditScriptViewController {
     
     
     @IBAction func titleTextChanged(_ textField: UITextField) {
-        injectionScript.title = textField.text ?? ""
+        saveButton.isEnabled = canSaveChanges
+    }
+    
+    
+    @IBAction func saveButtonTapped(_ button: UIBarButtonItem) {
+        // 🔑 This is where a light-weight observable paradigm REALLY starts to come in handy
+        // (e.g.: https://github.com/DeclarativeHub/Bond)
+        viewModel.update(with: injectionChanges) { [weak self] outcome in
+            guard let self = self else { return }
+            
+            switch outcome {
+            case .success(let injection):
+                self.savedInjection = injection
+                self.performSegue(withIdentifier: StoryboardID.Segue.unwindFromSavingInjectionScript, sender: self)
+            case .failure:
+                // 📝 Note: Also a failure: This current level of validation and error handling 😂
+                self.display(alertMessage: "The data you entered was invalid", title: "Save failed")
+            }
+        }
     }
 }
 
@@ -84,7 +118,7 @@ extension AddEditScriptViewController: UITextViewDelegate {
     
     
     func textViewDidChange(_ textView: UITextView) {
-        injectionScript.evalString = textView.text
+        saveButton.isEnabled = canSaveChanges
     }
 }
 
@@ -108,11 +142,15 @@ private extension AddEditScriptViewController {
     func setupUI() {
         scriptTextView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         introLabel.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        saveButton.isEnabled = canSaveChanges
+    }
+    
+    
+    func configure(with viewModel: AddEditInjectionViewModel) {
+        introLabel.text = viewModel.introLabelText
+        title =  viewModel.pageTitle
         
-        introLabel.text = """
-        Enter the JavaScript that you'd like to run on \(pageSnapshot.url.host ?? "this site").
-        """
-        
-        title =  pageSnapshot.url.host
+        titleTextField.text = viewModel.injection.title
+        scriptTextView.text = viewModel.injection.evalString
     }
 }

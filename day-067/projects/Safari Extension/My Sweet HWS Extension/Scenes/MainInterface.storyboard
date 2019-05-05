@@ -146,7 +146,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="viT-oT-0LL">
                             <connections>
-                                <segue destination="dRW-w2-TpU" kind="unwind" identifier="Unwind from saving injection script" unwindAction="unwindFromSaveNewScriptWithUnwindSegue:" id="heG-8v-Vy7"/>
+                                <action selector="saveButtonTapped:" destination="mMM-od-hma" id="mac-qG-cQj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -155,6 +155,8 @@
                         <outlet property="introLabel" destination="iGr-on-W4H" id="eFz-hf-Clw"/>
                         <outlet property="saveButton" destination="viT-oT-0LL" id="9BN-V4-WyP"/>
                         <outlet property="scriptTextView" destination="SIq-4b-veS" id="2vS-FB-ziy"/>
+                        <outlet property="titleTextField" destination="OhB-F0-wUM" id="M9V-hx-6cc"/>
+                        <segue destination="dRW-w2-TpU" kind="unwind" identifier="Unwind from saving injection script" unwindAction="unwindFromSaveNewScriptWithUnwindSegue:" id="YYz-M6-IF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pH0-Zf-n1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,7 +13,9 @@ class MainActionViewController: UITableViewController {
     @IBOutlet weak var siteHistoryButton: UIBarButtonItem!
     
     private var dataSource: TableViewDataSource<Injection>!
+    
     private var selectedJavaScriptText: String = ""
+    private var rowOfLastEdit: Int?
     
     private var viewModel: InjectionListViewModel!
 }
@@ -38,6 +40,18 @@ extension MainActionViewController {
         extensionItem.attachments = [customJSProvider]
         
         return extensionItem
+    }
+    
+    
+    var injectionToEdit: Injection {
+        if
+            tableView.isEditing,
+            let rowIndex = rowOfLastEdit
+        {
+            return dataSource.models[rowIndex]
+        } else {
+            return Injection(title: "", evalString: "")
+        }
     }
 }
 
@@ -100,22 +114,29 @@ extension MainActionViewController {
             let viewController = segue.destination.children.first as? AddEditScriptViewController
         else { return }
         
-        viewController.pageSnapshot = viewModel.currentPageSnapshot
+        let addEditViewModel = AddEditInjectionViewModel(
+            injection: injectionToEdit,
+            isNewInjection: !tableView.isEditing,
+            pageSnapshot: viewModel.currentPageSnapshot
+        )
+        
+        viewController.viewModel = addEditViewModel
     }
     
     
     @IBAction func unwindFromCancelNewScript(unwindSegue: UIStoryboardSegue) {}
     
-    
     @IBAction func unwindFromSaveNewScript(unwindSegue: UIStoryboardSegue) {
-        guard let editScriptVC = unwindSegue.source as? AddEditScriptViewController else { return }
+        guard
+            let viewController = unwindSegue.source as? AddEditScriptViewController,
+            let savedInjection = viewController.savedInjection
+        else { return }
         
-//        if editScriptVC.isNewScript {
-            customInjectionCreated(editScriptVC.injectionScript)
-//        } else {
-//            // get selected index path
-//            // update custom scripts array at the selected row
-//        }
+        if viewController.isNewInjection {
+            customInjectionCreated(savedInjection)
+        } else {
+            customInjectionUpdated(savedInjection, at: rowOfLastEdit!)
+        }
     }
 }
 
@@ -138,7 +159,7 @@ extension MainActionViewController {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteActionSelected)
         let edit = UITableViewRowAction(style: .normal, title: "Edit", handler: editActionSelected)
         
-        edit.backgroundColor = .blue
+        edit.backgroundColor = #colorLiteral(red: 0.7295554295, green: 0.6401704848, blue: 1, alpha: 1)
         
         return [delete, edit]
     }
@@ -223,7 +244,7 @@ private extension MainActionViewController {
     
     
     func customInjectionCreated(_ injection: Injection) {
-        viewModel.saveCustom(injection) { [weak self] _ in
+        viewModel.addCustom(injection) { [weak self] _ in
             let indexPath = IndexPath(row: 0, section: 0)
             
             self?.dataSource.models.insert(injection, at: 0)
@@ -243,6 +264,19 @@ private extension MainActionViewController {
     
     
     func editActionSelected(action: UITableViewRowAction, indexPath: IndexPath) {
+        rowOfLastEdit = indexPath.row
         performSegue(withIdentifier: StoryboardID.Segue.presentAddEditInjectionScriptView, sender: self)
+    }
+    
+    
+    func customInjectionUpdated(_ injection: Injection, at index: Int) {
+        viewModel.updateCustom(injection, at: index) { [weak self] _ in
+            let indexPath = IndexPath(row: index, section: 0)
+            
+            DispatchQueue.main.async {
+                self?.dataSource.models[index] = injection
+                self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }
     }
 }

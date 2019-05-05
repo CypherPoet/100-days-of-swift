@@ -16,9 +16,10 @@ class InjectionListViewModel {
     
     var injectionPresets: [Injection] = []
     var customInjections: [Injection] = []
+    
     var currentPageSnapshot: PageSnapshot
     
-    
+
     init(
         currentPageSnapshot: PageSnapshot,
         injectionManager: InjectionManager = InjectionManager()
@@ -73,15 +74,33 @@ extension InjectionListViewModel {
     }
     
     
-    func saveCustom(_ injection: Injection, then completionHandler: @escaping CompletionHandler) {
+    func addCustom(
+        _ injection: Injection,
+        then completionHandler: @escaping CompletionHandler
+    ) {
         customInjections.append(injection)
         injectionManager.saveCustom(customInjections)
         
         completionHandler(customInjections)
     }
     
-    
-    func delete(customInjectionAt index: Int, then completionHandler: @escaping CompletionHandler) {
+
+    func updateCustom(
+        _ injection: Injection,
+        at index: Int,
+        then completionHandler: @escaping CompletionHandler
+    ) {
+        customInjections[index] = injection
+        injectionManager.saveCustom(customInjections)
+
+        completionHandler(customInjections)
+    }
+
+
+    func delete(
+        customInjectionAt index: Int,
+        then completionHandler: @escaping CompletionHandler
+    ) {
         customInjections.remove(at: index)
         injectionManager.saveCustom(customInjections)
         
