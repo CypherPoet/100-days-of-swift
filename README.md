@@ -87,8 +87,9 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 65: _Project 18: Debugging_, Part Two](/day-065)
 - [Day 66: Milestone for Projects 16-18](/day-066)
 - [Day 67: _Project 19: JavaScript Injection_, Part One](/day-067)
+- [Day 68: _Project 19: JavaScript Injection_, Part Two](/day-068)
 
 </details>
 
-- [Day 68: _Project 19: JavaScript Injection_, Part Two](/day-068)
+- [Day 69: _Project 19: JavaScript Injection_, Part Three](/day-069)
 
