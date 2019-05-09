@@ -144,16 +144,17 @@ private extension MainGameScene {
      */
     @objc func launchFireworks() {
         let burstQuantity = 5
+        let spacingIncrement = CGFloat(frame.maxY / CGFloat(burstQuantity)) / 2
         
         switch LaunchStyle.allCases.randomElement()! {
         case .straightUp:
-            launchStraightUp(burstQuantity)
+            launchStraightUp(numFireworks: burstQuantity, spacingIncrement: spacingIncrement)
         case .fanUp:
-            launchFanUp(burstQuantity)
+            launchFanUp(numFireworks: burstQuantity, spacingIncrement: spacingIncrement)
         case .leftToRight:
-            launchLeftToRight(burstQuantity)
+            launchLeftToRight(numFireworks: burstQuantity, spacingIncrement: spacingIncrement)
         case .rightToLeft:
-            launchRightToLeft(burstQuantity)
+            launchRightToLeft(numFireworks: burstQuantity, spacingIncrement: spacingIncrement)
         }
     }
     
@@ -166,6 +167,7 @@ private extension MainGameScene {
         
         fireworks.append(firework)
         firework.run(motion)
+        
         addChild(firework)
     }
 
@@ -205,28 +207,24 @@ private extension MainGameScene {
     }
     
     
-    func launchStraightUp(_ numFireworks: Int) {
-        let spacingIncrement = (frame.maxY / CGFloat(numFireworks)) / 2.0
-        var currentSpacing = CGFloat(0.0)
+    func launchStraightUp(numFireworks: Int, spacingIncrement: CGFloat) {
+        print("launchStraightUp")
+        let startX = frame.midX - CGFloat(spacingIncrement * floor(CGFloat(numFireworks) / 2))
         
         for n in 0 ..< numFireworks {
-            currentSpacing = (n % 2 == 0) ? currentSpacing : currentSpacing + spacingIncrement
-            let directionFromCenter = CGFloat((n % 2 == 0) ? 1.0 : -1.0)
-            let xPosition = frame.midX + (currentSpacing * directionFromCenter)
+            let xPosition = startX + (CGFloat(n) * spacingIncrement)
                 
             createLaunch(xMovement: 0, xPos: xPosition, yPos: frame.minY - launchEdgeOffset)
         }
     }
     
     
-    func launchFanUp(_ numFireworks: Int) {
-        let spacingIncrement = (frame.maxY / CGFloat(numFireworks)) / 2.0
-        var currentSpacing = CGFloat(0.0)
-        
+    func launchFanUp(numFireworks: Int, spacingIncrement: CGFloat) {
+        print("launchFanUp")
+        let startX = frame.midX - CGFloat(spacingIncrement * floor(CGFloat(numFireworks) / 2))
+
         for n in 0 ..< numFireworks {
-            currentSpacing = (n % 2 == 0) ? currentSpacing : currentSpacing + spacingIncrement
-            let directionFromCenter = CGFloat((n % 2 == 0) ? 1.0 : -1.0)
-            let xPosition = frame.midX + (currentSpacing * directionFromCenter)
+            let xPosition = startX + (CGFloat(n) * spacingIncrement)
             let xMovement = xPosition
             
             createLaunch(xMovement: xMovement, xPos: xPosition, yPos: frame.minY - launchEdgeOffset)
@@ -234,14 +232,12 @@ private extension MainGameScene {
     }
     
     
-    func launchLeftToRight(_ numFireworks: Int) {
-        let spacingIncrement = (frame.maxY / CGFloat(numFireworks)) / 2.0
-        var currentSpacing = CGFloat(0.0)
-        
+    func launchLeftToRight(numFireworks: Int, spacingIncrement: CGFloat) {
+        print("launchLeftToRight")
+        let startY = frame.midY - CGFloat(spacingIncrement * floor(CGFloat(numFireworks) / 2))
+
         for n in 0 ..< numFireworks {
-            currentSpacing = (n % 2 == 0) ? currentSpacing : currentSpacing + spacingIncrement
-            let directionFromCenter = CGFloat((n % 2 == 0) ? 1.0 : -1.0)
-            let yPosition = frame.midY + (currentSpacing * directionFromCenter)
+            let yPosition = startY + (CGFloat(n) * spacingIncrement)
             let xMovement = frame.maxX * 1.5
 
             createLaunch(xMovement: xMovement, xPos: frame.minX - launchEdgeOffset, yPos: yPosition)
@@ -249,14 +245,12 @@ private extension MainGameScene {
     }
     
     
-    func launchRightToLeft(_ numFireworks: Int) {
-        let spacingIncrement = (frame.maxY / CGFloat(numFireworks)) / 2.0
-        var currentSpacing = CGFloat(0.0)
+    func launchRightToLeft(numFireworks: Int, spacingIncrement: CGFloat) {
+        print("launchRightToLeft")
+        let startY = frame.midY - CGFloat(spacingIncrement * floor(CGFloat(numFireworks) / 2))
 
         for n in 0 ..< numFireworks {
-            currentSpacing = (n % 2 == 0) ? currentSpacing : currentSpacing + spacingIncrement
-            let directionFromCenter = CGFloat((n % 2 == 0) ? 1.0 : -1.0)
-            let yPosition = frame.midY + (currentSpacing * directionFromCenter)
+            let yPosition = startY + (CGFloat(n) * spacingIncrement)
             let xMovement = frame.maxX * 1.5
             
             createLaunch(xMovement: -xMovement, xPos: frame.maxX + launchEdgeOffset, yPos: yPosition)
