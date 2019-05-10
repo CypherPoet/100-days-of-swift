@@ -60,6 +60,7 @@ extension MainGameScene {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
+        
         guard let touch = touches.first else { return }
         handleTouch(touch)
     }
@@ -67,6 +68,7 @@ extension MainGameScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
         guard let touch = touches.first else { return }
         handleTouch(touch)
     }
@@ -74,6 +76,7 @@ extension MainGameScene {
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
+        
         cleanupPastFireworks()
     }
 }
@@ -267,21 +270,19 @@ private extension MainGameScene {
 
     
     func handleTouch(_ touch: UITouch) {
-        let location = touch.location(in: self)
+        let nodesAtTouchPoint = nodes(at: touch.location(in: self))
         
-        for node in nodes(at: location) {
-            if node is SKSpriteNode && node.name == NodeName.fireworkRocket {
-                let rocketNode = node as! SKSpriteNode
-                
-                if !selectedRockets.isEmpty && rocketNode.color != colorToDetonate {
-                    resetSelectedRockets()
-                } else {
-                    colorToDetonate = rocketNode.color
-                    rocketNode.name = NodeName.selectedFireworkRocket
-                    rocketNode.colorBlendFactor = 0
-                    rocketNode.color = UIColor.white
-                    selectedRockets.append(rocketNode)
-                }
+        for case let touchedNode as SKSpriteNode in nodesAtTouchPoint {
+            guard touchedNode.name == NodeName.fireworkRocket else { continue }
+
+            if !selectedRockets.isEmpty && touchedNode.color != colorToDetonate {
+                resetSelectedRockets()
+            } else {
+                colorToDetonate = touchedNode.color
+                touchedNode.name = NodeName.selectedFireworkRocket
+                touchedNode.colorBlendFactor = 0
+                touchedNode.color = UIColor.white
+                selectedRockets.append(touchedNode)
             }
         }
     }
