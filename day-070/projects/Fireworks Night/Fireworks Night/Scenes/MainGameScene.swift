@@ -37,8 +37,13 @@ class MainGameScene: SKScene {
 // MARK: - Computed Properties
 
 extension MainGameScene {
+    
     var sceneCenterPoint: CGPoint {
         return CGPoint(x: frame.midX, y: frame.midY)
+    }
+    
+    var rocketYMovement: CGFloat {
+        return frame.maxY * 1.5
     }
 }
     
@@ -140,7 +145,7 @@ private extension MainGameScene {
     
     
     /**
-     * Launch fireworks five at a time, in four different shapes
+     * Launch fireworks five at a time, in a random configuration
      */
     @objc func launchFireworks() {
         let burstQuantity = 5
@@ -193,8 +198,8 @@ private extension MainGameScene {
     func makeFireworkMotion(xMovement: CGFloat, speed: CGFloat) -> SKAction {
         let path = UIBezierPath()
         
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: xMovement, y: frame.maxY * 1.5))
+        path.move(to: .zero)
+        path.addLine(to: CGPoint(x: xMovement, y: rocketYMovement))
         
         let motionPathAction = SKAction.follow(
             path.cgPath,
@@ -222,10 +227,13 @@ private extension MainGameScene {
     func launchFanUp(numFireworks: Int, spacingIncrement: CGFloat) {
         print("launchFanUp")
         let startX = frame.midX - CGFloat(spacingIncrement * floor(CGFloat(numFireworks) / 2))
-
+        let cosineIncrement = (CGFloat.pi / 8) / CGFloat(numFireworks)
+        let startCosine = cos( (CGFloat.pi / 4) - (CGFloat(cosineIncrement * floor(CGFloat(numFireworks) / 2))) )
+        
         for n in 0 ..< numFireworks {
-            let xPosition = startX + (CGFloat(n) * spacingIncrement)
-            let xMovement = xPosition
+            let xPosition = startX
+            let currentCosine = abs((startCosine + (CGFloat(n) * cosineIncrement)) - (CGFloat.pi / 4))
+            let xMovement = currentCosine * rocketYMovement
             
             createLaunch(xMovement: xMovement, xPos: xPosition, yPos: frame.minY - launchEdgeOffset)
         }
