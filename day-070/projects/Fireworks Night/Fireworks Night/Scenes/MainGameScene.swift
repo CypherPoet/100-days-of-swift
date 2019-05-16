@@ -347,7 +347,14 @@ private extension MainGameScene {
     func explode(firework: SKNode) {
         let emitter = SKEmitterNode(fileNamed: "explode")!
         
+        let delayedRemoval = SKAction.sequence([
+            SKAction.wait(forDuration: 3),
+            SKAction.removeFromParent(),
+        ])
+        
         emitter.position = firework.position
+        emitter.run(delayedRemoval)
+        
         addChild(emitter)
         firework.removeFromParent()
     }
