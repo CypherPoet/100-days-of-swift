@@ -12,6 +12,7 @@ import GameplayKit
 
 class MainGameScene: SKScene {
     let fireworkInterval = 4.0
+    let launchCount = 10
     let fireworkSpeed = CGFloat(200.0)
     let launchEdgeOffset = CGFloat(22)
     
@@ -22,10 +23,17 @@ class MainGameScene: SKScene {
     
     lazy var background: SKNode = makeBackground()
     lazy var scoreLabel: SKLabelNode = makeScoreLabel()
+    lazy var remainingLaunchesLabel: SKLabelNode = makeRemainingLaunchesLabel()
     
     var currentScore = 0 {
         didSet {
             scoreLabel.text = "Score: \(currentScore)"
+        }
+    }
+    
+    var remainingLaunches = 0 {
+        didSet {
+            remainingLaunchesLabel.text = "Remaining Launches: \(remainingLaunches)"
         }
     }
     
@@ -125,8 +133,10 @@ private extension MainGameScene {
     
     func setupUI() {
         addChild(scoreLabel)
+        addChild(remainingLaunchesLabel)
         addChild(background)
         
+        remainingLaunches = launchCount
         currentScore = 0
     }
     
@@ -143,12 +153,26 @@ private extension MainGameScene {
     
     
     func makeScoreLabel() -> SKLabelNode {
-        let scoreLabel = SKLabelNode(fontNamed: "Futura")
-        scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.verticalAlignmentMode = .top
-        scoreLabel.position = CGPoint(x: frame.maxX - 16, y: frame.maxY - 16)
+        let label = SKLabelNode(fontNamed: "Futura")
         
-        return scoreLabel
+        label.horizontalAlignmentMode = .right
+        label.verticalAlignmentMode = .bottom
+        label.fontSize = 32
+        label.position = CGPoint(x: frame.maxX - 16, y: frame.minY + 42)
+        
+        return label
+    }
+    
+    
+    func makeRemainingLaunchesLabel() -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "Futura")
+        
+        label.horizontalAlignmentMode = scoreLabel.horizontalAlignmentMode
+        label.verticalAlignmentMode = scoreLabel.verticalAlignmentMode
+        label.fontSize = scoreLabel.fontSize
+        label.position = CGPoint(x: scoreLabel.position.x, y: scoreLabel.position.y - 42)
+        
+        return label
     }
     
     
@@ -156,6 +180,12 @@ private extension MainGameScene {
      * Launch fireworks five at a time, in a random configuration
      */
     @objc func launchFireworks() {
+        guard remainingLaunches > 0 else {
+            return gameTimer.invalidate()
+        }
+        
+        remainingLaunches -= 1
+        
         let burstQuantity = 5
         let spacingIncrement = CGFloat(frame.maxY / CGFloat(burstQuantity)) / 2
         
