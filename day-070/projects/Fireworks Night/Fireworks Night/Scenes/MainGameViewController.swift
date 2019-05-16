@@ -15,12 +15,9 @@ class MainGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
+        if let view = self.view as? SKView {
             if let scene = SKScene(fileNamed: "MainGameScene") {
-                // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
-                // Present the scene
                 view.presentScene(scene)
             }
             
@@ -47,9 +44,30 @@ class MainGameViewController: UIViewController {
         return true
     }
     
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+}
+
+
+// MARK: - Lifecycle
+
+extension MainGameViewController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        becomeFirstResponder()
+    }
+    
+    
+    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        let spriteKitView = self.view as! SKView
-        let gameScene = spriteKitView.scene as! MainGameScene
+        guard
+            let spriteKitView = self.view as? SKView,
+            let gameScene = spriteKitView.scene as? MainGameScene
+        else {
+            preconditionFailure("Failed to find SKView and MainGameScene")
+        }
         
         gameScene.explodeSelectedFireworks()
     }

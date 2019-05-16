@@ -45,6 +45,14 @@ extension MainGameScene {
     var rocketYMovement: CGFloat {
         return frame.maxY * 1.5
     }
+    
+    var pointsToAward: Int {
+        if selectedRockets.isEmpty {
+            return 0
+        }
+        
+        return Int(pow(Double(5), Double(selectedRockets.count)))
+    }
 }
     
 
@@ -87,18 +95,15 @@ extension MainGameScene {
 extension MainGameScene {
     
     func explodeSelectedFireworks() {
-        let pointsToAward = selectedRockets.count * 200
-        
+        currentScore += pointsToAward
         selectedRockets.removeAll(keepingCapacity: true)
         
         for (index, firework) in fireworks.enumerated().reversed() {
-            if firework.childNode(withName: NodeName.selectedFireworkRocket) != nil {
+            if firework.children.contains(where: { $0.name == NodeName.selectedFireworkRocket }) {
                 fireworks.remove(at: index)
                 explode(firework: firework)
             }
         }
-        
-        currentScore += pointsToAward
     }
 }
 
@@ -277,13 +282,13 @@ private extension MainGameScene {
 
             if !selectedRockets.isEmpty && touchedNode.color != colorToDetonate {
                 resetSelectedRockets()
-            } else {
-                colorToDetonate = touchedNode.color
-                touchedNode.name = NodeName.selectedFireworkRocket
-                touchedNode.colorBlendFactor = 0
-                touchedNode.color = UIColor.white
-                selectedRockets.append(touchedNode)
             }
+
+            colorToDetonate = touchedNode.color
+            touchedNode.name = NodeName.selectedFireworkRocket
+            touchedNode.colorBlendFactor = 0
+            touchedNode.color = UIColor.white
+            selectedRockets.append(touchedNode)
         }
     }
     
