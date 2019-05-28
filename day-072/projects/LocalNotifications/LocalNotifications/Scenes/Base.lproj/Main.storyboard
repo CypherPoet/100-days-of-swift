@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="LocalNotifications" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="Jb1-cr-WYW">
+                                <rect key="frame" x="0.0" y="375" width="414" height="146"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9l5-q4-njk">
+                                        <rect key="frame" x="107" y="0.0" width="200" height="52"/>
+                                        <color key="backgroundColor" red="0.050980392156862744" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="C2O-IU-3kf"/>
+                                            <constraint firstAttribute="width" constant="200" id="vCO-rb-J1K"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="AUTHORIZE">
+                                            <color key="titleColor" red="0.97254901960784312" green="0.396078431372549" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="authorizeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C3C-dQ-Man"/>
+                                        </connections>
+                                    </button>
+                                    <button alpha="0.40000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STi-05-4on">
+                                        <rect key="frame" x="107" y="94" width="200" height="52"/>
+                                        <color key="backgroundColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="EcN-p5-jWM"/>
+                                            <constraint firstAttribute="width" constant="200" id="SDe-i7-FLK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="SCHEDULE">
+                                            <color key="titleColor" red="0.97254901959999995" green="0.39607843139999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scheduleButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aIn-PH-hyG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq7-2T-AIe">
+                                <rect key="frame" x="87.5" y="86" width="239" height="267"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Jb1-cr-WYW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8ON-G6-1i1"/>
+                            <constraint firstItem="Jb1-cr-WYW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BjP-5I-SFf"/>
+                            <constraint firstItem="Jb1-cr-WYW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hy4-hd-jeC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jb1-cr-WYW" secondAttribute="trailing" id="X0F-l6-yYT"/>
+                            <constraint firstItem="jq7-2T-AIe" firstAttribute="top" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="42" id="alP-88-U4T"/>
+                            <constraint firstItem="Jb1-cr-WYW" firstAttribute="top" relation="lessThanOrEqual" secondItem="jq7-2T-AIe" secondAttribute="bottom" constant="22" id="cup-7b-XFo"/>
+                            <constraint firstItem="jq7-2T-AIe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gsR-tx-HUa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="scheduleNotificationsButton" destination="STi-05-4on" id="4aK-dx-ZXT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
