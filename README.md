@@ -91,10 +91,11 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 69: _Project 19: JavaScript Injection_, Part Three](/day-069)
 - [Day 70: _Project 20: Fireworks Night_, Part One](/day-070)
 - [Day 71: _Project 20: Fireworks Night_, Part Two](/day-071)
+- [Day 72: _Project 21: Local Notifications_, Part One](/day-072)
 
 </details>
 
-- [Day 72: _Project 21: Local Notifications_, Part One](/day-072)
+- [Day 73: _Project 21: Local Notifications_, Part Two](/day-073)
 
 
 ## Projects

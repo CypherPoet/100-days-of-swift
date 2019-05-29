@@ -1,0 +1,50 @@
+[
+    {
+        "display_name": "Estonia",
+        "asset_name": "estonia"
+    },
+    {
+        "display_name": "France",
+        "asset_name": "france",
+    },
+    {
+        "display_name": "Germany",
+        "asset_name": "germany",
+    },
+    {
+        "display_name": "Ireland",
+        "asset_name": "ireland",
+    },
+    {
+        "display_name": "Italy",
+        "asset_name": "italy",
+    },
+    {
+        "display_name": "Monaco",
+        "asset_name": "monaco",
+    },
+    {
+        "display_name": "Nigeria",
+        "asset_name": "nigeria",
+    },
+    {
+        "display_name": "Poland",
+        "asset_name": "poland",
+    },
+    {
+        "display_name": "Russia",
+        "asset_name": "russia",
+    },
+    {
+        "display_name": "Spain",
+        "asset_name": "spain",
+    },
+    {
+        "display_name": "the United Kingdom",
+        "asset_name": "uk"
+    },
+    {
+        "display_name": "the United States",
+        "asset_name": "us"
+    },
+]
