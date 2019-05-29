@@ -64,9 +64,9 @@ extension MainViewController {
 private extension MainViewController {
     
     func authorizeLocalNotifications() {
-        notificationCenter.requestAuthorization(
-            options: [.alert, .badge, .sound]
-        ) { [weak self] (wasGranted, error) in
+        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) {
+            [weak self] (wasGranted, error) in
+            
             guard error == nil else {
                 return print("Error while attempting to authorize local notifications:\n\n\(error!)")
             }
@@ -126,10 +126,23 @@ extension MainViewController: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         switch response.actionIdentifier {
-        case LocalNotification.Action.show.identifier:
-            print("Show more information")
+        case LocalNotification.Action.showInfo.identifier:
+            let userInfo = response.notification.request.content.userInfo
+            
+            guard
+                let title = userInfo[LocalNotification.ContentUserInfoKey.title] as? String,
+                let message = userInfo[LocalNotification.ContentUserInfoKey.message] as? String
+            else {
+                preconditionFailure("Failed to find data from content user info")
+            }
+            
+            display(alertMessage: message, titled: title)
         case UNNotificationDefaultActionIdentifier:
-            print("Default action identifier")
+            display(
+                alertMessage: "We heard you like alerts. So here's another alert to respond to your alert.",
+                titled: "Yo Dawg!",
+                confirmButtonTitle: "Sweet, Thanks!"
+            )
         default:
             print("Unknown action identifier")
         }

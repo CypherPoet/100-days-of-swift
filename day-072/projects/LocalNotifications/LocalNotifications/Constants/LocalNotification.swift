@@ -10,15 +10,17 @@ import UserNotifications
 
 
 enum LocalNotification {
-    
     static var earthRotation: UNNotificationRequest {
-        return makeEarthRotationNotification()
+        return UNNotificationRequest(
+            identifier: uuid,
+            content: Content.earthRotation.requestContent,
+            trigger: Trigger.firstSecondOfDay
+        )
     }
 }
 
 
 extension LocalNotification {
-    
     private static var uuid: String {
         return UUID().uuidString
     }
@@ -27,25 +29,25 @@ extension LocalNotification {
 
 extension LocalNotification {
     enum Action {
-        case show
+        case showInfo
         
         var identifier: String {
             switch self {
-            case .show:
+            case .showInfo:
                 return "Show"
             }
         }
         
         var title: String {
             switch self {
-            case .show:
+            case .showInfo:
                 return "Tell me more..."
             }
         }
         
         var notificationAction: UNNotificationAction {
             switch self {
-            case .show:
+            case .showInfo:
                 return .init(identifier: self.identifier, title: self.title, options: [.foreground])
             }
         }
@@ -67,7 +69,7 @@ extension LocalNotification {
         var notificationCategory: UNNotificationCategory {
             switch self {
             case .earthRotation:
-                return .init(identifier: self.identifier, actions: [Action.show.notificationAction], intentIdentifiers: [])
+                return .init(identifier: self.identifier, actions: [Action.showInfo.notificationAction], intentIdentifiers: [])
             }
         }
     }
@@ -98,15 +100,37 @@ extension LocalNotification {
 }
 
 
-private extension LocalNotification {
-    static func makeEarthRotationNotification() -> UNNotificationRequest {
-        let content = UNMutableNotificationContent()
+extension LocalNotification {
+    enum ContentUserInfoKey {
+        static let message = "Custom Data Message"
+        static let title = "Custom Data Title"
+    }
+}
+
+
+extension LocalNotification {
+    enum Content {
+        case earthRotation
         
-        content.title = "🤯 Woah!"
-        content.body = "The Earth has spun 0.00417 degrees on its axis since its day began in your time zone."
-        content.sound = .default
-        content.categoryIdentifier = Category.earthRotation.identifier
-        
-        return UNNotificationRequest(identifier: uuid, content: content, trigger: Trigger.firstSecondOfDay)
+        var requestContent: UNNotificationContent {
+            let content = UNMutableNotificationContent()
+            
+            content.title = "🤯 Woah!"
+            content.body = "The Earth has spun 0.00417 degrees on its axis since its day began in your time zone."
+            
+            content.userInfo[ContentUserInfoKey.title] = "🌎🌏🌍🌍🌏🌎"
+            content.userInfo[ContentUserInfoKey.message] = """
+            Earthlings use the concept of a "day" to represent a complete rotation \
+            of their planet on its axis.
+            
+            This notification detected the passing \
+            of a full Earth second. Progress!
+            """
+            
+            content.sound = .default
+            content.categoryIdentifier = Category.earthRotation.identifier
+            
+            return content as UNNotificationContent
+        }
     }
 }

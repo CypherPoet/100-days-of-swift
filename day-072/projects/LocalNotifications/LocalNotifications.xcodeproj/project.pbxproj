@@ -13,6 +13,7 @@
 		F3C7D093229A684F00E91527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C7D092229A684F00E91527 /* Assets.xcassets */; };
 		F3C7D096229A684F00E91527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3C7D094229A684F00E91527 /* LaunchScreen.storyboard */; };
 		F3C7D0A2229BE9CC00E91527 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7D0A1229BE9CC00E91527 /* LocalNotification.swift */; };
+		F3C7D0AD229E57D300E91527 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7D0AC229E57D300E91527 /* UIViewController+DisplayAlertMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F3C7D095229A684F00E91527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3C7D097229A684F00E91527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3C7D0A1229BE9CC00E91527 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
+		F3C7D0AC229E57D300E91527 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		F3C7D08A229A684D00E91527 /* LocalNotifications */ = {
 			isa = PBXGroup;
 			children = (
+				F3C7D0AB229E57BF00E91527 /* Extensions */,
 				F3C7D0A3229BE9D400E91527 /* Constants */,
 				F3C7D0A0229BD56700E91527 /* Content */,
 				F3C7D09F229BD53A00E91527 /* Scenes */,
@@ -89,6 +92,14 @@
 				F3C7D0A1229BE9CC00E91527 /* LocalNotification.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		F3C7D0AB229E57BF00E91527 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3C7D0AC229E57D300E91527 /* UIViewController+DisplayAlertMessage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C7D0AD229E57D300E91527 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F3C7D08E229A684D00E91527 /* MainViewController.swift in Sources */,
 				F3C7D08C229A684D00E91527 /* AppDelegate.swift in Sources */,
 				F3C7D0A2229BE9CC00E91527 /* LocalNotification.swift in Sources */,
