@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F36BB02922AB9E9700B1CEDB /* ProximityTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BB02822AB9E9700B1CEDB /* ProximityTheme.swift */; };
 		F36BB02B22AC614B00B1CEDB /* BeaconRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BB02A22AC614B00B1CEDB /* BeaconRegion.swift */; };
+		F38EF83522B0A5DC0031BE50 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF83422B0A5DC0031BE50 /* UIViewController+DisplayAlertMessage.swift */; };
 		F3B6F2CB220DAD5400BD96AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B6F2CA220DAD5400BD96AF /* AppDelegate.swift */; };
 		F3B6F2CD220DAD5400BD96AF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B6F2CC220DAD5400BD96AF /* HomeViewController.swift */; };
 		F3B6F2D0220DAD5400BD96AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B6F2CE220DAD5400BD96AF /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		F36BB02822AB9E9700B1CEDB /* ProximityTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityTheme.swift; sourceTree = "<group>"; };
 		F36BB02A22AC614B00B1CEDB /* BeaconRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconRegion.swift; sourceTree = "<group>"; };
+		F38EF83422B0A5DC0031BE50 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 		F3B6F2C7220DAD5400BD96AF /* Detect A Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Detect A Beacon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B6F2CA220DAD5400BD96AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3B6F2CC220DAD5400BD96AF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		F38EF83322B0A44D0031BE50 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F38EF83422B0A5DC0031BE50 /* UIViewController+DisplayAlertMessage.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F3B6F2BE220DAD5400BD96AF = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +95,7 @@
 		F3B6F2C9220DAD5400BD96AF /* Detect A Beacon */ = {
 			isa = PBXGroup;
 			children = (
+				F38EF83322B0A44D0031BE50 /* Extensions */,
 				F36BB02722AB9E7400B1CEDB /* Helpers */,
 				F36BB02622AB9E4E00B1CEDB /* Content */,
 				F36BB02522AB9E3400B1CEDB /* Scenes */,
@@ -168,6 +179,7 @@
 			files = (
 				F3B6F2CD220DAD5400BD96AF /* HomeViewController.swift in Sources */,
 				F36BB02B22AC614B00B1CEDB /* BeaconRegion.swift in Sources */,
+				F38EF83522B0A5DC0031BE50 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F36BB02922AB9E9700B1CEDB /* ProximityTheme.swift in Sources */,
 				F3B6F2CB220DAD5400BD96AF /* AppDelegate.swift in Sources */,
 			);

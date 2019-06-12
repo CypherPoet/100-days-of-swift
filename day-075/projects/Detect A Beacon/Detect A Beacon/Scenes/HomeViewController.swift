@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
 
     lazy var locationManager: CLLocationManager = CLLocationManager()
     lazy var beaconRegion = BeaconRegion.makeRegion()
+    
+    var didAlertUserAboutMonitoring = false
 }
 
 
@@ -65,6 +67,19 @@ private extension HomeViewController {
     
     func startMonitoring() {
         if canMonitorForBeacons {
+            if !didAlertUserAboutMonitoring {
+                didAlertUserAboutMonitoring = true
+                
+                let alertMessage = """
+                    \nBeginning to perform monitoring for beacon region.\n
+                    *** Region identifier ***\n \(beaconRegion.identifier)\n\n
+                    *** Region Proximity UUID ***\n \(beaconRegion.proximityUUID)
+                    """
+                
+                display(alertMessage: alertMessage, titled: "📡📡📡")
+            }
+            
+            
             beaconRegion.notifyEntryStateOnDisplay = true
             
             // start monitoring for the existence of beacons in the region
@@ -79,38 +94,33 @@ private extension HomeViewController {
     
     
     func updateUI(for beaconProximity: CLProximity) {
-        UIView.animate(
-            withDuration: 0.8,
-            animations: {
-                switch beaconProximity {
-                case .unknown:
-                    self.nearestDistanceLabel.text = ProximityTheme.unknown.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.unknown.backgroundColor
-                case .far:
-                    self.nearestDistanceLabel.text = ProximityTheme.far.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.far.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.far.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.far.backgroundColor
-                case .near:
-                    self.nearestDistanceLabel.text = ProximityTheme.near.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.near.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.near.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.near.backgroundColor
-                case .immediate:
-                    self.nearestDistanceLabel.text = ProximityTheme.immediate.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.immediate.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.immediate.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.immediate.backgroundColor
-                @unknown default:
-                    self.nearestDistanceLabel.text = ProximityTheme.unknown.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.unknown.backgroundColor
-                }
-            }
-        )
+        switch beaconProximity {
+        case .unknown:
+            self.nearestDistanceLabel.text = ProximityTheme.unknown.distanceLabelText
+            self.nearestDistanceLabel.textColor = ProximityTheme.unknown.distanceLabelColor
+            self.nearestDistanceHeader.textColor = ProximityTheme.unknown.distanceLabelColor
+            self.view.backgroundColor = ProximityTheme.unknown.backgroundColor
+        case .far:
+            self.nearestDistanceLabel.text = ProximityTheme.far.distanceLabelText
+            self.nearestDistanceLabel.textColor = ProximityTheme.far.distanceLabelColor
+            self.nearestDistanceHeader.textColor = ProximityTheme.far.distanceLabelColor
+            self.view.backgroundColor = ProximityTheme.far.backgroundColor
+        case .near:
+            self.nearestDistanceLabel.text = ProximityTheme.near.distanceLabelText
+            self.nearestDistanceLabel.textColor = ProximityTheme.near.distanceLabelColor
+            self.nearestDistanceHeader.textColor = ProximityTheme.near.distanceLabelColor
+            self.view.backgroundColor = ProximityTheme.near.backgroundColor
+        case .immediate:
+            self.nearestDistanceLabel.text = ProximityTheme.immediate.distanceLabelText
+            self.nearestDistanceLabel.textColor = ProximityTheme.immediate.distanceLabelColor
+            self.nearestDistanceHeader.textColor = ProximityTheme.immediate.distanceLabelColor
+            self.view.backgroundColor = ProximityTheme.immediate.backgroundColor
+        @unknown default:
+            self.nearestDistanceLabel.text = ProximityTheme.unknown.distanceLabelText
+            self.nearestDistanceLabel.textColor = ProximityTheme.unknown.distanceLabelColor
+            self.nearestDistanceHeader.textColor = ProximityTheme.unknown.distanceLabelColor
+            self.view.backgroundColor = ProximityTheme.unknown.backgroundColor
+        }
     }
 }
 
@@ -156,7 +166,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         let beaconProximity = beacons.first?.proximity ?? CLProximity.unknown
         print("Did range beacons. Proximity: \(beaconProximity)")
         
-        updateUI(for: beaconProximity)
+        UIView.animate(withDuration: 0.8) { self.updateUI(for: beaconProximity) }
     }
     
     
