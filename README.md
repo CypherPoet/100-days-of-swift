@@ -94,10 +94,11 @@ Feedback and suggestions are highly appreciated. I'll be opening up [issues](htt
 - [Day 72: _Project 21: Local Notifications_, Part One](/day-072)
 - [Day 73: _Project 21: Local Notifications_, Part Two](/day-073)
 - [Day 74: Milestone for Projects 19-21](/day-074)
+- [Day 75: _Project 22: Detect-A-Beacon_, Part One](/day-075)
 
 </details>
 
-- [Day 75: _Project 21: Detect-A-Beacon_, Part One](/day-075)
+- [Day 76: _Project 22: Detect-A-Beacon_, Part Two](/day-076)
 
 
 ## Projects

@@ -30,16 +30,16 @@ enum ProximityTheme {
     }
 
     
-    var distanceLabelColor: UIColor {
+    var labelTextColor: UIColor {
         switch self {
         case .unknown:
-            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            return .systemGray
         case .far:
-            return #colorLiteral(red: 0.1695539951, green: 0.182798177, blue: 0.2005673051, alpha: 1)
+            return .systemGray2
         case .near:
-            return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            return .systemGray4
         case .immediate:
-            return #colorLiteral(red: 0.8756549954, green: 0.8758021593, blue: 0.8756355643, alpha: 1)
+            return .systemGray6
         }
     }
     
@@ -47,13 +47,41 @@ enum ProximityTheme {
     var backgroundColor: UIColor {
         switch self {
         case .unknown:
-            return #colorLiteral(red: 0.4559803605, green: 0.5050186515, blue: 0.4953667521, alpha: 1)
+            return #colorLiteral(red: 0.3960249352, green: 0, blue: 1, alpha: 0.2492424242)
         case .far:
-            return #colorLiteral(red: 0.7027224898, green: 0.6036098003, blue: 1, alpha: 1)
+            return #colorLiteral(red: 0.3960249352, green: 0, blue: 1, alpha: 0.5)
         case .near:
-            return #colorLiteral(red: 0.5806189775, green: 0.426497519, blue: 1, alpha: 1)
+            return #colorLiteral(red: 0.3960249352, green: 0, blue: 1, alpha: 0.7506628788)
         case .immediate:
-            return #colorLiteral(red: 0.4703221917, green: 0.2544962764, blue: 1, alpha: 1)
+            return #colorLiteral(red: 0.3960249352, green: 0, blue: 1, alpha: 1)
+        }
+    }
+    
+    
+    var logoScale: CGFloat {
+        switch self {
+        case .unknown:
+            return 0.7
+        case .far:
+            return 0.9
+        case .near:
+            return 1.2
+        case .immediate:
+            return 1.5
+        }
+    }
+    
+    
+    var logoAlpha: CGFloat {
+        switch self {
+        case .unknown:
+            return 0.2
+        case .far:
+            return 0.4
+        case .near:
+            return 0.75
+        case .immediate:
+            return 1.0
         }
     }
 }

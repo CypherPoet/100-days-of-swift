@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="iOS 13.0 system colors" minToolsVersion="11.0"/>
     </dependencies>
     <scenes>
         <!--Home View Controller-->
@@ -18,38 +17,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="65m-Ty-RKd">
-                                <rect key="frame" x="87.5" y="391.5" width="239" height="113"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="157" translatesAutoresizingMaskIntoConstraints="NO" id="esZ-mw-5l7">
+                                <rect key="frame" x="22" y="226.5" width="370" height="443"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon Distance:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLz-cX-UD5">
-                                        <rect key="frame" x="0.0" y="0.0" width="239" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNKNOWN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojl-eG-StP">
-                                        <rect key="frame" x="0.0" y="53" width="239" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="65m-Ty-RKd">
+                                        <rect key="frame" x="85" y="0.0" width="200" height="143"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon Name 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLz-cX-UD5">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="31.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <color key="textColor" cocoaTouchSystemColor="systemIndigoColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNKNOWN DISTANCE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojl-eG-StP">
+                                                <rect key="frame" x="0.0" y="47.5" width="200" height="95.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAW-Oe-RfQ">
+                                        <rect key="frame" x="65" y="300" width="240" height="143"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="AsW-qL-5bR">
+                                                <rect key="frame" x="45" y="-3.5" width="150" height="150"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="systemFillColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="6IJ-GY-qAo"/>
+                                                    <constraint firstAttribute="height" constant="150" id="kEj-b2-6TI"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="AsW-qL-5bR" firstAttribute="centerY" secondItem="BAW-Oe-RfQ" secondAttribute="centerY" id="1mk-HI-U14"/>
+                                            <constraint firstItem="AsW-qL-5bR" firstAttribute="centerX" secondItem="BAW-Oe-RfQ" secondAttribute="centerX" id="Mxv-Id-KQi"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="BAW-Oe-RfQ" firstAttribute="centerX" secondItem="esZ-mw-5l7" secondAttribute="centerX" id="ros-yv-SQh"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="65m-Ty-RKd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8Rj-Sm-02e"/>
-                            <constraint firstItem="65m-Ty-RKd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lNn-WB-zRE"/>
+                            <constraint firstItem="esZ-mw-5l7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="22" id="8Yj-QX-2Dk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="esZ-mw-5l7" secondAttribute="trailing" constant="22" id="Lw3-Uw-wJh"/>
+                            <constraint firstItem="esZ-mw-5l7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XVz-p5-MVZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="nearestDistanceHeader" destination="VLz-cX-UD5" id="X90-If-YHo"/>
-                        <outlet property="nearestDistanceLabel" destination="ojl-eG-StP" id="ww9-E6-M5G"/>
+                        <outlet property="beaconDistanceLabel" destination="ojl-eG-StP" id="ww9-E6-M5G"/>
+                        <outlet property="beaconLogoImage" destination="AsW-qL-5bR" id="g9t-Z1-LCJ"/>
+                        <outlet property="beaconNameLabel" destination="VLz-cX-UD5" id="X90-If-YHo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="132" y="112"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ibeacon-logo" width="75.5" height="75.5"/>
+    </resources>
 </document>
