@@ -11,11 +11,15 @@ import CoreLocation
 
 
 class HomeViewController: UIViewController {
-    @IBOutlet weak var nearestDistanceHeader: UILabel!
-    @IBOutlet weak var nearestDistanceLabel: UILabel!
-
+    @IBOutlet weak var beaconNameLabel: UILabel!
+    @IBOutlet weak var beaconDistanceLabel: UILabel!
+    @IBOutlet var beaconLogoImage: UIImageView!
+    
     lazy var locationManager: CLLocationManager = CLLocationManager()
-    lazy var beaconRegion = BeaconRegion.makeRegion()
+    
+    lazy var beaconRegions = makeBeaconRegions()
+    
+    var didAlertUserAboutMonitoring = false
 }
 
 
@@ -45,7 +49,7 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateUI(for: .unknown)
+        updateUI(for: beaconRegions[0], with: .unknown)
         setupLocationManager()
     }
 }
@@ -63,54 +67,97 @@ private extension HomeViewController {
     }
     
     
-    func startMonitoring() {
-        if canMonitorForBeacons {
-            beaconRegion.notifyEntryStateOnDisplay = true
+    func setupMonitoring() {
+        guard canMonitorForBeacons else {
+            display(
+                alertMessage: "Beacon monitoring is currently unavailable.",
+                titled: "Uh-oh",
+                confirmButtonTitle: "Try Again Later"
+            )
             
-            // start monitoring for the existence of beacons in the region
-            locationManager.startMonitoring(for: beaconRegion)
-            
-            // start measuring the distance between us and the beacon
-            locationManager.startRangingBeacons(in: beaconRegion)
+            return
+        }
+    
+        if didAlertUserAboutMonitoring {
+            startMonitoring()
         } else {
-            print("Unable to perform beacon monitoring")
+            didAlertUserAboutMonitoring = true
+            
+            let alertMessage = """
+                \nBeginning to perform monitoring for beacon region.\n
+                *** Region Proximity UUIDs ***\n
+                """
+            
+            display(
+                alertMessage: alertMessage,
+                titled: "📡📡📡",
+                confirmationHandler: { [weak self] _ in
+                    self?.startMonitoring()
+                }
+            )
         }
     }
     
     
-    func updateUI(for beaconProximity: CLProximity) {
+    func startMonitoring() {
+        for beaconRegion in beaconRegions {
+            beaconRegion.notifyEntryStateOnDisplay = true
+            
+            // start monitoring for the existence of beacons in the region
+            locationManager.startMonitoring(for: beaconRegion)
+        }
+    }
+    
+    
+    func updateUI(for region: CLBeaconRegion, with beaconProximity: CLProximity) {
+        beaconNameLabel.text = region.identifier
+        
+        let proximityTheme: ProximityTheme
+        
+        switch beaconProximity {
+        case .unknown:
+            proximityTheme = .unknown
+        case .far:
+            proximityTheme = .far
+        case .near:
+            proximityTheme = .near
+        case .immediate:
+            proximityTheme = .immediate
+        @unknown default:
+            proximityTheme = .unknown
+        }
+        
+        animateUI(using: proximityTheme)
+    }
+    
+    
+    func animateUI(using proximityTheme: ProximityTheme) {
         UIView.animate(
-            withDuration: 0.8,
+            withDuration: 0.65,
+            delay: 0,
+            options: [.curveEaseOut],
             animations: {
-                switch beaconProximity {
-                case .unknown:
-                    self.nearestDistanceLabel.text = ProximityTheme.unknown.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.unknown.backgroundColor
-                case .far:
-                    self.nearestDistanceLabel.text = ProximityTheme.far.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.far.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.far.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.far.backgroundColor
-                case .near:
-                    self.nearestDistanceLabel.text = ProximityTheme.near.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.near.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.near.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.near.backgroundColor
-                case .immediate:
-                    self.nearestDistanceLabel.text = ProximityTheme.immediate.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.immediate.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.immediate.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.immediate.backgroundColor
-                @unknown default:
-                    self.nearestDistanceLabel.text = ProximityTheme.unknown.distanceLabelText
-                    self.nearestDistanceLabel.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.nearestDistanceHeader.textColor = ProximityTheme.unknown.distanceLabelColor
-                    self.view.backgroundColor = ProximityTheme.unknown.backgroundColor
-                }
+                self.beaconLogoImage.transform = CGAffineTransform.identity.scaledBy(
+                    x: proximityTheme.logoScale,
+                    y: proximityTheme.logoScale
+                )
+                
+                self.beaconLogoImage.alpha = proximityTheme.logoAlpha
+                self.beaconDistanceLabel.text = proximityTheme.distanceLabelText
+                self.beaconDistanceLabel.textColor = proximityTheme.labelTextColor
+                self.beaconNameLabel.textColor = proximityTheme.labelTextColor
+                self.view.backgroundColor = proximityTheme.backgroundColor
             }
         )
+    }
+
+    
+    func makeBeaconRegions() -> [CLBeaconRegion] {
+        return [
+            CustomBeacon.alpha.region,
+            CustomBeacon.beta.region,
+            CustomBeacon.omega.region
+        ]
     }
 }
 
@@ -124,7 +171,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         didChangeAuthorization status: CLAuthorizationStatus
     ) {
         if status == .authorizedAlways {
-            startMonitoring()
+            DispatchQueue.main.async { self.startMonitoring() }
         } else {
             print("Unable to start scanning after authorization change. Current auth status: \(status.rawValue)")
         }
@@ -136,7 +183,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let region = region as? CLBeaconRegion else { return }
         
         if canPerformBeaconRanging {
-            locationManager.startRangingBeacons(in: region)
+            locationManager.startRangingBeacons(satisfying: region.beaconIdentityConstraint)
         } else {
             print("Unable to perform beacon ranging")
         }
@@ -156,9 +203,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         let beaconProximity = beacons.first?.proximity ?? CLProximity.unknown
         print("Did range beacons. Proximity: \(beaconProximity)")
         
-        updateUI(for: beaconProximity)
+        updateUI(for: region, with: beaconProximity)
     }
-    
-    
 }
 
