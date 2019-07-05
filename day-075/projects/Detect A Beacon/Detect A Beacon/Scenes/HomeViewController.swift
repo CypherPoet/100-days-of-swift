@@ -51,7 +51,6 @@ extension HomeViewController {
         
         updateUI(for: beaconRegions[0], with: .unknown)
         setupLocationManager()
-        testUpdates()
     }
 }
 
@@ -67,17 +66,6 @@ private extension HomeViewController {
 //        locationManager.allowsBackgroundLocationUpdates = true
     }
     
-
-    func testUpdates() {
-        let cases: [CLProximity] = [.far, .immediate, .near, .unknown]
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-            DispatchQueue.main.async {
-                self.updateUI(for: self.beaconRegions[0], with: cases.randomElement()!)
-                self.testUpdates()
-            }
-        }
-    }
     
     func setupMonitoring() {
         guard canMonitorForBeacons else {
