@@ -2,7 +2,7 @@
 
 ## 👋 Introduction
 
-This project is meant to follow along with [Paul Hudson’s 100 Day’s of Swift challenge](https://www.hackingwithswift.com/100). There are many 100 Days of Swift challenges out there in the wild, but Paul is one of the best contributors to education that the Swift community has, and when I saw him [throw down the gauntlet](https://www.youtube.com/watch?v=RB5nWzdl-b8), I couldn’t resist taking part.
+This project is meant to follow along with [Paul Hudson’s 100 Days of Swift challenge](https://www.hackingwithswift.com/100). There are many 100 Days of Swift challenges out there in the wild, but Paul is one of the best contributors to education that the Swift community has, and when I saw him [throw down the gauntlet](https://www.youtube.com/watch?v=RB5nWzdl-b8), I couldn’t resist taking part.
 
 As the first day of this endeavor, a brief introduction is in order. I’ve been learning Swift and iOS development for a few months now after 5 years as a (mostly) front-end web (re: JavaScript 😐) developer who has decided to take the leap into native — thus, diving into the wonderful world of Swift, iOS, macOS, server-side Swift, and beyond.
 
